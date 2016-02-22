@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="543853b4-0226-4a85-8989-041c29431194">
+	<property name="ireport.zoom" value="1.2078825000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     consulta."cod_consulta" AS consulta_cod_consulta,
+     consulta."cod_animal" AS consulta_cod_animal,
+     consulta."crmv" AS consulta_crmv,
+     consulta."data_consulta" AS consulta_data_consulta,
+     consulta."tipo_exame_encam" AS consulta_tipo_exame_encam,
+     consulta."informacao" AS consulta_informacao,
+     animal."cod_animal" AS animal_cod_animal,
+     animal."nome" AS animal_nome,
+     veterinario."cod_veterinario" AS veterinario_cod_veterinario,
+     veterinario."crmv" AS veterinario_crmv,
+     veterinario."nome" AS veterinario_nome
+FROM
+     "public"."animal" animal INNER JOIN "public"."consulta" consulta ON animal."cod_animal" = consulta."cod_animal"
+     INNER JOIN "public"."veterinario" veterinario ON consulta."crmv" = veterinario."crmv"]]>
+	</queryString>
+	<field name="consulta_cod_consulta" class="java.lang.Integer"/>
+	<field name="consulta_cod_animal" class="java.lang.Integer"/>
+	<field name="consulta_crmv" class="java.lang.String"/>
+	<field name="consulta_data_consulta" class="java.sql.Date"/>
+	<field name="consulta_tipo_exame_encam" class="java.lang.String"/>
+	<field name="consulta_informacao" class="java.lang.String"/>
+	<field name="animal_cod_animal" class="java.lang.Integer"/>
+	<field name="animal_nome" class="java.lang.String"/>
+	<field name="veterinario_cod_veterinario" class="java.lang.Integer"/>
+	<field name="veterinario_crmv" class="java.lang.String"/>
+	<field name="veterinario_nome" class="java.lang.String"/>
+	<group name="consulta_cod_consulta">
+		<groupExpression><![CDATA[$F{consulta_cod_consulta}]]></groupExpression>
+	</group>
+	<group name="consulta_cod_animal">
+		<groupExpression><![CDATA[$F{consulta_cod_animal}]]></groupExpression>
+	</group>
+	<group name="animal_nome">
+		<groupExpression><![CDATA[$F{animal_nome}]]></groupExpression>
+	</group>
+	<group name="consulta_crmv">
+		<groupExpression><![CDATA[$F{consulta_crmv}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="ddfaf02f-ada5-44b4-8f5d-da5eadc12466"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="802" height="20" uuid="e5f5dada-ba9d-4f1d-b656-6a480b158554"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="57" width="802" height="20" uuid="02e3806e-aa45-49eb-9ec6-ea9a582d5b13"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO CONSULTAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="91" height="20" uuid="f2c44e6f-50ce-406b-9edd-fe4bb21c5374"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD CONSUL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="13" width="52" height="20" uuid="04a37749-6f88-4284-891c-04e9af132b19"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD ANI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="13" width="61" height="20" uuid="69691d62-8643-4cbb-b0ed-57870995cb3c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME ANI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="13" width="77" height="20" uuid="c7e7b317-a1fe-4708-b3c9-4d6ba92a98fa"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRMV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="13" width="125" height="20" uuid="20a88020-5b9e-45ab-bec4-7391ec835155"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME VET]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="13" width="104" height="20" uuid="b0184684-e309-40fd-ae1c-9a7c3fb6976b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA CONSULTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="543" y="13" width="147" height="20" uuid="e5c7c168-6619-4862-8bb3-bf63d531e667"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO EXAME]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="6" width="802" height="1" uuid="cef5c8c0-1c71-49bf-b946-3bdb5f0e791a"/>
+			</line>
+			<line>
+				<reportElement x="0" y="39" width="802" height="1" uuid="6ecac0db-f2d5-4877-8e7c-d5449223d9be"/>
+			</line>
+			<staticText>
+				<reportElement x="696" y="13" width="100" height="20" uuid="16a13462-5fe1-4b4c-b8c9-332bd8376ad1"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMAÇÕES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="90" height="20" uuid="7b2a5805-0af9-4018-b97e-299de740e160"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_cod_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="0" width="52" height="20" uuid="56da27ba-9ae9-4460-933c-9ec47c0a66a1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_cod_animal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="61" height="20" uuid="5a3a13a7-bd7f-4e8c-b269-135ba69a4376"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{animal_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="0" width="77" height="20" uuid="87e2a2b6-12c4-42d1-a5b8-72f02402b935"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_crmv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="0" width="125" height="20" uuid="6589929e-45cc-4329-b67c-1a9c8d1249ed"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{veterinario_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="0" width="104" height="20" uuid="bbb6e627-d7fc-496e-9882-a8bb132c1430"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_data_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="543" y="0" width="147" height="20" uuid="a324a722-55c4-4320-8c70-9939ba266239"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_tipo_exame_encam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="696" y="0" width="100" height="20" uuid="d74f3cdf-95fc-4c84-8791-9b74b682dded"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_informacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="6" width="801" height="20" uuid="4b843c13-0cbe-4791-8093-eaaf759dab4c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="1" y="31" width="801" height="20" uuid="17880ab7-9f4e-441a-954a-3f551983a1ea"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

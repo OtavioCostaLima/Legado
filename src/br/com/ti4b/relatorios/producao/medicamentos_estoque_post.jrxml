@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="medicamentos_estoque_post" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fff5b4b-895f-4699-a232-ddf74b27a1d1">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     medicamento."cod_medicamento" AS medicamento_cod_medicamento,
+     medicamento."descricao" AS medicamento_descricao,
+     medicamento."eficacia" AS medicamento_eficacia,
+     medicamento."quant" AS medicamento_quant,
+     medicamento."preco_unit" AS medicamento_preco_unit,
+     medicamento."data_validade" AS medicamento_data_validade
+FROM
+     "public"."medicamento" medicamento]]>
+	</queryString>
+	<field name="medicamento_cod_medicamento" class="java.lang.Integer"/>
+	<field name="medicamento_descricao" class="java.lang.String"/>
+	<field name="medicamento_eficacia" class="java.lang.String"/>
+	<field name="medicamento_quant" class="java.lang.Integer"/>
+	<field name="medicamento_preco_unit" class="java.lang.Double"/>
+	<field name="medicamento_data_validade" class="java.sql.Date"/>
+	<group name="medicamento_cod_medicamento">
+		<groupExpression><![CDATA[$F{medicamento_cod_medicamento}]]></groupExpression>
+	</group>
+	<group name="medicamento_descricao">
+		<groupExpression><![CDATA[$F{medicamento_descricao}]]></groupExpression>
+	</group>
+	<group name="medicamento_quant">
+		<groupExpression><![CDATA[$F{medicamento_quant}]]></groupExpression>
+	</group>
+	<group name="medicamento_eficacia">
+		<groupExpression><![CDATA[$F{medicamento_eficacia}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="9ac3333e-7422-4123-bea8-b9eb9e49e709"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="802" height="20" uuid="eb3254bb-c3b3-4121-8dec-6939fe1e6ad4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="802" height="20" uuid="8ae3b5ae-5f04-430c-bb18-ab70ca43529d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO MEDICAMENTOS EM ESTOQUE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="6" width="802" height="1" uuid="89f61f73-5771-46fb-b36d-041abce32a53"/>
+			</line>
+			<staticText>
+				<reportElement x="73" y="12" width="122" height="20" uuid="314b3204-b3d4-408c-bc2d-6e88dcc49f77"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD MEDICAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="12" width="100" height="20" uuid="0e3f84a5-8410-431f-a6c2-08cbccbf858b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇAO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="12" width="100" height="20" uuid="c70cab6d-294a-4711-987a-ee14e2a185cc"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EFICACIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="12" width="100" height="20" uuid="68ce8b89-878c-499d-9de5-6c280051bdf9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="12" width="109" height="20" uuid="6f0b7499-82e1-4fab-a7f1-4a4d5c825104"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREÇO UNITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="638" y="12" width="100" height="20" uuid="05634ffd-0819-4ff4-a785-0bcb8b764dbb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA VALIDADE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="37" width="802" height="1" uuid="711f0fee-a529-4d72-ad3c-c8090cb3dcbc"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="73" y="5" width="122" height="20" uuid="efec3f31-fd25-4269-bfe1-a87bc1d22143"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{medicamento_cod_medicamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="5" width="100" height="20" uuid="8f6c4c5f-a909-4fa1-91c5-eacb0a610020"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{medicamento_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="5" width="100" height="20" uuid="f5ded250-5119-47cc-8a7b-af5042b36098"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{medicamento_eficacia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="5" width="100" height="20" uuid="7dd505a7-6834-410b-bc75-4ba564997216"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{medicamento_quant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="522" y="5" width="109" height="20" uuid="90e2c9e3-2a2a-4b52-bb86-90b62a31a3b7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{medicamento_preco_unit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="638" y="5" width="100" height="20" uuid="dcdb8154-5609-4019-bd49-ae7e9d35d96a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{medicamento_data_validade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="802" height="20" uuid="677e5e0d-f4b0-4959-8e13-b6956cb2e1ba"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="34" width="802" height="20" uuid="60c12c6a-b912-4828-8b16-54e61b731877"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

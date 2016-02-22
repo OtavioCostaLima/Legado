@@ -1,0 +1,898 @@
+CREATE DATABASE  IF NOT EXISTS `fazenda_cafs` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `fazenda_cafs`;
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
+--
+-- Host: localhost    Database: fazenda_cafs
+-- ------------------------------------------------------
+-- Server version	5.6.14
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `acesso`
+--
+
+DROP TABLE IF EXISTS `acesso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `acesso` (
+  `nome_usuario` varchar(12) DEFAULT NULL,
+  `data_acesso` date DEFAULT NULL,
+  `hora_acesso` time DEFAULT NULL,
+  `hora_fim_acesso` time DEFAULT NULL,
+  KEY `nome_usuario_idx` (`nome_usuario`),
+  CONSTRAINT `nome_usuario` FOREIGN KEY (`nome_usuario`) REFERENCES `usuario` (`nome_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `acesso`
+--
+
+LOCK TABLES `acesso` WRITE;
+/*!40000 ALTER TABLE `acesso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `acesso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `animal`
+--
+
+DROP TABLE IF EXISTS `animal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `animal` (
+  `cod_animal` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_instituicao` varchar(8) DEFAULT NULL,
+  `cod_origem` int(11) DEFAULT NULL,
+  `cod_classificacao` int(11) DEFAULT NULL,
+  `nome` varchar(15) DEFAULT NULL,
+  `raca` varchar(15) DEFAULT NULL,
+  `cor` varchar(15) DEFAULT NULL,
+  `idade` int(11) DEFAULT NULL,
+  `peso` float DEFAULT NULL,
+  `grau_sangue` varchar(15) DEFAULT NULL,
+  `informacao` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`cod_animal`),
+  KEY `cod_origem_idx` (`cod_origem`),
+  KEY `cod_classificacao_idx` (`cod_classificacao`),
+  CONSTRAINT `cod_classificacao` FOREIGN KEY (`cod_classificacao`) REFERENCES `classificacao` (`cod_classificacao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_origem` FOREIGN KEY (`cod_origem`) REFERENCES `origem` (`cod_origem`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `animal`
+--
+
+LOCK TABLES `animal` WRITE;
+/*!40000 ALTER TABLE `animal` DISABLE KEYS */;
+INSERT INTO `animal` VALUES (3,'CTF-09',6,5,'MOÇA BARN','PANG','SANGUE PURO',12,400,'SANGUE PURO','SEM INFO -LEILÃO/COMPRA');
+/*!40000 ALTER TABLE `animal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `artificial`
+--
+
+DROP TABLE IF EXISTS `artificial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `artificial` (
+  `cod_artificial` int(12) NOT NULL,
+  `crmv` varchar(12) NOT NULL,
+  `data_inseminacao` date NOT NULL,
+  `mae` varchar(30) NOT NULL,
+  `pai` varchar(45) NOT NULL,
+  `verificacao_de_prenhez` varchar(45) NOT NULL,
+  PRIMARY KEY (`cod_artificial`),
+  KEY `crmv` (`crmv`),
+  CONSTRAINT `artificial_ibfk_1` FOREIGN KEY (`crmv`) REFERENCES `veterinario` (`crmv`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `artificial`
+--
+
+LOCK TABLES `artificial` WRITE;
+/*!40000 ALTER TABLE `artificial` DISABLE KEYS */;
+/*!40000 ALTER TABLE `artificial` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `campanha`
+--
+
+DROP TABLE IF EXISTS `campanha`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `campanha` (
+  `cod_animal` int(11) DEFAULT NULL,
+  `cod_vacina` int(11) DEFAULT NULL,
+  `data_aplicacao` date DEFAULT NULL,
+  `quant` int(11) DEFAULT NULL,
+  KEY `cod_animal2_idx` (`cod_animal`),
+  KEY `cod_vacina_idx` (`cod_vacina`),
+  CONSTRAINT `cod_animal3` FOREIGN KEY (`cod_animal`) REFERENCES `animal` (`cod_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_vacina` FOREIGN KEY (`cod_vacina`) REFERENCES `vacina_obrigatoria` (`cod_vacina`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `campanha`
+--
+
+LOCK TABLES `campanha` WRITE;
+/*!40000 ALTER TABLE `campanha` DISABLE KEYS */;
+/*!40000 ALTER TABLE `campanha` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `classificacao`
+--
+
+DROP TABLE IF EXISTS `classificacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `classificacao` (
+  `cod_classificacao` int(11) NOT NULL,
+  `cod_fase` int(11) DEFAULT NULL,
+  `descricao` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`cod_classificacao`),
+  KEY `cod_fase_idx` (`cod_fase`),
+  CONSTRAINT `cod_fase` FOREIGN KEY (`cod_fase`) REFERENCES `fase` (`cod_fase`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `classificacao`
+--
+
+LOCK TABLES `classificacao` WRITE;
+/*!40000 ALTER TABLE `classificacao` DISABLE KEYS */;
+INSERT INTO `classificacao` VALUES (1,1,'BOVINO'),(2,2,'BOVINO'),(3,3,'BOVINO'),(4,4,'BOVINO'),(5,5,'BOVINO'),(6,6,'OVINO'),(7,7,'OVINO'),(8,8,'OVINO'),(9,9,'CAPRINO'),(10,10,'CAPRINO'),(11,11,'CAPRINO'),(12,12,'SUÍNO'),(13,13,'SUÍNO'),(14,14,'SUÍNO');
+/*!40000 ALTER TABLE `classificacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `concentrado`
+--
+
+DROP TABLE IF EXISTS `concentrado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `concentrado` (
+  `cod_concentrado` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_for_concentrado` int(11) DEFAULT NULL,
+  `descricao` varchar(12) DEFAULT NULL,
+  `data_entrada` date DEFAULT NULL,
+  `quant` float DEFAULT NULL,
+  `preco_unit` float DEFAULT NULL,
+  PRIMARY KEY (`cod_concentrado`),
+  KEY `cod_for_concentrado_idx` (`cod_for_concentrado`),
+  CONSTRAINT `cod_for_concentrado` FOREIGN KEY (`cod_for_concentrado`) REFERENCES `fornecedor_concentrado` (`cod_for_concentrado`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `concentrado`
+--
+
+LOCK TABLES `concentrado` WRITE;
+/*!40000 ALTER TABLE `concentrado` DISABLE KEYS */;
+INSERT INTO `concentrado` VALUES (2,1,'RACAO MILHO','2014-08-31',90,50);
+/*!40000 ALTER TABLE `concentrado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `consulta`
+--
+
+DROP TABLE IF EXISTS `consulta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `consulta` (
+  `cod_consulta` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_animal` int(11) DEFAULT NULL,
+  `crmv` varchar(12) DEFAULT NULL,
+  `data_consulta` date DEFAULT NULL,
+  `tipo_exame_encam` varchar(30) DEFAULT NULL,
+  `informacao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cod_consulta`),
+  KEY `cod_animal2_idx` (`cod_animal`),
+  KEY `crmv_idx` (`crmv`),
+  CONSTRAINT `cod_animal2` FOREIGN KEY (`cod_animal`) REFERENCES `animal` (`cod_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `crmv` FOREIGN KEY (`crmv`) REFERENCES `veterinario` (`crmv`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `consulta`
+--
+
+LOCK TABLES `consulta` WRITE;
+/*!40000 ALTER TABLE `consulta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consulta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `consumo`
+--
+
+DROP TABLE IF EXISTS `consumo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `consumo` (
+  `cod_animal` int(11) DEFAULT NULL,
+  `cod_volumoso` int(11) DEFAULT NULL,
+  `cod_concentrado` int(11) DEFAULT NULL,
+  `quant_volumoso` float DEFAULT NULL,
+  `quant_concentrado` float DEFAULT NULL,
+  `data_consumo` date DEFAULT NULL,
+  KEY `cod_volumoso_idx` (`cod_volumoso`),
+  KEY `cod_concentrado_idx` (`cod_concentrado`),
+  KEY `cod_animal5_idx` (`cod_animal`),
+  CONSTRAINT `cod_animal5` FOREIGN KEY (`cod_animal`) REFERENCES `animal` (`cod_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_concentrado` FOREIGN KEY (`cod_concentrado`) REFERENCES `concentrado` (`cod_concentrado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_volumoso` FOREIGN KEY (`cod_volumoso`) REFERENCES `volumoso` (`cod_volumoso`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `consumo`
+--
+
+LOCK TABLES `consumo` WRITE;
+/*!40000 ALTER TABLE `consumo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consumo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `diagnostico`
+--
+
+DROP TABLE IF EXISTS `diagnostico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `diagnostico` (
+  `cod_diagnostico` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_consulta` int(11) DEFAULT NULL,
+  `cod_doenca` int(11) DEFAULT NULL,
+  `cod_exame` varchar(12) DEFAULT NULL,
+  `data_diagnostico` date DEFAULT NULL,
+  `periodo_tratamento` int(11) DEFAULT NULL,
+  `informacao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cod_diagnostico`),
+  KEY `cod_consulta_idx` (`cod_consulta`),
+  KEY `cod_doenca_idx` (`cod_doenca`),
+  CONSTRAINT `cod_consulta` FOREIGN KEY (`cod_consulta`) REFERENCES `consulta` (`cod_consulta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_doenca` FOREIGN KEY (`cod_doenca`) REFERENCES `doenca` (`cod_doenca`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `diagnostico`
+--
+
+LOCK TABLES `diagnostico` WRITE;
+/*!40000 ALTER TABLE `diagnostico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `diagnostico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `doenca`
+--
+
+DROP TABLE IF EXISTS `doenca`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `doenca` (
+  `cod_doenca` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`cod_doenca`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `doenca`
+--
+
+LOCK TABLES `doenca` WRITE;
+/*!40000 ALTER TABLE `doenca` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doenca` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fase`
+--
+
+DROP TABLE IF EXISTS `fase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fase` (
+  `cod_fase` int(11) NOT NULL,
+  `descricao` varchar(20) DEFAULT NULL,
+  `período` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cod_fase`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fase`
+--
+
+LOCK TABLES `fase` WRITE;
+/*!40000 ALTER TABLE `fase` DISABLE KEYS */;
+INSERT INTO `fase` VALUES (1,'BEZERRO',0),(2,'GARROTE',1),(3,'NUVILHOTE',2),(4,'NUVILHA',3),(5,'VACA',8),(6,'BURREGO LACTANTE',0),(7,'BURREGO DESLACTANTE',3),(8,'CARNEIRO',7),(9,'CABRITO LACTANTE',0),(10,'CABRITO DESLACTANTE',3),(11,'BODE',7),(12,'LEITÃO',0),(13,'PORCO',3),(14,'PORCO/ADULTO',7);
+/*!40000 ALTER TABLE `fase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fecundacao`
+--
+
+DROP TABLE IF EXISTS `fecundacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fecundacao` (
+  `cod_fecundacao` int(20) NOT NULL,
+  `cod_natural` int(20) DEFAULT NULL,
+  `cod_artificial` int(12) DEFAULT NULL,
+  `crmv` varchar(12) default null,
+  `tipo_de_fecundacao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cod_fecundacao`),
+  KEY `cod_artificial` (`cod_artificial`),
+  KEY `cod_natural` (`cod_natural`),
+  CONSTRAINT `fecundacao_ibfk_1` FOREIGN KEY (`cod_artificial`) REFERENCES `artificial` (`cod_artificial`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `crmv_1` FOREIGN KEY (`crmv`) REFERENCES `veterinario` (`crmv`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fecundacao_ibfk_2` FOREIGN KEY (`cod_natural`) REFERENCES `natural` (`cod_natural`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fecundacao`
+--
+
+LOCK TABLES `fecundacao` WRITE;
+/*!40000 ALTER TABLE `fecundacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fecundacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fornecedor_animal`
+--
+
+DROP TABLE IF EXISTS `fornecedor_animal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fornecedor_animal` (
+  `cod_for_animal` int(11) NOT NULL AUTO_INCREMENT,
+  `cnpj` varchar(19) DEFAULT NULL,
+  `nome` varchar(30) DEFAULT NULL,
+  `nome_proprietario` varchar(25) DEFAULT NULL,
+  `endereco` varchar(45) DEFAULT NULL,
+  `cidade` varchar(25) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `fone1` varchar(15) DEFAULT NULL,
+  `fone2` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`cod_for_animal`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fornecedor_animal`
+--
+
+LOCK TABLES `fornecedor_animal` WRITE;
+/*!40000 ALTER TABLE `fornecedor_animal` DISABLE KEYS */;
+INSERT INTO `fornecedor_animal` VALUES (1,'00.000.000/00000-01','FAZENDA PARANA','HELBECY CRISTINO PARANA','RUA PROJETADA, N.201, BAIRRO ZONA RURAL','GUADALUPE','PI','helbecydunamis@gmail.com','(89)9909-6371','(89)3552-1654'),(2,'00.000.000/00000-02','FAZENDA SA','SAMUEL SA','RUA BEIRA RIO, N.13, BAIRRO ZONA SUL','TERESINA','PI','samuel_scsa@hotmail.com','(85)4564-6456','(66)7576-5775'),(3,'00.000.000/00000-03','FAZENDA MATARAM VIADINHA','FRANCISCO HYLLORAN','RUA TRONCAMENTO, N.78, BAIRRO ROCK','TERESINA','RO','f.hylorram@hotmail.com','(87)7576-5757','(56)7576-5757'),(4,'06.657.077/77599-65','FAZENDA DO BOI','CLEYTON','RUA DO PRAZER, N.569, BAIRRO LIXAO','FLORIANO','PI','CLEYTONMOUSINHO427@GMAIL.COM','(89)9433-0213','(89)9433-0213');
+/*!40000 ALTER TABLE `fornecedor_animal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fornecedor_concentrado`
+--
+
+DROP TABLE IF EXISTS `fornecedor_concentrado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fornecedor_concentrado` (
+  `cod_for_concentrado` int(11) NOT NULL AUTO_INCREMENT,
+  `numero_licitacao` varchar(12) DEFAULT NULL,
+  `cnpj` varchar(19) DEFAULT NULL,
+  `nome` varchar(30) DEFAULT NULL,
+  `endereco` varchar(45) DEFAULT NULL,
+  `cidade` varchar(20) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `fone1` varchar(15) DEFAULT NULL,
+  `fone2` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`cod_for_concentrado`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fornecedor_concentrado`
+--
+
+LOCK TABLES `fornecedor_concentrado` WRITE;
+/*!40000 ALTER TABLE `fornecedor_concentrado` DISABLE KEYS */;
+INSERT INTO `fornecedor_concentrado` VALUES (1,'100/2014','00.000.000/00000-04','PAIVA ALIMENTOS S.A','RUA SAO JORGE ,N.9 BAIRRO MANGALINA','TERESINA','PI','paivaalimentos@sac.com.br','(45)4654-5645','(43)2324-3254');
+/*!40000 ALTER TABLE `fornecedor_concentrado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gestacao`
+--
+
+DROP TABLE IF EXISTS `gestacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `gestacao` (
+  `cod_gestacao` int(20) NOT NULL,
+  `cod_fecundacao` int(20) DEFAULT NULL,
+  `previsao_parto` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cod_gestacao`),
+  KEY `cod_fecundacao` (`cod_fecundacao`),
+  CONSTRAINT `gestacao_ibfk_1` FOREIGN KEY (`cod_fecundacao`) REFERENCES `fecundacao` (`cod_fecundacao`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gestacao`
+--
+
+LOCK TABLES `gestacao` WRITE;
+/*!40000 ALTER TABLE `gestacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gestacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `leilao`
+--
+
+DROP TABLE IF EXISTS `leilao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `leilao` (
+  `cod_leilao` int(11) NOT NULL AUTO_INCREMENT,
+  `data_leilao` date DEFAULT NULL,
+  `valor_arrebatado` float DEFAULT NULL,
+  `local_realizacao` varchar(15) DEFAULT NULL,
+  `informacao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`cod_leilao`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `leilao`
+--
+
+LOCK TABLES `leilao` WRITE;
+/*!40000 ALTER TABLE `leilao` DISABLE KEYS */;
+INSERT INTO `leilao` VALUES (10,'2014-08-17',1200,'BOM JESUS-PI','VACA LEITEIRA DE GRANDE PORTE'),(11,'2014-08-16',1300,'TERESINA-PI','LEITEIRA DE GRANDE PORTE'),(12,'2014-08-20',3000,'AMARANTE-PI','LEITEIRA 30L DIAS'),(13,'2014-06-10',2340,'FLORIANO-PI','LEITEIRA 40ML DIAS'),(14,'2014-05-11',5432,'FLORIANO-PI','LEITEIRA 43L DIAS'),(15,'2014-07-07',4320,'TERESINA-PI','LEITEIRA 30L DIAS'),(16,'2014-08-13',3456,'VILA MATILDE','40L POR DIA'),(17,'2014-09-01',3000,'GUADAUPE-PI','OK'),(18,'2014-09-01',3000,'GUADAUPE-PI','OK'),(19,'2014-09-02',9000,'GUADALUPE-PI','OK'),(20,'2014-09-12',9000,'CAPIRAVA-PE','OK');
+/*!40000 ALTER TABLE `leilao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `materia_prima`
+--
+
+DROP TABLE IF EXISTS `materia_prima`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `materia_prima` (
+  `cod_materia` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`cod_materia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materia_prima`
+--
+
+LOCK TABLES `materia_prima` WRITE;
+/*!40000 ALTER TABLE `materia_prima` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materia_prima` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `medicamento`
+--
+
+DROP TABLE IF EXISTS `medicamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `medicamento` (
+  `cod_medicamento` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(20) DEFAULT NULL,
+  `eficacia` varchar(30) DEFAULT NULL,
+  `quant` int(11) DEFAULT NULL,
+  `preco_unit` float DEFAULT NULL,
+  `data_validade` date DEFAULT NULL,
+  PRIMARY KEY (`cod_medicamento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `medicamento`
+--
+
+LOCK TABLES `medicamento` WRITE;
+/*!40000 ALTER TABLE `medicamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `medicamento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `morte`
+--
+
+DROP TABLE IF EXISTS `morte`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `morte` (
+  `cod_morte` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`cod_morte`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `morte`
+--
+
+LOCK TABLES `morte` WRITE;
+/*!40000 ALTER TABLE `morte` DISABLE KEYS */;
+INSERT INTO `morte` VALUES (1,'ABATE'),(2,'NATURAL');
+/*!40000 ALTER TABLE `morte` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nascimento`
+--
+
+DROP TABLE IF EXISTS `nascimento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `nascimento` (
+  `cod_nascimento` int(11) NOT NULL AUTO_INCREMENT,
+  `matriz` int(11) DEFAULT NULL,
+  `sexo` varchar(5) DEFAULT NULL,
+  `peso_nascer` float DEFAULT NULL,
+  `peso_desmama` float DEFAULT NULL,
+  `cir_testicular` float DEFAULT NULL,
+  PRIMARY KEY (`cod_nascimento`),
+  KEY `cod_matriz_idx` (`matriz`),
+  CONSTRAINT `cod_matriz` FOREIGN KEY (`matriz`) REFERENCES `animal` (`cod_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nascimento`
+--
+
+LOCK TABLES `nascimento` WRITE;
+/*!40000 ALTER TABLE `nascimento` DISABLE KEYS */;
+INSERT INTO `nascimento` VALUES  (1,1,'M',50.00,55.88,77.99);
+/*!40000 ALTER TABLE `nascimento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `nascimento` WRITE;
+/*!40000 ALTER TABLE `nascimento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nascimento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `natural`
+--
+
+DROP TABLE IF EXISTS `natural`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `natural` (
+  `cod_natural` int(20) NOT NULL,
+  `crmv` varchar(12) NOT NULL,
+  `data_da_monta` date DEFAULT NULL,
+  `mae` varchar(30) NOT NULL,
+  `pai` varchar(45) NOT NULL,
+  PRIMARY KEY (`cod_natural`),
+  KEY `crmv` (`crmv`),
+  CONSTRAINT `natural_ibfk_1` FOREIGN KEY (`crmv`) REFERENCES `veterinario` (`crmv`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `natural`
+--
+
+LOCK TABLES `natural` WRITE;
+/*!40000 ALTER TABLE `natural` DISABLE KEYS */;
+/*!40000 ALTER TABLE `natural` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `origem`
+--
+
+DROP TABLE IF EXISTS `origem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `origem` (
+  `cod_origem` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_for_animal` int(11) DEFAULT NULL,
+  `cod_leilao` int(11) DEFAULT NULL,
+  `cod_nascimento` int(11) default null,
+  `data_entrada` date DEFAULT NULL,
+  PRIMARY KEY (`cod_origem`),
+  KEY `cod_for_animal_idx` (`cod_for_animal`),
+  KEY `cod_leilao1_idx` (`cod_leilao`),
+KEY `cod_nascimento1_idx` (`cod_nascimento`),
+  CONSTRAINT `cod_for_animal` FOREIGN KEY (`cod_for_animal`) REFERENCES `fornecedor_animal` (`cod_for_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_nascimento` FOREIGN KEY (`cod_nascimento`) REFERENCES `nascimento` (`cod_nascimento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_leilao1` FOREIGN KEY (`cod_leilao`) REFERENCES `leilao` (`cod_leilao`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `origem`
+--
+
+LOCK TABLES `origem` WRITE;
+/*!40000 ALTER TABLE `origem` DISABLE KEYS */;
+INSERT INTO `origem` VALUES (4,2,15,1,'2014-08-18'),(5,2,15,1,'2014-08-18'),(6,1,16,1,'2014-08-18');
+/*!40000 ALTER TABLE `origem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `parto`
+--
+
+DROP TABLE IF EXISTS `parto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parto` (
+  `cod_parto` int(20) NOT NULL,
+  `data_parto` date DEFAULT NULL,
+  `quantidade_crias` int(20) DEFAULT NULL,
+  `informacoes` varchar(45) DEFAULT NULL,
+  `cod_gestacao` int(20) DEFAULT NULL,
+  PRIMARY KEY (`cod_parto`),
+  KEY `cod_gestacao` (`cod_gestacao`),
+  CONSTRAINT `parto_ibfk_1` FOREIGN KEY (`cod_gestacao`) REFERENCES `gestacao` (`cod_gestacao`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parto`
+--
+
+LOCK TABLES `parto` WRITE;
+/*!40000 ALTER TABLE `parto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `parto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `producao`
+--
+
+DROP TABLE IF EXISTS `producao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `producao` (
+  `cod_animal` int(11) DEFAULT NULL,
+  `cod_materia` int(11) DEFAULT NULL,
+  `quant` float DEFAULT NULL,
+  `data_producao` date DEFAULT NULL,
+  KEY `cod_materia_idx` (`cod_materia`),
+  KEY `cod_animal4` (`cod_animal`),
+  CONSTRAINT `cod_animal4` FOREIGN KEY (`cod_animal`) REFERENCES `animal` (`cod_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_materia` FOREIGN KEY (`cod_materia`) REFERENCES `materia_prima` (`cod_materia`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `producao`
+--
+
+LOCK TABLES `producao` WRITE;
+/*!40000 ALTER TABLE `producao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `producao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `saida`
+--
+
+DROP TABLE IF EXISTS `saida`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `saida` (
+  `cod_animal` int(11) DEFAULT NULL,
+  `cod_leilao` int(11) DEFAULT NULL,
+  `cod_morte` int(11) DEFAULT NULL,
+  `data_saida` date DEFAULT NULL,
+  `destino` varchar(20) DEFAULT NULL,
+  `informacao` varchar(45) DEFAULT NULL,
+  KEY `cod_leilao_idx` (`cod_leilao`),
+  KEY `cod_morte_idx` (`cod_morte`),
+  KEY `cod_animal6_idx` (`cod_animal`),
+  CONSTRAINT `cod_animal6` FOREIGN KEY (`cod_animal`) REFERENCES `animal` (`cod_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_leilao` FOREIGN KEY (`cod_leilao`) REFERENCES `leilao` (`cod_leilao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_morte` FOREIGN KEY (`cod_morte`) REFERENCES `morte` (`cod_morte`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `saida`
+--
+
+LOCK TABLES `saida` WRITE;
+/*!40000 ALTER TABLE `saida` DISABLE KEYS */;
+/*!40000 ALTER TABLE `saida` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tratamento`
+--
+
+DROP TABLE IF EXISTS `tratamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tratamento` (
+  `cod_diagnostico` int(11) DEFAULT NULL,
+  `cod_medicamento` int(11) DEFAULT NULL,
+  `quant` int(11) DEFAULT NULL,
+  KEY `cod_diagnostico_idx` (`cod_diagnostico`),
+  KEY `cod_medicamento_idx` (`cod_medicamento`),
+  CONSTRAINT `cod_diagnostico` FOREIGN KEY (`cod_diagnostico`) REFERENCES `diagnostico` (`cod_diagnostico`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cod_medicamento` FOREIGN KEY (`cod_medicamento`) REFERENCES `medicamento` (`cod_medicamento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tratamento`
+--
+
+LOCK TABLES `tratamento` WRITE;
+/*!40000 ALTER TABLE `tratamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tratamento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `nome_usuario` varchar(15) NOT NULL,
+  `key` varchar(8) DEFAULT NULL,
+  `previlegio` varchar(15) DEFAULT NULL,
+  `nome` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`nome_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES ('admin','admin','admin','Aroldo');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vacina_obrigatoria`
+--
+
+DROP TABLE IF EXISTS `vacina_obrigatoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vacina_obrigatoria` (
+  `cod_vacina` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(20) DEFAULT NULL,
+  `n_licitacao` varchar(20) DEFAULT NULL,
+  `lab_fabricante` varchar(25) DEFAULT NULL,
+  `n_partida` varchar(25) DEFAULT NULL,
+  `periodo_aplicacao` varchar(20) DEFAULT NULL,
+  `quant` int(11) DEFAULT NULL,
+  `preco_unit` float DEFAULT NULL,
+  `data_validade` date DEFAULT NULL,
+  PRIMARY KEY (`cod_vacina`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vacina_obrigatoria`
+--
+
+LOCK TABLES `vacina_obrigatoria` WRITE;
+/*!40000 ALTER TABLE `vacina_obrigatoria` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vacina_obrigatoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `veterinario`
+--
+
+DROP TABLE IF EXISTS `veterinario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `veterinario` (
+  `crmv` varchar(12) NOT NULL,
+  `cpf` varchar(14) DEFAULT NULL,
+  `nome` varchar(30) DEFAULT NULL,
+  `endereco` varchar(45) DEFAULT NULL,
+  `cidade` varchar(20) DEFAULT NULL,
+  `uf` varchar(2) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `fone1` varchar(15) DEFAULT NULL,
+  `fone2` varchar(15) DEFAULT NULL,
+  `tipo_contrato` varchar(12) DEFAULT NULL,
+  `especialidade` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`crmv`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `veterinario`
+--
+
+LOCK TABLES `veterinario` WRITE;
+/*!40000 ALTER TABLE `veterinario` DISABLE KEYS */;
+INSERT INTO `veterinario` VALUES ('876868','768.576.576-56','JOAO MENDES','RUA MELDAOA, N.89, BAIRRO MORADA NOVA','GUADALUPE','PI','joaomendes@hotmail.com','(65)7657-6575','(65)6567-5675','ANUAL','REPRODUÇÃO ARTIFICIAL');
+/*!40000 ALTER TABLE `veterinario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `volumoso`
+--
+
+DROP TABLE IF EXISTS `volumoso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `volumoso` (
+  `cod_volumoso` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(12) DEFAULT NULL,
+  `data_entrada` date DEFAULT NULL,
+  `quant` float DEFAULT NULL,
+  `preco_unit` float DEFAULT NULL,
+  PRIMARY KEY (`cod_volumoso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `volumoso`
+--
+
+LOCK TABLES `volumoso` WRITE;
+/*!40000 ALTER TABLE `volumoso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `volumoso` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-09-06 16:32:14

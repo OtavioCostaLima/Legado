@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56fcbd09-8ac3-4c2e-bd7d-67b1ce96d9fc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     cruzamento."cod_cruzamento" AS cruzamento_cod_cruzamento,
+     cruzamento."cod_tipo_cruzamento" AS cruzamento_cod_tipo_cruzamento,
+     cruzamento."cod_animal_mae" AS cruzamento_cod_animal_mae,
+     cruzamento."crmv" AS cruzamento_crmv,
+     cruzamento."data_cruza" AS cruzamento_data_cruza,
+     cruzamento."pai" AS cruzamento_pai,
+     cruzamento."tentativa" AS cruzamento_tentativa,
+     cruzamento."status" AS cruzamento_status,
+     animal."cod_animal" AS animal_cod_animal,
+     animal."cod_instituicao" AS animal_cod_instituicao,
+     animal."cod_origem" AS animal_cod_origem,
+     animal."cod_fase" AS animal_cod_fase,
+     animal."nome" AS animal_nome,
+     animal."sexo" AS animal_sexo,
+     animal."raca" AS animal_raca,
+     animal."cor" AS animal_cor,
+     animal."idade" AS animal_idade,
+     animal."data_nascimento" AS animal_data_nascimento,
+     animal."peso" AS animal_peso,
+     animal."grau_sangue" AS animal_grau_sangue,
+     animal."informacao" AS animal_informacao,
+     veterinario."cod_veterinario" AS veterinario_cod_veterinario,
+     veterinario."crmv" AS veterinario_crmv,
+     veterinario."cpf" AS veterinario_cpf,
+     veterinario."nome" AS veterinario_nome,
+     veterinario."endereco" AS veterinario_endereco,
+     veterinario."numero" AS veterinario_numero,
+     veterinario."bairro" AS veterinario_bairro,
+     veterinario."cidade" AS veterinario_cidade,
+     veterinario."uf" AS veterinario_uf,
+     veterinario."email" AS veterinario_email,
+     veterinario."fone1" AS veterinario_fone1,
+     veterinario."fone2" AS veterinario_fone2,
+     veterinario."tipo_contrato" AS veterinario_tipo_contrato,
+     veterinario."especialidade" AS veterinario_especialidade,
+     tipo_cruzamento."cod_tipo_cruzamento" AS tipo_cruzamento_cod_tipo_cruzamento,
+     tipo_cruzamento."descricao" AS tipo_cruzamento_descricao,
+     tipo_cruzamento_A."cod_tipo_cruzamento" AS tipo_cruzamento_A_cod_tipo_cruzamento,
+     tipo_cruzamento_A."descricao" AS tipo_cruzamento_A_descricao
+FROM
+     "public"."animal" animal INNER JOIN "public"."cruzamento" cruzamento ON animal."cod_animal" = cruzamento."cod_animal_mae"
+     INNER JOIN "public"."veterinario" veterinario ON cruzamento."crmv" = veterinario."crmv"
+     INNER JOIN "public"."tipo_cruzamento" tipo_cruzamento ON cruzamento."cod_tipo_cruzamento" = tipo_cruzamento."cod_tipo_cruzamento"
+     INNER JOIN "public"."tipo_cruzamento" tipo_cruzamento_A ON cruzamento."cod_tipo_cruzamento" = tipo_cruzamento_A."cod_tipo_cruzamento"]]>
+	</queryString>
+	<field name="cruzamento_cod_cruzamento" class="java.lang.Integer"/>
+	<field name="cruzamento_cod_tipo_cruzamento" class="java.lang.Integer"/>
+	<field name="cruzamento_cod_animal_mae" class="java.lang.Integer"/>
+	<field name="cruzamento_crmv" class="java.lang.String"/>
+	<field name="cruzamento_data_cruza" class="java.sql.Date"/>
+	<field name="cruzamento_pai" class="java.lang.String"/>
+	<field name="cruzamento_tentativa" class="java.lang.Integer"/>
+	<field name="cruzamento_status" class="java.lang.String"/>
+	<field name="animal_cod_animal" class="java.lang.Integer"/>
+	<field name="animal_cod_instituicao" class="java.lang.String"/>
+	<field name="animal_cod_origem" class="java.lang.Integer"/>
+	<field name="animal_cod_fase" class="java.lang.Integer"/>
+	<field name="animal_nome" class="java.lang.String"/>
+	<field name="animal_sexo" class="java.lang.String"/>
+	<field name="animal_raca" class="java.lang.String"/>
+	<field name="animal_cor" class="java.lang.String"/>
+	<field name="animal_idade" class="java.lang.String"/>
+	<field name="animal_data_nascimento" class="java.sql.Date"/>
+	<field name="animal_peso" class="java.lang.Double"/>
+	<field name="animal_grau_sangue" class="java.lang.String"/>
+	<field name="animal_informacao" class="java.lang.String"/>
+	<field name="veterinario_cod_veterinario" class="java.lang.Integer"/>
+	<field name="veterinario_crmv" class="java.lang.String"/>
+	<field name="veterinario_cpf" class="java.lang.String"/>
+	<field name="veterinario_nome" class="java.lang.String"/>
+	<field name="veterinario_endereco" class="java.lang.String"/>
+	<field name="veterinario_numero" class="java.lang.Integer"/>
+	<field name="veterinario_bairro" class="java.lang.String"/>
+	<field name="veterinario_cidade" class="java.lang.String"/>
+	<field name="veterinario_uf" class="java.lang.String"/>
+	<field name="veterinario_email" class="java.lang.String"/>
+	<field name="veterinario_fone1" class="java.lang.String"/>
+	<field name="veterinario_fone2" class="java.lang.String"/>
+	<field name="veterinario_tipo_contrato" class="java.lang.String"/>
+	<field name="veterinario_especialidade" class="java.lang.String"/>
+	<field name="tipo_cruzamento_cod_tipo_cruzamento" class="java.lang.Integer"/>
+	<field name="tipo_cruzamento_descricao" class="java.lang.String"/>
+	<field name="tipo_cruzamento_a_cod_tipo_cruzamento" class="java.lang.Integer"/>
+	<field name="tipo_cruzamento_a_descricao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="36e1a7e8-dcba-4c13-aefb-8f5f07b39362"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="802" height="20" uuid="0d1eba84-4023-4b53-b77e-bb6c3a37b1b2"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="56" width="802" height="20" uuid="19a83ef2-0274-478e-a471-f1b7c6bd419a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO CRUZAMENTO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="564" y="1" width="238" height="108" uuid="4dfea37f-5249-4e5d-914e-4a7d7adc5793"/>
+				<imageExpression><![CDATA["C:\\LEGADO\\icones\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="17" y="1" width="220" height="108" uuid="64734f4a-8214-465b-baeb-7cef7c3581cd"/>
+				<imageExpression><![CDATA["C:\\LEGADO\\icones\\brasao.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="77" height="20" uuid="e1fcfbdc-6ed7-4321-abab-c5f352308d60"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATRIZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="13" width="100" height="20" uuid="547880ef-c514-45f7-a84a-634afc154dac"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPRODUTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="13" width="88" height="20" uuid="115e0dac-95f8-4a78-b1b0-d2d308d51f44"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VETERINARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="13" width="97" height="20" uuid="ab5c9594-de12-469c-bc92-e37d589c9713"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO CRUZA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="13" width="97" height="20" uuid="87e4362e-a717-4a8a-9383-e95e6f6bff8f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TENTATIVAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="13" width="97" height="20" uuid="617f275c-7e5d-42e9-bf8a-cc2414e9b53d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA CRUZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="13" width="97" height="20" uuid="c59319a9-9c04-4fc7-9730-3f1d8c43a661"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="705" y="13" width="97" height="20" uuid="93413fe1-f55a-49d1-bce1-de3807d56b57"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA CRUZA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="7" width="802" height="1" uuid="589013db-a64a-42bb-8b88-a2e6da9987fc"/>
+			</line>
+			<line>
+				<reportElement x="0" y="37" width="802" height="1" uuid="820e1984-7a5d-44dc-a47b-aabd12b29354"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="11" width="77" height="20" uuid="18a6c6cb-aa10-4dcf-91b8-2d30c320cb0e"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{animal_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="11" width="100" height="20" uuid="ac9b491e-d1b9-4697-a8b8-b65b99f9f8fb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cruzamento_pai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="11" width="88" height="20" uuid="9c0e6a63-e340-4870-8257-459493cb75ab"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{veterinario_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="11" width="97" height="20" uuid="0046a3fe-0e91-4f0d-9112-52c791e2b468"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tipo_cruzamento_a_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="11" width="100" height="20" uuid="d5019222-f236-4380-9602-43230c00f40f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cruzamento_tentativa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="495" y="11" width="100" height="20" uuid="5aad53bf-bb4d-45ba-8e8c-99d48ff16cd4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cruzamento_data_cruza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="11" width="97" height="20" uuid="d5fe0de5-24d2-482f-882e-72086c878931"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cruzamento_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="705" y="11" width="97" height="20" uuid="a1a3c977-57f3-442f-b0c1-147291f58d73"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cruzamento_data_cruza}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="dc0a0b9c-c74d-4972-aa02-4cfffd31c054"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="30" width="802" height="20" uuid="bbfa6982-e634-45a6-a046-04c1d4cc21e5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

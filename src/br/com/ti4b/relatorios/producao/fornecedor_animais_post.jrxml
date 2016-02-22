@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fornecedor_animais_post" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7cab0c67-d7a7-4cab-92a1-d793de071977">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     fornecedor_animal."cod_for_animal" AS fornecedor_animal_cod_for_animal,
+     fornecedor_animal."cnpj" AS fornecedor_animal_cnpj,
+     fornecedor_animal."nome" AS fornecedor_animal_nome,
+     fornecedor_animal."nome_proprietario" AS fornecedor_animal_nome_proprietario,
+     fornecedor_animal."info" AS fornecedor_animal_info,
+     fornecedor_animal."endereco" AS fornecedor_animal_endereco,
+     fornecedor_animal."numero" AS fornecedor_animal_numero,
+     fornecedor_animal."bairro" AS fornecedor_animal_bairro,
+     fornecedor_animal."cidade" AS fornecedor_animal_cidade,
+     fornecedor_animal."uf" AS fornecedor_animal_uf,
+     fornecedor_animal."email" AS fornecedor_animal_email,
+     fornecedor_animal."fone1" AS fornecedor_animal_fone1,
+     fornecedor_animal."fone2" AS fornecedor_animal_fone2
+FROM
+     "public"."fornecedor_animal" fornecedor_animal]]>
+	</queryString>
+	<field name="fornecedor_animal_cod_for_animal" class="java.lang.Integer"/>
+	<field name="fornecedor_animal_cnpj" class="java.lang.String"/>
+	<field name="fornecedor_animal_nome" class="java.lang.String"/>
+	<field name="fornecedor_animal_nome_proprietario" class="java.lang.String"/>
+	<field name="fornecedor_animal_info" class="java.lang.String"/>
+	<field name="fornecedor_animal_endereco" class="java.lang.String"/>
+	<field name="fornecedor_animal_numero" class="java.lang.Integer"/>
+	<field name="fornecedor_animal_bairro" class="java.lang.String"/>
+	<field name="fornecedor_animal_cidade" class="java.lang.String"/>
+	<field name="fornecedor_animal_uf" class="java.lang.String"/>
+	<field name="fornecedor_animal_email" class="java.lang.String"/>
+	<field name="fornecedor_animal_fone1" class="java.lang.String"/>
+	<field name="fornecedor_animal_fone2" class="java.lang.String"/>
+	<group name="fornecedor_animal_cod_for_animal">
+		<groupExpression><![CDATA[$F{fornecedor_animal_cod_for_animal}]]></groupExpression>
+	</group>
+	<group name="fornecedor_animal_cnpj">
+		<groupExpression><![CDATA[$F{fornecedor_animal_cnpj}]]></groupExpression>
+	</group>
+	<group name="fornecedor_animal_nome">
+		<groupExpression><![CDATA[$F{fornecedor_animal_nome}]]></groupExpression>
+	</group>
+	<group name="fornecedor_animal_nome_proprietario">
+		<groupExpression><![CDATA[$F{fornecedor_animal_nome_proprietario}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="53d90e81-2fa9-422e-aeb5-263c75edb2a3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="802" height="20" uuid="05b4602f-b767-4ae6-90dc-d7a5eeb946dd"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="57" width="802" height="20" uuid="ce80a1c5-813e-4d87-8bdf-54d63fea7285"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO FORNECEDOR DE ANIMAIS ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="7" width="802" height="1" uuid="e260a7fb-bcf1-4dea-a856-ba0712bf6be4"/>
+			</line>
+			<staticText>
+				<reportElement x="42" y="13" width="96" height="20" uuid="36bf3ff2-736f-49eb-a44e-02d684cb8832"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="13" width="75" height="20" uuid="756c375e-4db4-40cb-bc7c-2ed16530aeda"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME FOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="13" width="93" height="20" uuid="ca70ce88-2476-43cb-90e8-dd5168017d10"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME PRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="13" width="63" height="20" uuid="8ab6a5b9-51f9-44d8-bcba-9d3176de1f52"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[END]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="13" width="77" height="20" uuid="cacb3d2c-09b2-4da4-938e-4a6a977331c4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="540" y="13" width="27" height="20" uuid="f600d4f0-2268-4629-905f-8de9fec71e2e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="13" width="86" height="20" uuid="97739295-5bcc-4d45-95db-cd8af05b8d72"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="664" y="13" width="55" height="20" uuid="f97e8dc8-fa70-4c9c-8e8e-6fe651e3eb40"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FONE 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="727" y="13" width="75" height="20" uuid="e5de1851-272b-42a9-a637-2dbda5c63147"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FONE 2]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="38" width="802" height="1" uuid="f0cd1150-a370-44ff-9d0b-dfb46fd51cc3"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="13" width="34" height="20" uuid="a93df7eb-398f-4f27-9a55-79ac1dc2bbbd"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="13" width="18" height="20" uuid="4e896cfc-d1bc-4f1e-af0d-192347daf7ac"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="13" width="58" height="20" uuid="1b534a58-b86b-45a9-a133-c9094c46bc3e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BAIRRO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="34" height="20" uuid="d75a1ebb-5b9f-4b45-8a1f-8fbda67f440b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_cod_for_animal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="143" y="0" width="75" height="20" uuid="cb4e9122-c2c2-4497-bdc2-d6992cee85a0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="0" width="93" height="20" uuid="68c28a4d-3729-4df4-819b-4f6f91ae94d4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_nome_proprietario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="0" width="69" height="20" uuid="46edde21-90ca-4294-b6ce-e45db3a89681"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="18" height="20" uuid="eec4d3ea-fffb-49c2-8a2f-db3315e84881"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="0" width="58" height="20" uuid="2f76ce77-399d-4b7a-8634-ac17e0173f1f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="0" width="77" height="20" uuid="d5412360-4391-4c1a-8d24-8925d3b2e73c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="0" width="27" height="20" uuid="6d0d955d-dfc9-433c-813a-a8b571c90d48"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="567" y="0" width="97" height="20" uuid="65981171-13a5-4f6e-a5e8-4c66d05783d6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="664" y="0" width="63" height="20" uuid="334780ef-3c97-4f61-812a-900b8115f190"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_fone1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="727" y="0" width="75" height="20" uuid="b6a1d757-5427-4a5b-8cc4-19db2d4c3e69"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_fone2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="0" width="96" height="20" uuid="5b861bb8-29fb-4b9c-a9ce-0094f5d90a79"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fornecedor_animal_cnpj}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="802" height="20" uuid="8172d6fc-f15f-4c29-9995-40c468c9803d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="1" y="34" width="801" height="20" uuid="921875fb-242c-4c58-ba64-6cf5609d6783"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d63827ab-37ba-44c4-bb04-cebb3c72199c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     consumo."cod_consumo" AS consumo_cod_consumo,
+     consumo."cod_classificacao" AS consumo_cod_classificacao,
+     consumo."cod_volumoso" AS consumo_cod_volumoso,
+     consumo."cod_concentrado" AS consumo_cod_concentrado,
+     consumo."quantidade" AS consumo_quantidade,
+     consumo."data_consumo" AS consumo_data_consumo,
+     volumoso."cod_volumoso" AS volumoso_cod_volumoso,
+     volumoso."descricao" AS volumoso_descricao,
+     volumoso."data_entrada" AS volumoso_data_entrada,
+     volumoso."quant" AS volumoso_quant,
+     volumoso."preco_unit" AS volumoso_preco_unit,
+     classificacao."cod_classificacao" AS classificacao_cod_classificacao,
+     classificacao."descricao" AS classificacao_descricao
+FROM
+     "public"."volumoso" volumoso INNER JOIN "public"."consumo" consumo ON volumoso."cod_volumoso" = consumo."cod_volumoso"
+     INNER JOIN "public"."classificacao" classificacao ON consumo."cod_classificacao" = classificacao."cod_classificacao"]]>
+	</queryString>
+	<field name="consumo_cod_consumo" class="java.lang.Integer"/>
+	<field name="consumo_quantidade" class="java.lang.Double"/>
+	<field name="consumo_data_consumo" class="java.sql.Date"/>
+	<field name="volumoso_descricao" class="java.lang.String"/>
+	<field name="classificacao_descricao" class="java.lang.String"/>
+	<group name="consumo_cod_consumo">
+		<groupExpression><![CDATA[$F{consumo_cod_consumo}]]></groupExpression>
+	</group>
+	<group name="consumo_quantidade">
+		<groupExpression><![CDATA[$F{consumo_quantidade}]]></groupExpression>
+	</group>
+	<group name="volumoso_descricao">
+		<groupExpression><![CDATA[$F{volumoso_descricao}]]></groupExpression>
+	</group>
+	<group name="consumo_data_consumo">
+		<groupExpression><![CDATA[$F{consumo_data_consumo}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="542193a9-f245-418c-905d-d79cb78a6ee5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="802" height="20" uuid="c46d60b8-8628-4164-9a7e-9dedce5c3f12"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="57" width="802" height="20" uuid="03e14bff-6f4a-458e-9475-605e1e31b9f2"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO CONSUMO VOLUMOSO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="147" y="13" width="57" height="20" uuid="6f6a36a6-ccc1-4a63-9889-6613f9652e17"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD CON]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="13" width="100" height="20" uuid="070ce91d-69b7-46f4-afe2-e258a4e4fcd7"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESPECIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="13" width="100" height="20" uuid="ba793839-70c2-4895-8c3e-0e64fa46669f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VOLUMOSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="13" width="100" height="20" uuid="d58f48cf-24ec-4f15-9b5a-88b39edea138"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="13" width="100" height="20" uuid="ebeb1dce-46b7-4a75-a9ae-e380df604d28"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA CONSUMO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="7" width="802" height="1" uuid="8ec9e1a6-50ad-4cc6-ade5-f96b80864188"/>
+			</line>
+			<line>
+				<reportElement x="0" y="39" width="802" height="1" uuid="dbbe963e-01ee-44ae-bdff-2142e5838c8a"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="147" y="0" width="57" height="20" uuid="8908788f-2a54-4d96-8dbf-c3a123a3d185"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consumo_cod_consumo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="0" width="100" height="20" uuid="37825843-51ff-4f20-8eca-191d425d4946"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{classificacao_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="0" width="100" height="20" uuid="eda4dc10-9c30-4598-810b-266e243eaaeb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{volumoso_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="100" height="20" uuid="dad0792b-23b7-49f9-9737-416f5c2784db"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consumo_quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="0" width="100" height="20" uuid="52f9211f-175d-456f-9e78-a30677bbbee3"/>
+				<textFieldExpression><![CDATA[$F{consumo_data_consumo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="f7f181a9-0c08-4dc6-a745-e8a141c9c3b8"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORINO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="34" width="802" height="20" uuid="8e7f52a4-1782-47df-a2c9-9939ba21c2ae"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

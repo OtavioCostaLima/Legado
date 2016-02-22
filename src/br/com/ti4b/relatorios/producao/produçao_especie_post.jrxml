@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="produçao_especie_post" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8c23bf6-5d98-4416-8a04-e6d6a1812414">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     classificacao."cod_classificacao" AS classificacao_cod_classificacao,
+     classificacao."descricao" AS classificacao_descricao,
+     materia_prima."cod_materia" AS materia_prima_cod_materia,
+     materia_prima."cod_classificacao" AS materia_prima_cod_classificacao,
+     materia_prima."descricao" AS materia_prima_descricao,
+     producao."cod_producao" AS producao_cod_producao,
+     producao."cod_materia" AS producao_cod_materia,
+     producao."quant" AS producao_quant,
+     producao."data_producao" AS producao_data_producao
+FROM
+     "public"."classificacao" classificacao INNER JOIN "public"."materia_prima" materia_prima ON classificacao."cod_classificacao" = materia_prima."cod_classificacao"
+     INNER JOIN "public"."producao" producao ON materia_prima."cod_materia" = producao."cod_materia"]]>
+	</queryString>
+	<field name="classificacao_cod_classificacao" class="java.lang.Integer"/>
+	<field name="classificacao_descricao" class="java.lang.String"/>
+	<field name="materia_prima_cod_materia" class="java.lang.Integer"/>
+	<field name="materia_prima_cod_classificacao" class="java.lang.Integer"/>
+	<field name="materia_prima_descricao" class="java.lang.String"/>
+	<field name="producao_cod_producao" class="java.lang.Integer"/>
+	<field name="producao_cod_materia" class="java.lang.Integer"/>
+	<field name="producao_quant" class="java.lang.Double"/>
+	<field name="producao_data_producao" class="java.sql.Date"/>
+	<group name="classificacao_cod_classificacao">
+		<groupExpression><![CDATA[$F{classificacao_cod_classificacao}]]></groupExpression>
+	</group>
+	<group name="classificacao_descricao">
+		<groupExpression><![CDATA[$F{classificacao_descricao}]]></groupExpression>
+	</group>
+	<group name="materia_prima_cod_materia">
+		<groupExpression><![CDATA[$F{materia_prima_cod_materia}]]></groupExpression>
+	</group>
+	<group name="materia_prima_descricao">
+		<groupExpression><![CDATA[$F{materia_prima_descricao}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="faf6ea29-77c3-4092-ad28-611a4d31608a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="802" height="20" uuid="2b848faf-8e9e-45c2-8f80-71ba1b148415"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="57" width="802" height="20" uuid="cae4ddce-d3cf-4a2b-9d4f-454adc4baf39"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO PRODUCAO POR ESPECIE ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="52" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="9" width="802" height="1" uuid="60939118-19ba-492a-b94c-d225229b3537"/>
+			</line>
+			<staticText>
+				<reportElement x="155" y="16" width="139" height="20" uuid="d87e51d3-19e0-4e6b-a864-aa3528a32638"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇAO ESPECIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="16" width="132" height="20" uuid="ae6ded5a-b191-4c1a-9f9c-3cd6acbb1fc3"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇAO MATERIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="16" width="107" height="20" uuid="dbdad0a1-26ef-48f5-9af0-dc2213ffbb6c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA PRODUÇAO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="42" width="802" height="1" uuid="d0951c07-c022-4e29-b96e-fd90678063b8"/>
+			</line>
+			<staticText>
+				<reportElement x="558" y="16" width="100" height="20" uuid="47110de6-e2a4-411d-bf6e-1fcfd497e603"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTIDADE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="155" y="0" width="139" height="20" uuid="057d38cd-acf2-4c3b-8487-65f0989f69c0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{classificacao_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="132" height="20" uuid="ac8cea5c-7cb6-4ea2-9770-b9879f933b9b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{materia_prima_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="107" height="20" uuid="92c96e19-37f7-47bb-9aab-90f1cc8f0b59"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{producao_data_producao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="558" y="0" width="100" height="20" uuid="9258ced3-c740-4228-be28-f19b3ab04798"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{producao_quant}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="755c90bb-08c8-4811-9354-f2070b113b3d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="34" width="802" height="20" uuid="f756eb09-a648-428e-8a7a-6fa4beb62ef7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

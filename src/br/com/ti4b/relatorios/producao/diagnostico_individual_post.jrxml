@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="diagnostico_individual_post" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61ef1c32-83d8-4d31-af6c-2440a804a5f3">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     animal."cod_animal" AS animal_cod_animal,
+     animal."cod_instituicao" AS animal_cod_instituicao,
+     animal."cod_origem" AS animal_cod_origem,
+     animal."cod_fase" AS animal_cod_fase,
+     animal."nome" AS animal_nome,
+     animal."sexo" AS animal_sexo,
+     animal."raca" AS animal_raca,
+     animal."cor" AS animal_cor,
+     animal."idade" AS animal_idade,
+     animal."data_nascimento" AS animal_data_nascimento,
+     animal."peso" AS animal_peso,
+     animal."grau_sangue" AS animal_grau_sangue,
+     animal."informacao" AS animal_informacao,
+     consulta."cod_consulta" AS consulta_cod_consulta,
+     consulta."cod_animal" AS consulta_cod_animal,
+     consulta."crmv" AS consulta_crmv,
+     consulta."data_consulta" AS consulta_data_consulta,
+     consulta."tipo_exame_encam" AS consulta_tipo_exame_encam,
+     consulta."informacao" AS consulta_informacao,
+     diagnostico."cod_diagnostico" AS diagnostico_cod_diagnostico,
+     diagnostico."cod_consulta" AS diagnostico_cod_consulta,
+     diagnostico."cod_doenca" AS diagnostico_cod_doenca,
+     diagnostico."data_diagnostico" AS diagnostico_data_diagnostico,
+     diagnostico."informacao" AS diagnostico_informacao,
+     doenca."cod_doenca" AS doenca_cod_doenca,
+     doenca."descricao" AS doenca_descricao
+FROM
+     "public"."animal" animal INNER JOIN "public"."consulta" consulta ON animal."cod_animal" = consulta."cod_animal"
+     INNER JOIN "public"."diagnostico" diagnostico ON consulta."cod_consulta" = diagnostico."cod_consulta"
+     INNER JOIN "public"."doenca" doenca ON diagnostico."cod_doenca" = doenca."cod_doenca"]]>
+	</queryString>
+	<field name="animal_cod_animal" class="java.lang.Integer"/>
+	<field name="animal_cod_instituicao" class="java.lang.String"/>
+	<field name="animal_cod_origem" class="java.lang.Integer"/>
+	<field name="animal_cod_fase" class="java.lang.Integer"/>
+	<field name="animal_nome" class="java.lang.String"/>
+	<field name="animal_sexo" class="java.lang.String"/>
+	<field name="animal_raca" class="java.lang.String"/>
+	<field name="animal_cor" class="java.lang.String"/>
+	<field name="animal_idade" class="java.lang.String"/>
+	<field name="animal_data_nascimento" class="java.sql.Date"/>
+	<field name="animal_peso" class="java.lang.Double"/>
+	<field name="animal_grau_sangue" class="java.lang.String"/>
+	<field name="animal_informacao" class="java.lang.String"/>
+	<field name="consulta_cod_consulta" class="java.lang.Integer"/>
+	<field name="consulta_cod_animal" class="java.lang.Integer"/>
+	<field name="consulta_crmv" class="java.lang.String"/>
+	<field name="consulta_data_consulta" class="java.sql.Date"/>
+	<field name="consulta_tipo_exame_encam" class="java.lang.String"/>
+	<field name="consulta_informacao" class="java.lang.String"/>
+	<field name="diagnostico_cod_diagnostico" class="java.lang.Integer"/>
+	<field name="diagnostico_cod_consulta" class="java.lang.Integer"/>
+	<field name="diagnostico_cod_doenca" class="java.lang.Integer"/>
+	<field name="diagnostico_data_diagnostico" class="java.sql.Date"/>
+	<field name="diagnostico_informacao" class="java.lang.String"/>
+	<field name="doenca_cod_doenca" class="java.lang.Integer"/>
+	<field name="doenca_descricao" class="java.lang.String"/>
+	<group name="animal_cod_animal">
+		<groupExpression><![CDATA[$F{animal_cod_animal}]]></groupExpression>
+	</group>
+	<group name="animal_nome">
+		<groupExpression><![CDATA[$F{animal_nome}]]></groupExpression>
+	</group>
+	<group name="consulta_cod_consulta">
+		<groupExpression><![CDATA[$F{consulta_cod_consulta}]]></groupExpression>
+	</group>
+	<group name="consulta_data_consulta">
+		<groupExpression><![CDATA[$F{consulta_data_consulta}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="802" height="20" uuid="d11a7d9f-b44a-4de9-97cf-6e3b39acab24"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="33" width="802" height="20" uuid="77091ecb-a111-4417-a797-50ecf46d66db"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="802" height="20" uuid="b3545bd2-b677-45ed-ad86-0197cb5aeb1f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[RELATORIO DIAGNOSTICO INDIVIDUAL DOS ANIMAIS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="49" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="10" width="801" height="1" uuid="dce4ee8c-8669-4aef-8430-a1c4cd711530"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="16" width="100" height="20" uuid="fc6a4364-0ee2-4f5c-b8de-f81bfb75c9a0"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD ANIMAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="16" width="55" height="20" uuid="d50adfb6-e8d2-4129-ac7d-c0b6a0d1de51"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="16" width="98" height="20" uuid="c9f5600a-1279-44a7-a8e1-b337f894eaee"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD CONS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="16" width="108" height="20" uuid="8c46be4e-fe18-408f-ad25-2a7628f82e6d"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA CONSULTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="16" width="120" height="20" uuid="7278b4bf-f987-4ca9-8d73-87f03f792cbb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD DIAG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="514" y="16" width="124" height="20" uuid="3b1d86f6-5aaf-414d-8725-c0b0948b40f1"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DIAGNOSTICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="644" y="16" width="64" height="20" uuid="114a998b-1735-4448-9ddb-d901bfb170e0"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOENÇA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="715" y="16" width="86" height="20" uuid="cd7e408c-98a1-4b35-9dd5-b19127676e62"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMAÇAO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="41" width="801" height="1" uuid="ffe28852-9e28-4979-a32a-47f6764b70fa"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="295ff437-4f35-4d5f-ae73-b932da43e069"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{animal_cod_animal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="55" height="20" uuid="3fc8e701-0d83-48dc-b93e-f6a0eb8f1655"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{animal_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="0" width="98" height="20" uuid="988ade05-0c82-4b7d-b9ac-b5e54370ab07"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_cod_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="0" width="108" height="20" uuid="fe86d55e-88a4-4519-9ae8-384c792c18f5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{consulta_data_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="0" width="120" height="20" uuid="0641be2e-784d-4aeb-938d-eaf458e7b8cf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{diagnostico_cod_diagnostico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="514" y="0" width="124" height="20" uuid="100fd384-c0fc-442f-95b8-ff0bb29b4a65"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{diagnostico_data_diagnostico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="644" y="0" width="64" height="20" uuid="dd1313f1-f851-40b6-beba-fe2346292db5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{doenca_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="715" y="0" width="86" height="20" uuid="5d8c4cc9-c543-4159-966e-2a6013b3025f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{diagnostico_informacao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="f181f9d0-10f2-4dd6-a077-836299d41ca9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="32" width="801" height="20" uuid="d1a6db0c-fbcd-4458-bf85-aff2297355a6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

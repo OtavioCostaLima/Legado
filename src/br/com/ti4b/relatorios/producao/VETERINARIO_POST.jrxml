@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VETERINARIO_POST" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3dd3d7f-b847-42a8-86b0-0ac7e96ec063">
+	<property name="ireport.zoom" value="1.0980750000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="52057fce-9c7d-496d-9933-638071ffeae8"/>
+	<queryString>
+		<![CDATA[SELECT
+     veterinario."crmv" AS veterinario_crmv,
+     veterinario."cpf" AS veterinario_cpf,
+     veterinario."nome" AS veterinario_nome,
+     veterinario."endereco" AS veterinario_endereco,
+     veterinario."cidade" AS veterinario_cidade,
+     veterinario."uf" AS veterinario_uf,
+     veterinario."email" AS veterinario_email,
+     veterinario."fone1" AS veterinario_fone1,
+     veterinario."fone2" AS veterinario_fone2,
+     veterinario."tipo_contrato" AS veterinario_tipo_contrato,
+     veterinario."especialidade" AS veterinario_especialidade,
+     veterinario."numero" AS veterinario_numero,
+     veterinario."bairro" AS veterinario_bairro
+FROM
+     "public"."veterinario" veterinario]]>
+	</queryString>
+	<field name="veterinario_crmv" class="java.lang.String"/>
+	<field name="veterinario_cpf" class="java.lang.String"/>
+	<field name="veterinario_nome" class="java.lang.String"/>
+	<field name="veterinario_endereco" class="java.lang.String"/>
+	<field name="veterinario_cidade" class="java.lang.String"/>
+	<field name="veterinario_uf" class="java.lang.String"/>
+	<field name="veterinario_email" class="java.lang.String"/>
+	<field name="veterinario_fone1" class="java.lang.String"/>
+	<field name="veterinario_fone2" class="java.lang.String"/>
+	<field name="veterinario_tipo_contrato" class="java.lang.String"/>
+	<field name="veterinario_especialidade" class="java.lang.String"/>
+	<field name="veterinario_numero" class="java.lang.Integer"/>
+	<field name="veterinario_bairro" class="java.lang.String"/>
+	<group name="veterinario_crmv">
+		<groupExpression><![CDATA[$F{veterinario_crmv}]]></groupExpression>
+	</group>
+	<group name="veterinario_nome">
+		<groupExpression><![CDATA[$F{veterinario_nome}]]></groupExpression>
+	</group>
+	<group name="veterinario_cpf">
+		<groupExpression><![CDATA[$F{veterinario_cpf}]]></groupExpression>
+	</group>
+	<group name="veterinario_endereco">
+		<groupExpression><![CDATA[$F{veterinario_endereco}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="802" height="20" uuid="8b2e52e5-5769-45af-8ea5-8c77983a580f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERAL DO PIAUI - UFPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="32" width="802" height="20" uuid="b6836038-6818-466a-ae62-73ce8e2023c0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="802" height="20" uuid="7fb2f9ee-5ec3-4efb-9175-7857bf630005"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO VETERINARIOS CADASTRADOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="6" width="802" height="1" uuid="d19a34cf-b4d2-46ca-8a32-961ae2ea3c1d"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="13" width="66" height="20" uuid="b798146f-8230-4a16-88d1-fc76bfb6dd5a"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRMV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="13" width="110" height="20" uuid="efca8225-6fc7-4314-bb74-fcfbb5de26a9"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="13" width="56" height="20" uuid="9fec5058-bdf5-4e0c-8d0e-b3c995eaf186"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="13" width="65" height="20" uuid="2007ba08-b545-4343-8f93-05b3ff93419f"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="13" width="68" height="20" uuid="edf00c8d-5ed5-4e22-bed6-aa90ba0e557a"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="12" width="28" height="20" uuid="4373ddf3-b198-4699-a158-c56f3ea6f122"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="504" y="12" width="77" height="20" uuid="f327529b-7b22-4144-9110-2b5b200c8d68"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="588" y="13" width="68" height="20" uuid="fd98fe1d-4f20-4170-9659-c386086b9341"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FONE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="663" y="13" width="60" height="20" uuid="0b6cfa44-a5eb-4d36-b9d1-5b82e945bdc4"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[T. CONTR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="731" y="12" width="71" height="20" uuid="88c0d40c-3852-4af6-a7b4-e519643c0421"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESPEC]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="38" width="802" height="1" uuid="88ad6fa0-51fe-4567-af10-5c37bc19adb1"/>
+			</line>
+			<staticText>
+				<reportElement x="316" y="13" width="19" height="20" uuid="c914465c-cb00-423f-b90a-01e4729e56d6"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="13" width="48" height="20" uuid="9969464f-7e5d-4603-a51a-2b9a9984297a"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BAIRRO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="66" y="0" width="110" height="20" uuid="b4098bdf-e9df-437e-9383-2a76201a2080"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="66" height="20" uuid="7da8d183-f3b8-4298-ab4d-00128394a39e"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_crmv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="0" width="69" height="20" uuid="a5b37b10-dffe-4cff-a414-be9748dd677d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="0" width="71" height="20" uuid="4c214161-12fb-4a82-aec9-cdf647062390"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="19" height="20" uuid="eeff165e-c84a-4c9a-b6a0-5c181650abcb"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="60" height="20" uuid="7c9834e9-5f16-4887-836d-6d0a0302bc3c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="74" height="20" uuid="8284b5d0-1093-43db-aed2-de7ae184d811"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="0" width="28" height="20" uuid="752828fc-3453-478c-a3ca-de9905c47e72"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="0" width="91" height="20" uuid="20ab1c54-5ae3-41e0-b14b-65b96700c25c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="588" y="0" width="68" height="20" uuid="64e0ae42-6abf-4edf-a170-7c393f9c270f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_fone1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="656" y="0" width="67" height="20" uuid="82e71280-1c48-4553-93a2-e3c9be5ad3dd"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_tipo_contrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="723" y="0" width="76" height="20" uuid="27cd9e88-d842-421b-b887-e6a7ea7e1f53"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{veterinario_especialidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="33" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="7" width="802" height="20" uuid="79c6a740-7bda-4da7-88a1-1ff5a9098f68"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="34" width="799" height="20" uuid="52ff1702-3830-4afb-8448-1ad096ef0634"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

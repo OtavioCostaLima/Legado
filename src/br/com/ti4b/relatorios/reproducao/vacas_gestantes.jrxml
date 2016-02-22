@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5ca37b7-11e8-4c23-ac15-55d789d2c568">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select a.nome,a.cod_instituicao,c.pai,f.cod_fecundacao,f.data_fecundacao,g.cod_gestacao,g.previsao_parto,g.situacao,fe.descricao as categoria,cc.descricao from cruzamento c
+join animal a on a.cod_animal=c.cod_animal_mae
+join fecundacao f on f.cod_cruzamento=c.cod_cruzamento
+join gestacao g on g.cod_fecundacao=f.cod_fecundacao 
+join fase fe on a.cod_fase=fe.cod_fase
+join classificacao cc on cc.cod_classificacao=fe.cod_clasificacao]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="cod_instituicao" class="java.lang.String"/>
+	<field name="pai" class="java.lang.String"/>
+	<field name="cod_fecundacao" class="java.lang.Integer"/>
+	<field name="data_fecundacao" class="java.sql.Date"/>
+	<field name="cod_gestacao" class="java.lang.Integer"/>
+	<field name="previsao_parto" class="java.sql.Date"/>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="categoria" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="802" height="20" uuid="fc5127b1-f524-4638-a02e-aa4557f19639"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE FEDERA DO PIAUI - PI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="32" width="802" height="20" uuid="5b6d2000-7a98-4afa-9213-4d3cebdb227e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FAZENDA CAMPUS ALMICAR FERREIRA SOBRAL - CAFS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="802" height="20" uuid="4f5e06c8-df51-4ba6-8579-8bba4b08aaec"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO ANIMAIS GESTANTES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="578" y="0" width="224" height="107" uuid="1b3b522c-553e-4194-9933-aa26c8621ef6"/>
+				<imageExpression><![CDATA["C:\\LEGADO\\icones\\logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="31" y="0" width="189" height="107" uuid="28f61aef-6a45-46e2-9e7c-1eba6cd93e95"/>
+				<imageExpression><![CDATA["C:\\LEGADO\\icones\\brasao.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="88" y="8" width="189" height="20" uuid="813d457c-c626-42dc-a6f4-504e38ddd554"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATRIZ GESTANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="464" y="8" width="117" height="20" uuid="0fbf974f-a8c9-412a-b7ef-46885f660526"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DE PRECHÊZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="581" y="8" width="100" height="20" uuid="8f9a9de2-be93-4da5-a948-f90a486b9a5f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA PARTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="681" y="8" width="100" height="20" uuid="054aaaf6-d63a-430c-8770-76a72146cdeb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SITUAÇÃO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="7" width="802" height="1" uuid="7cd5c7eb-a997-4a31-a6ee-9cd41aa64951"/>
+			</line>
+			<line>
+				<reportElement x="0" y="39" width="802" height="1" uuid="6586c78c-ad6d-4336-b35b-d8e18266fda0"/>
+			</line>
+			<staticText>
+				<reportElement x="277" y="8" width="187" height="20" uuid="b63ebcda-ec07-4e35-8070-4325274feb23"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPRODUTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="8" width="88" height="20" uuid="14211511-1f81-48ed-b6e5-39b70a4d5f7b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REGISTRO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="88" y="2" width="189" height="20" uuid="d18a53f1-9c9d-410c-875a-791f04a1ddc9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="2" width="117" height="20" uuid="7873650d-f060-432d-88d5-3c400b3e0dc5"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_fecundacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="2" width="100" height="20" uuid="c5e82f85-2291-42c1-9405-ee655d1df110"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{previsao_parto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="681" y="2" width="100" height="20" uuid="451787f4-95a4-466a-9aee-994ab69cc5a5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="2" width="187" height="20" uuid="e1f2ac36-eb49-4971-b179-1fa0505b8571"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="88" height="20" uuid="93a4b061-6fa3-433e-91a7-ca7b5bda3942"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cod_instituicao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="8" width="802" height="20" uuid="047e89e4-1115-4f51-880e-33c501bbc957"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FLORIANO - PI]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="33" width="802" height="20" uuid="30c6ce9b-2fcb-4a52-bf98-dcddfbb99f29"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
