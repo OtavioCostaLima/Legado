@@ -1,22 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.ti4b.visao.pesquisas;
 
-import br.com.ti4b.util.AlertasReproducao;
-import br.com.ti4b.util.ClassificacaoAnimal;
-import br.com.ti4b.util.FiltrosDeTabelas;
-import br.com.ti4b.util.ConectaBanco;
 import br.com.ti4b.modelo.Gestacao;
-import br.com.ti4b.visao.cadastros.CadastroParto;
-import br.com.ti4b.visao.telas.MenuPrincipal;
-import br.com.ti4b.dao.RelatoriosDAO;
+import br.com.ti4b.util.AlertasReproducao;
+import br.com.ti4b.util.ConectaBanco;
+import br.com.ti4b.util.FiltrosDeTabelas;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,44 +21,19 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author StreamRead
+ * @author Otavio Costa
  */
-public final class PesquisarGestantes extends javax.swing.JInternalFrame {
+public class SelecionaGestantes extends javax.swing.JDialog {
 
-    RelatoriosDAO funcoes_Relatorios = new RelatoriosDAO();
-    ClassificacaoAnimal classificacao = new ClassificacaoAnimal();
-    CadastroParto cadastroParto;
-    List<Gestacao> listG = new ArrayList<>();
-    FiltrosDeTabelas filtros = new FiltrosDeTabelas();
     AlertasReproducao alertasReproducao = new AlertasReproducao();
-    int cod_gestacao;
-    String mae;
+    FiltrosDeTabelas filtros = new FiltrosDeTabelas();
 
-    private static PesquisarGestantes pesquisarGestantes;
-
-    public static PesquisarGestantes getInstancia() {
-        if (pesquisarGestantes == null) {
-            pesquisarGestantes = new PesquisarGestantes();
-        }
-        return pesquisarGestantes;
-    }
-
-    public PesquisarGestantes() {
-    }
-
-    public PesquisarGestantes(MenuPrincipal m) {
+    /**
+     * Creates new form SelecionaGestantes
+     */
+    public SelecionaGestantes(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        //  this.m = m;
-        classificacao.listarClacificacao(Classificacao);
-        filtros.Ordenartabela(tabelaPesquisa);
-    }
-
-    public PesquisarGestantes(MenuPrincipal m, CadastroParto cadastroParto) {
-        initComponents();
-        pesquisarGestantes = null;
-        classificacao.listarClacificacao(Classificacao);
-
-        this.cadastroParto = cadastroParto;
     }
 
     public void pintarTabela() {
@@ -86,47 +58,11 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
 
     }
 
-    public void povoarTabela(String classi) {
-        listG.clear();
-        filtros.removerLinhasTabela(tabelaPesquisa);
-        filtros.Ordenartabela(tabelaPesquisa);
-        ConectaBanco conecta = new ConectaBanco();
-
-        try {
-            String sql = "select a.nome,f.cod_fecundacao,f.data_fecundacao,g.cod_gestacao,g.previsao_parto,g.situacao,fe.descricao as categoria,cc.descricao from cruzamento c\n"
-                    + "join animal a on a.cod_animal=c.cod_animal_mae\n"
-                    + "join fecundacao f on f.cod_cruzamento=c.cod_cruzamento\n"
-                    + "join gestacao g on g.cod_fecundacao=f.cod_fecundacao \n"
-                    + "join fase fe on a.cod_fase=fe.cod_fase\n"
-                    + "join classificacao cc on cc.cod_classificacao=fe.cod_clasificacao where cc.descricao='" + classi + "' and g.situacao='GESTANTE'";
-            conecta.conexao();
-            PreparedStatement pst = conecta.conn.prepareStatement(sql);
-            DefaultTableModel modelo = (DefaultTableModel) tabelaPesquisa.getModel();
-            modelo.setNumRows(0);
-            ResultSet RS = pst.executeQuery();
-            while (RS.next()) {
-                Gestacao eg = new Gestacao();
-                modelo.addRow(new Object[]{RS.getString("cod_gestacao"), RS.getString("nome"), RS.getString("data_fecundacao"), RS.getDate("previsao_parto"), RS.getString("situacao")});
-                eg.setCod_fecundacao(RS.getInt("cod_fecundacao"));
-                eg.setId(RS.getInt("cod_gestacao"));
-                eg.setNome_gestante(RS.getString("nome"));
-                eg.setObservacao(RS.getString("situacao"));
-                eg.setPeriodo_aprox_de_parto(RS.getDate("previsao_parto"));
-                listG.add(eg);
-            }
-            tabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(40);
-            tabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(90);
-            tabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(70);
-            conecta.desconecta();
-            pintarTabela();// fecha conexão com BD
-        } catch (SQLException e) { //trata os erros SQL
-            JOptionPane.showMessageDialog(this, "Erro Comando SQL " + e.getMessage());
-        }
-
-    }
-
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -148,6 +84,8 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 2));
@@ -215,45 +153,42 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(0, 153, 0));
         jLabel3.setText("Matríz:");
 
-        Selecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar piqueno.png"))); // NOI18N
-        Selecionar.setBorder(null);
-        Selecionar.setBorderPainted(false);
+        Selecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Selecionar.setForeground(new java.awt.Color(0, 153, 0));
+        Selecionar.setText("Selecionar");
+        Selecionar.setToolTipText("");
         Selecionar.setContentAreaFilled(false);
         Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Selecionar.setFocusable(false);
         Selecionar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
-        Selecionar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Selecionar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Selecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelecionarActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        jButton8.setBorder(null);
-        jButton8.setBorderPainted(false);
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(0, 153, 0));
+        jButton8.setText("Sair");
+        jButton8.setToolTipText("");
         jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton8.setFocusable(false);
         jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        jButton8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
 
-        Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Pequeno.png"))); // NOI18N
-        Imprimir.setBorder(null);
-        Imprimir.setBorderPainted(false);
+        Imprimir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Imprimir.setForeground(new java.awt.Color(0, 153, 0));
+        Imprimir.setText("Imprimir");
+        Imprimir.setToolTipText("");
         Imprimir.setContentAreaFilled(false);
         Imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Imprimir.setFocusable(false);
         Imprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Grande.png"))); // NOI18N
-        Imprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Imprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImprimirActionPerformed(evt);
@@ -400,7 +335,7 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -411,7 +346,7 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -432,78 +367,38 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void selecionaGestantes() throws HeadlessException {
-        if (listG.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não existe Gestantes Cadastradas!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-                for (int i = 0; i < listG.size(); i++) {
-                    if (String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0)).trim().equals(String.valueOf(listG.get(i).getId()).trim())) {
-                        Gestacao gestacao = listG.get(i);
-                        if (gestacao.getObservacao().trim().equals("GESTANTE")) {
-                            int confirme = JOptionPane.showConfirmDialog(null, "Tem certeza que a vaca pariu?", "CONFIRMAÇÃO!",
-                                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                            if (confirme == 0) {
-                                if (cadastroParto != null) {
-                                    cadastroParto.setGestante(gestacao);
-                                    pesquisarGestantes = null;
-                                    this.dispose();
-                                } else {
-                                    // cadastroParto = new CadastroParto(m);
-                                    pesquisarGestantes = null;
-                                    MenuPrincipal.jDesktopPane1.add(cadastroParto);
-                                    cadastroParto.setVisible(true);
-                                    cadastroParto.setGestante(gestacao);
-                                    cadastroParto.setPosicao();
-                                    pesquisarGestantes = null;
-                                    this.dispose();
-                                }
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Este Animal não está mais gestante!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Selecione um Animal", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-    }
     private void ClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClassificacaoActionPerformed
         filtros.removerLinhasTabela(tabelaPesquisa);
-        povoarTabela(String.valueOf(Classificacao.getSelectedItem()));
+        povoarTabela();
         // TODO add your handling code here:
     }//GEN-LAST:event_ClassificacaoActionPerformed
+
+    private void tabelaPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPesquisaMouseClicked
+        tabelaPesquisa.setSelectionBackground(new Color(0, 153, 0));
+        if (evt.getClickCount() == 2) {
+
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaPesquisaMouseClicked
+
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarActionPerformed
 
     private void pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarKeyReleased
         if (pesquisar.getText().length() > 0) {
             pesquisar.setText(pesquisar.getText().toUpperCase());
             filtros.FiltrarNome(pesquisar.getText(), tabelaPesquisa, 1);
         } else {
-            povoarTabela(String.valueOf(Classificacao.getSelectedItem()));
+            povoarTabela();
         }            // TODO add your handling code here:
     }//GEN-LAST:event_pesquisarKeyReleased
 
-    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarActionPerformed
-
-    private void tabelaPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPesquisaMouseClicked
-        tabelaPesquisa.setSelectionBackground(new Color(0, 153, 0));
-        if (evt.getClickCount() == 2) {
-            for (int i = 0; i < listG.size(); i++) {
-                selecionaGestantes();
-            }
-
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_tabelaPesquisaMouseClicked
-
     private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
-        selecionaGestantes();
+
     }//GEN-LAST:event_SelecionarActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        pesquisarGestantes = null;
+
         this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -511,11 +406,10 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
             String cod = String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0));
 
-            funcoes_Relatorios.relatoriosReproducao("relatorioGestantesIndividual", cod);
-
         }        // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Classificacao;
     private javax.swing.JButton Imprimir;
@@ -536,9 +430,15 @@ public final class PesquisarGestantes extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabelaPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    public void setPosicao() {
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 4);
-    }
+    public void povoarTabela() {
+        filtros.removerLinhasTabela(tabelaPesquisa);
+        filtros.Ordenartabela(tabelaPesquisa);
 
+        tabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(90);
+        tabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(70);
+
+    }
 }

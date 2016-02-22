@@ -191,45 +191,42 @@ public final class PesquisarAnimal extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tabelaPesquisa);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        jButton8.setBorder(null);
-        jButton8.setBorderPainted(false);
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(0, 153, 0));
+        jButton8.setText("Sair");
+        jButton8.setToolTipText("");
         jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton8.setFocusable(false);
         jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        jButton8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
 
-        Selecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar piqueno.png"))); // NOI18N
-        Selecionar.setBorder(null);
-        Selecionar.setBorderPainted(false);
+        Selecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Selecionar.setForeground(new java.awt.Color(0, 153, 0));
+        Selecionar.setText("Selecionar");
+        Selecionar.setToolTipText("");
         Selecionar.setContentAreaFilled(false);
         Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Selecionar.setFocusable(false);
         Selecionar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
-        Selecionar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Selecionar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Selecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelecionarActionPerformed(evt);
             }
         });
 
-        Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Pequeno.png"))); // NOI18N
-        Imprimir.setBorder(null);
-        Imprimir.setBorderPainted(false);
+        Imprimir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Imprimir.setForeground(new java.awt.Color(0, 153, 0));
+        Imprimir.setText("Imprimir");
+        Imprimir.setToolTipText("");
         Imprimir.setContentAreaFilled(false);
         Imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Imprimir.setFocusable(false);
         Imprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Grande.png"))); // NOI18N
-        Imprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Imprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImprimirActionPerformed(evt);
@@ -336,12 +333,15 @@ public final class PesquisarAnimal extends javax.swing.JInternalFrame {
                         .addComponent(jButton8)))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Imprimir, Selecionar, jButton8});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 22, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,6 +359,8 @@ public final class PesquisarAnimal extends javax.swing.JInternalFrame {
                     .addComponent(Imprimir))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Imprimir, Selecionar, jButton8});
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
