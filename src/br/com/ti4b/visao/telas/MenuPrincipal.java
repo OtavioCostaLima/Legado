@@ -82,7 +82,6 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu_For_Ani = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -271,15 +270,6 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
             }
         });
         jMenu2.add(jMenuItem7);
-
-        jMenu_For_Ani.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenu_For_Ani.setText("Fornecedor de Animais");
-        jMenu_For_Ani.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu_For_AniActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenu_For_Ani);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Movimentação");
@@ -846,7 +836,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(null);
+        gerenciadorDeJanelas.openInternalFrame(CadastroParto.getInstancia());
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
@@ -867,25 +857,18 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        //   abrirFrames("cadastroAlimentos");
         gerenciadorDeJanelas.openInternalFrame(CadastroAlimentos.getInstancia());
 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(null);
+        gerenciadorDeJanelas.openInternalFrame(CadastroVeterinarios.getInstancia());
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         gerenciadorDeJanelas.openInternalFrame(CadastroMovimentacao.getInstancia());
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenu_For_AniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_For_AniActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(null);
-
-
-    }//GEN-LAST:event_jMenu_For_AniActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         gerenciadorDeJanelas.openInternalFrame(CadastroFornecedor.getInstancia());
@@ -1632,7 +1615,6 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JMenuItem jMenu_For_Ani;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
