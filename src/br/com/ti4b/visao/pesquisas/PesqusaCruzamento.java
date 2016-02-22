@@ -4,8 +4,6 @@ import br.com.ti4b.util.ConverterDatas;
 import br.com.ti4b.visao.telas.MenuPrincipal;
 import br.com.ti4b.dao.CruzamentoDAO;
 import java.awt.Dimension;
-import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import br.com.ti4b.util.FiltrosDeTabelas;
 import br.com.ti4b.dao.RelatoriosDAO;
@@ -13,7 +11,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -471,7 +468,6 @@ public final class PesqusaCruzamento extends javax.swing.JInternalFrame {
         RelatoriosDAO funcoes_Relatorios = new RelatoriosDAO();
         if (TabelaPesquisa.isRowSelected(TabelaPesquisa.getSelectedRow())) {
             String cod = String.valueOf(TabelaPesquisa.getValueAt(TabelaPesquisa.getSelectedRow(), 0));
-            funcoes_Relatorios.relatoriosReproducao("relatorioCruzamentoIndividual", cod);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
 

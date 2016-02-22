@@ -5,77 +5,25 @@
  */
 package br.com.ti4b.visao.pesquisas;
 
-import br.com.ti4b.util.FiltrosDeTabelas;
-import br.com.ti4b.modelo.Diagnostico;
-import br.com.ti4b.visao.telas.MenuPrincipal;
-import br.com.ti4b.visao.cadastros.CadastroDiagnostico;
-import br.com.ti4b.visao.cadastros.CadastroTratamento;
-import br.com.ti4b.dao.DiagnosticoDAO;
-import br.com.ti4b.dao.RelatoriosDAO;
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
+import br.com.ti4b.dao.TratamentoDAO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author GC
+ * @author Otavio Costa
  */
-public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
+public class SelecionaTratamento extends javax.swing.JDialog {
 
     /**
-     * Creates new form SelecionaDiagnostico
+     * Creates new form SelecionaTratamento
+     *
+     * @param parent
+     * @param modal
      */
-    RelatoriosDAO funcao_Relatorios = new RelatoriosDAO();
-    List<Diagnostico> ListDiagnostico = new ArrayList<>();
-    FiltrosDeTabelas filtros = new FiltrosDeTabelas();
-    MenuPrincipal m;
-    CadastroDiagnostico cadastroDiagnostico;
-    CadastroTratamento cadastroTratamento;
-
-    public SelecionaDiagnostico() {
+    public SelecionaTratamento(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        povoaTabela();
-    }
-
-    public SelecionaDiagnostico(MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        povoaTabela();
-    }
-
-    public SelecionaDiagnostico(CadastroTratamento cadastroTratamento, MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        this.cadastroTratamento = cadastroTratamento;
-        povoaTabela();
-
-    }
-
-    public SelecionaDiagnostico(CadastroDiagnostico cadastroDiagnostico, MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        this.cadastroDiagnostico = cadastroDiagnostico;
-        povoaTabela();
-
-    }
-
-    public void povoaTabela() {
-        tabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(100);
-        tabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(150);
-        tabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(80);
-        tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(100);
-        DiagnosticoDAO fd = new DiagnosticoDAO();
-        DefaultTableModel dtm = (DefaultTableModel) tabelaPesquisa.getModel();
-        dtm.setNumRows(0);
-        if (cadastroTratamento == null) {
-            ListDiagnostico = fd.pesquisarDiagnostico(dtm, 1);
-        } else if (cadastroTratamento != null) {
-            ListDiagnostico = fd.pesquisarDiagnostico(dtm, 2);
-        }
-
     }
 
     /**
@@ -96,9 +44,11 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         pesquisar = new javax.swing.JTextField();
-        Selecionar = new javax.swing.JButton();
+        Selecionar1 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         Imprimir = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 0));
 
@@ -113,11 +63,11 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Tipo de exame", "Nome doenca", "Data diagnostico", "Informacao"
+                "ID", "Data diagnostico", "Nome medicamento", "Data tratammento", "Periodo de Tratamento", "Quantidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -136,16 +86,16 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel1.setText("SELECIONE DIAGNOSTICO");
+        jLabel1.setText("SELECIONE TRATAMENTO");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +107,7 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
 
-        jLabel8.setText("Nome Da Doenca:");
+        jLabel8.setText("Medicamento:");
 
         pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,18 +138,18 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        Selecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar piqueno.png"))); // NOI18N
-        Selecionar.setBorder(null);
-        Selecionar.setBorderPainted(false);
-        Selecionar.setContentAreaFilled(false);
-        Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Selecionar.setFocusable(false);
-        Selecionar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
-        Selecionar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Selecionar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Selecionar.addActionListener(new java.awt.event.ActionListener() {
+        Selecionar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar piqueno.png"))); // NOI18N
+        Selecionar1.setBorder(null);
+        Selecionar1.setBorderPainted(false);
+        Selecionar1.setContentAreaFilled(false);
+        Selecionar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Selecionar1.setFocusable(false);
+        Selecionar1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
+        Selecionar1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Selecionar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Selecionar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelecionarActionPerformed(evt);
+                Selecionar1ActionPerformed(evt);
             }
         });
 
@@ -238,22 +188,21 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Selecionar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Imprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton8))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(Selecionar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Imprimir)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton8))
-                                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,14 +211,14 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Selecionar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Selecionar1)
                     .addComponent(jButton8)
                     .addComponent(Imprimir))
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -278,14 +227,14 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2))
         );
 
@@ -293,13 +242,12 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -314,59 +262,53 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
     private void pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarKeyReleased
         pesquisar.setText(pesquisar.getText().toUpperCase());
         if (pesquisar.getText().length() > 0) {
-            filtros.FiltrarNome(pesquisar.getText(), tabelaPesquisa, 2);
+            // filtros.FiltrarNome(pesquisar.getText(), tabelaPesquisa, 2);
         } else {
-            filtros.removerLinhasTabela(tabelaPesquisa);
-            povoaTabela();
+            //filtros.removerLinhasTabela(tabelaPesquisa);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_pesquisarKeyReleased
 
-    private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
+    private void Selecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Selecionar1ActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
 
-            for (int i = 0; i < ListDiagnostico.size(); i++) {
-                if (String.valueOf(ListDiagnostico.get(i).getIdDiagnostico()).equals(String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0)))) {
-                    Diagnostico ent_Diagnostico = ListDiagnostico.get(i);
-                    if (cadastroTratamento != null) {
-                        cadastroTratamento.setDiagnostico(ent_Diagnostico);
-                    } else if (cadastroDiagnostico == null && cadastroTratamento == null) {
-                        CadastroDiagnostico cadastroDiagnostico = new CadastroDiagnostico(m);
-                        MenuPrincipal.jDesktopPane1.add(cadastroDiagnostico);
-                        cadastroDiagnostico.setVisible(true);
-                        cadastroDiagnostico.setDiagnostico(ent_Diagnostico);
-                        cadastroDiagnostico.setPosicao();
-                    } else if (cadastroDiagnostico != null) {
-                        cadastroDiagnostico.setDiagnostico(ent_Diagnostico);
-
-                    }
-                }
-            }
-            m.fecharFrames(this);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_SelecionarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Selecionar1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        m.fecharFrames(this);
-        this.dispose();         // TODO add your handling code here:
+
+        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-   if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-        String cod = String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0));
-        funcao_Relatorios.relatoriosReproducao("relatoriodiagnosticoIndividual", cod);
-   }// TODO add your handling code here:
+        if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
+            String cod = String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0));
+        }  // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
 
+    public void povoaTabela() {
+        tabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(70);
+        tabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(80);
+        tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(80);
+
+        TratamentoDAO ft = new TratamentoDAO();
+        DefaultTableModel dtm = (DefaultTableModel) tabelaPesquisa.getModel();
+        dtm.setNumRows(0);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Imprimir;
     private javax.swing.JScrollPane ScrollPane;
-    private javax.swing.JButton Selecionar;
+    private javax.swing.JButton Selecionar1;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
@@ -377,9 +319,4 @@ public final class SelecionaDiagnostico extends javax.swing.JInternalFrame {
     private javax.swing.JTextField pesquisar;
     private javax.swing.JTable tabelaPesquisa;
     // End of variables declaration//GEN-END:variables
-
-    public void setPosicao() {
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 4);
-    }
 }

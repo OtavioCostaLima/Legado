@@ -345,7 +345,7 @@ public final class PesquisarMedicamentos extends javax.swing.JInternalFrame {
     private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
             String cod = String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0));
-            funcao_Relatorios.relatoriosReproducao("relatorioMedicamentosIndividual", cod);        // TODO add your handling code here:
+            // funcao_Relatorios.relatoriosReproducao("relatorioMedicamentosIndividual", cod);        // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
     }
 

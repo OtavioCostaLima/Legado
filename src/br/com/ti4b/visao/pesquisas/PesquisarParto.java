@@ -5,7 +5,6 @@
  */
 package br.com.ti4b.visao.pesquisas;
 
-import br.com.ti4b.util.ClassificacaoAnimal;
 import br.com.ti4b.dao.PartoDAO;
 import br.com.ti4b.util.FiltrosDeTabelas;
 import br.com.ti4b.visao.cadastros.CadastroParto;
@@ -22,7 +21,6 @@ public final class PesquisarParto extends javax.swing.JInternalFrame {
     RelatoriosDAO funcoes_Relatorios = new RelatoriosDAO();
     CadastroParto cadastroParto;
     FiltrosDeTabelas filtros = new FiltrosDeTabelas();
-    ClassificacaoAnimal classificacaoAnimal = new ClassificacaoAnimal();
 
     private static PesquisarParto pesquisarParto;
 
@@ -43,7 +41,6 @@ public final class PesquisarParto extends javax.swing.JInternalFrame {
      */
     public PesquisarParto(MenuPrincipal m) {
         initComponents();
-        classificacaoAnimal.listarClacificacao(Classificacao);
 
     }
 
@@ -322,14 +319,14 @@ public final class PesquisarParto extends javax.swing.JInternalFrame {
 
     public void selecionaParto() {
         /*   if (list.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "A tabela está vazia!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-        if (TabelaParto.isRowSelected(TabelaParto.getSelectedRow())) {
+         JOptionPane.showMessageDialog(null, "A tabela está vazia!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
+         } else {
+         if (TabelaParto.isRowSelected(TabelaParto.getSelectedRow())) {
         
-        } else {
-        JOptionPane.showMessageDialog(null, "Selecione umm intem da tabela!", "iINFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
-        }
-        }*/
+         } else {
+         JOptionPane.showMessageDialog(null, "Selecione umm intem da tabela!", "iINFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
+         }
+         }*/
     }
 
 
@@ -372,8 +369,7 @@ public final class PesquisarParto extends javax.swing.JInternalFrame {
         if (TabelaParto.isRowSelected(TabelaParto.getSelectedRow())) {
             String cod = String.valueOf(TabelaParto.getValueAt(TabelaParto.getSelectedRow(), 0));
 
-            funcoes_Relatorios.relatoriosReproducao("relatorioPartoIndividual", cod);
-
+//            funcoes_Relatorios.relatoriosReproducao("relatorioPartoIndividual", cod);
         }            // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
 
