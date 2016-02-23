@@ -11,12 +11,9 @@ import br.com.ti4b.modelo.Consulta;
 import br.com.ti4b.modelo.Veterinario;
 import br.com.ti4b.visao.telas.MenuPrincipal;
 import br.com.ti4b.visao.pesquisas.SelecionaAnimal;
-import br.com.ti4b.visao.pesquisas.SelecionaConsulta;
-import br.com.ti4b.visao.pesquisas.Seleciona_Veterinario;
 import br.com.ti4b.dao.ConsultaDAO;
 import java.awt.Component;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -25,22 +22,9 @@ import javax.swing.JTextField;
  */
 public class CadastroConsultas extends javax.swing.JInternalFrame {
 
-    ConverterDatas cd = new ConverterDatas();
-    MenuPrincipal m;
-    Animal ent_Animal = new Animal();
-    Veterinario ent_Veterinario = new Veterinario();
-    ConsultaDAO f_cons = new ConsultaDAO();
-    Consulta ent_Consulta = new Consulta();
-
     public CadastroConsultas() {
         initComponents();
-        prive();
-    }
 
-    public CadastroConsultas(MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        prive();
     }
 
     public void upperCase(JTextField modelo) {
@@ -62,44 +46,14 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
             o++;
         }
         if (o == 0) {
-            cadastrar(tipo);
         } else {
             info_error.setText("Preenxa todos os campos!");
         }
     }
 
-    public void setAnimal(Animal animal) {
-        NomeAnimal.setText(animal.getNome());
-        ent_Animal = animal;
-        ent_Consulta.setCod_animal(animal.getIdAnimal());
-    }
-
-    private void cadastrar(int tipo) {
-        ent_Consulta.setData_consulta(cd.converter(DataConsulta));
-        ent_Consulta.setTipo_exame_encam((TipoExame.getText()));
-        ent_Consulta.setInformacao((Informacoes.getText()));
-        f_cons.Cadastrar(ent_Consulta, tipo);
-        getInfo();
-    }
-
-    public void getInfo() {
-        if (ent_Consulta.getRetorno().equals("Cadastrado com sucesso!") || ent_Consulta.getRetorno().equals("Alterado com sucesso!")) {
-            String rs = ent_Consulta.getRetorno();
-            limpar_campos();
-            info_error.setText(rs);
-        }
-    }
-
-    public void setVeterinario(Veterinario ent_Veterinario) {
-        nomeVeterinario.setText(ent_Veterinario.getNome());
-        this.ent_Veterinario = ent_Veterinario;
-        ent_Consulta.setCrmv(ent_Veterinario.getCrmv());
-    }
-
     private void limpar_campos() {
         info_error.setText(null);
         Cadastrar.setEnabled(true);
-        ent_Consulta = new Consulta();
         NomeAnimal.setText(null);
         nomeVeterinario.setText(null);
         DataConsulta.setDate(null);
@@ -280,66 +234,6 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
             }
         });
 
-        Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Pequeno.png"))); // NOI18N
-        Cadastrar.setBorder(null);
-        Cadastrar.setBorderPainted(false);
-        Cadastrar.setContentAreaFilled(false);
-        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Cadastrar.setFocusable(false);
-        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
-        Cadastrar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarActionPerformed(evt);
-            }
-        });
-
-        Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Pequeno.png"))); // NOI18N
-        Alterar.setBorder(null);
-        Alterar.setBorderPainted(false);
-        Alterar.setContentAreaFilled(false);
-        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Alterar.setFocusable(false);
-        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
-        Alterar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Alterar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Alterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlterarActionPerformed(evt);
-            }
-        });
-
-        Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Pequeno.png"))); // NOI18N
-        Excluir.setBorder(null);
-        Excluir.setBorderPainted(false);
-        Excluir.setContentAreaFilled(false);
-        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Excluir.setFocusable(false);
-        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
-        Excluir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExcluirActionPerformed(evt);
-            }
-        });
-
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        Sair.setBorder(null);
-        Sair.setBorderPainted(false);
-        Sair.setContentAreaFilled(false);
-        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Sair.setFocusable(false);
-        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        Sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SairActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
         painelCadastro.setLayout(painelCadastroLayout);
         painelCadastroLayout.setHorizontalGroup(
@@ -347,43 +241,32 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8))
+                .addGap(6, 6, 6)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(nomeVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NomeAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8))
-                        .addGap(6, 6, 6)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(nomeVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(NomeAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(DataConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(selecionaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(selecionaVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Infiormacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(10, 10, 10))
+                        .addComponent(selecionaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addComponent(Cadastrar)
+                        .addComponent(selecionaVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Alterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Excluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Sair)
-                        .addContainerGap())))
+                        .addComponent(Infiormacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(10, 10, 10))
         );
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,36 +303,99 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
                         .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(Infiormacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Cadastrar)
-                            .addComponent(Alterar)
-                            .addComponent(Excluir)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Sair)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(0, 153, 0));
+        Cadastrar.setText("CADASTRAR");
+        Cadastrar.setContentAreaFilled(false);
+        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Cadastrar.setFocusable(false);
+        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrarActionPerformed(evt);
+            }
+        });
+
+        Alterar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Alterar.setForeground(new java.awt.Color(0, 153, 0));
+        Alterar.setText("ALTERAR");
+        Alterar.setToolTipText("");
+        Alterar.setContentAreaFilled(false);
+        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Alterar.setFocusable(false);
+        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
+        Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlterarActionPerformed(evt);
+            }
+        });
+
+        Excluir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Excluir.setForeground(new java.awt.Color(0, 153, 0));
+        Excluir.setText("EXCLUIR");
+        Excluir.setContentAreaFilled(false);
+        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Excluir.setFocusable(false);
+        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
+
+        Sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sair.setForeground(new java.awt.Color(0, 153, 0));
+        Sair.setText("SAIR");
+        Sair.setContentAreaFilled(false);
+        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Sair.setFocusable(false);
+        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Cadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Sair)))
+                .addContainerGap())
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Alterar, Cadastrar, Excluir, Sair});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(Alterar)
+                    .addComponent(Excluir)
+                    .addComponent(Sair)
+                    .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -477,10 +423,7 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
 
     private void selecionaAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionaAnimalActionPerformed
 
-        SelecionaAnimal animal = new SelecionaAnimal(0, this);
-        MenuPrincipal.jDesktopPane1.add(animal);
-        animal.setVisible(true);
-        animal.setPosicao();
+
     }//GEN-LAST:event_selecionaAnimalActionPerformed
 
     private void nomeVeterinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeVeterinarioActionPerformed
@@ -492,10 +435,7 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nomeVeterinarioKeyReleased
 
     private void selecionaVeterinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionaVeterinarioActionPerformed
-        Seleciona_Veterinario vet = new Seleciona_Veterinario(this, m);
-        MenuPrincipal.jDesktopPane1.add(vet);
-        vet.setVisible(true);
-        vet.setPosicao();
+
     }//GEN-LAST:event_selecionaVeterinarioActionPerformed
 
     private void InformacoesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InformacoesKeyReleased
@@ -516,58 +456,57 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Consulta.getCod_consulta() == 0) {
-                trataCampos(1);
-            } else {
-                info_error.setText("Consulta já está Cadastrada!");
-            }
-        }
-    }//GEN-LAST:event_CadastrarActionPerformed
-
-    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Consulta.getCod_consulta() != 0) {
-                trataCampos(2);
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou a Consulta não está Cadastrada!Deseja escolher uma Consulta?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    SelecionaConsulta seleciona_Consulta = new SelecionaConsulta(this, m);
-                    MenuPrincipal.jDesktopPane1.add(seleciona_Consulta);
-                    seleciona_Consulta.setVisible(true);
-                    seleciona_Consulta.setPosicao();
-                }
-            }
-        }
-    }//GEN-LAST:event_AlterarActionPerformed
-
-    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Consulta.getCod_consulta() != 0) {
-                excluir();
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou a Consulta não está Cadastrada!\nDeseja escolher uma Consulta?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    SelecionaConsulta seleciona_Consulta = new SelecionaConsulta(this, m);
-                    MenuPrincipal.jDesktopPane1.add(seleciona_Consulta);
-                    seleciona_Consulta.setVisible(true);
-                    seleciona_Consulta.setPosicao();
-                }
-            }
-        }
-    }//GEN-LAST:event_ExcluirActionPerformed
-
-    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        m.fecharFrames(this);
-        this.dispose();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SairActionPerformed
-
     private void TipoExameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TipoExameKeyReleased
         upperCase(TipoExame);
         // TODO add your handling code here:
     }//GEN-LAST:event_TipoExameKeyReleased
+
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
+
+    }//GEN-LAST:event_CadastrarActionPerformed
+
+    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
+
+        /*if (ent_Leilao.getCod_leilao() != 0) {
+         trataCampos(2);
+         } else {
+         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+         if (i == 0) {
+         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+         selecionaLeilao.setVisible(true);
+         selecionaLeilao.setPosicao();
+         }
+         }*/
+    }//GEN-LAST:event_AlterarActionPerformed
+
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
+        /*  if (m.usuarioLogado.isADM()) {
+         if (ent_Leilao.getCod_leilao() != 0) {
+         LeilaoDAO fl = new LeilaoDAO();
+         fl.excluirLeilao(ent_Leilao);
+         if (ent_Leilao.getRetormo().equals("Deletado com sucesso!")) {
+         limparcampos();
+         ent_Leilao.setRetormo("Deletado com sucesso!");
+         }
+
+         } else {
+         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+         if (i == 0) {
+         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+         selecionaLeilao.setVisible(true);
+         selecionaLeilao.setPosicao();
+         }
+         }
+         }*/
+    }//GEN-LAST:event_ExcluirActionPerformed
+
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -596,41 +535,5 @@ public class CadastroConsultas extends javax.swing.JInternalFrame {
     private javax.swing.JButton selecionaAnimal;
     private javax.swing.JButton selecionaVeterinario;
     // End of variables declaration//GEN-END:variables
-
-    public void setPosicao() {
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 4);
-    }
-
-    public void excluir() {
-        f_cons.excluir(ent_Consulta);
-        if (ent_Consulta.getRetorno().equals("Deletado com sucesso!")) {
-            limpar_campos();
-            info_error.setText("Deletado com sucesso!");
-        }
-    }
-
-    public void setConsulta(Consulta ec) {
-        ent_Consulta = ec;
-        NomeAnimal.setText(ec.getNome_animal());
-        nomeVeterinario.setText(ec.getNome_veterinario());
-        TipoExame.setText(ec.getTipo_exame_encam());
-        DataConsulta.setDate(ec.getData_consulta());
-        Informacoes.setText(ec.getInformacao());
-    }
-
-    public void prive() {
-
-        if (m.usuarioLogado.isADM()) {
-        } else {
-            Cadastrar.setRolloverEnabled(false);
-            Alterar.setRolloverEnabled(false);
-            Excluir.setRolloverEnabled(false);
-            Cadastrar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Alterar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Excluir.setToolTipText("Você não tem privilégios para executar essa ação!");
-
-        }
-    }
 
 }

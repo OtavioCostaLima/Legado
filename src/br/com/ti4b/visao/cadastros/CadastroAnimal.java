@@ -777,22 +777,12 @@ public final class CadastroAnimal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RadioLeilaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioLeilaoActionPerformed
-        SelecionaMovimentacao leilao = new SelecionaMovimentacao(this, MenuPrincipal.p);
-        MenuPrincipal.jDesktopPane1.add(leilao);
-        leilao.setVisible(true);
+
 
     }//GEN-LAST:event_RadioLeilaoActionPerformed
 
     private void RadioDoacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioDoacaoActionPerformed
-        DataNascimento.setDate(null);
-        DataEntrada.setDate(null);
-        NomeMae.setText(null);
-        NomePai.setText(null);
-        NomeFornecedor.setText(null);
-        SelecionaMovimentacao instancia = SelecionaMovimentacao.getInstancia();
-        GerenciadorDeJanelas.getInstancia().openInternalFrame(instancia);
-        instancia.getLeilao();
-        instancia = null;
+
 
     }//GEN-LAST:event_RadioDoacaoActionPerformed
 
@@ -803,15 +793,7 @@ public final class CadastroAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ClassificacaoActionPerformed
 
     private void RadioFazendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioFazendaActionPerformed
-        NomeFornecedor.setText(null);
-        if (MenuPrincipal.p.getSelecionaAnimalParida() == null) {
-            SelecionaAnimalParida parida = new SelecionaAnimalParida(this, MenuPrincipal.p);
-            MenuPrincipal.jDesktopPane1.add(parida);
-            parida.setVisible(true);
-            parida.setPosicao();
-        } else {
-            GerenciadorDeJanelas.getInstancia().openInternalFrame(SelecionaAnimalParida.g);
-        }
+
     }//GEN-LAST:event_RadioFazendaActionPerformed
 
     private void NomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomeMaeActionPerformed
@@ -832,11 +814,7 @@ public final class CadastroAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_FemininoActionPerformed
 
     private void selecionaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionaFornecedorActionPerformed
-        if (RadioFazenda.isSelected()) {
-            SelecionaFornecedor instancia = SelecionaFornecedor.getInstancia();
-            GerenciadorDeJanelas.getInstancia().openInternalFrame(instancia);
-            instancia.getFornecedor();
-        }
+
     }//GEN-LAST:event_selecionaFornecedorActionPerformed
 
 
@@ -901,7 +879,7 @@ public final class CadastroAnimal extends javax.swing.JInternalFrame {
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         AnimalRN animalRN = new AnimalRN();
-        if (animalRN.cadastrar(entAnimal)) {
+        if (animalRN.cadastrar(null)) {
         }
     }//GEN-LAST:event_CadastrarActionPerformed
 
@@ -952,7 +930,7 @@ public final class CadastroAnimal extends javax.swing.JInternalFrame {
                 int i = trataData(DataEntrada);
                 int a = trataData(DataNascimento);
                 if (i == 0 && a == 0) {
-                    cadastrar(tipo);
+
                 }
             }
 
@@ -962,23 +940,11 @@ public final class CadastroAnimal extends javax.swing.JInternalFrame {
     }
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        if (MenuPrincipal.p.usuarioLogado.isADM()) {
-            if (entAnimal.getIdAnimal() != 0) {
-                tratamentoDeBotoes(2);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Informe um Animal");
-            }
-        } // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        if (MenuPrincipal.p.usuarioLogado.isADM()) {
-            if (entAnimal.getIdAnimal() != 0) {
-                excluirAnimal();
-            } else {
-                JOptionPane.showMessageDialog(null, "Informe um Animal");
-            }
-        }   // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed

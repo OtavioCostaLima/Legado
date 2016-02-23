@@ -6,17 +6,10 @@
 package br.com.ti4b.visao.cadastros;
 
 import br.com.ti4b.util.ConverterDatas;
-import br.com.ti4b.modelo.Consulta;
 import br.com.ti4b.modelo.Diagnostico;
-import br.com.ti4b.modelo.Doencas;
 import br.com.ti4b.visao.telas.MenuPrincipal;
-import br.com.ti4b.visao.pesquisas.SelecionaConsulta;
-import br.com.ti4b.visao.pesquisas.SelecionaDiagnostico;
-import br.com.ti4b.visao.pesquisas.SelecionaDoenca;
 import br.com.ti4b.dao.DiagnosticoDAO;
 import java.awt.Component;
-import java.awt.Dimension;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -25,40 +18,12 @@ import javax.swing.JTextField;
  */
 public class CadastroDiagnostico extends javax.swing.JInternalFrame {
 
-    ConverterDatas cd = new ConverterDatas();
-    Diagnostico ent_Diagnostico = new Diagnostico();
-    DiagnosticoDAO funcaoDiagnostico = new DiagnosticoDAO();
-    MenuPrincipal m;
-    int codDoenca, codConsulta;
-
-    private void cadastrar(int tipo) {
-        ent_Diagnostico.setDataDiagnostico(cd.converter(DataDiag));
-        if (radioNegativo.isSelected()) {
-            ent_Diagnostico.setInformacao("NEGATIVO");
-        } else if (radioPositivo.isSelected()) {
-            ent_Diagnostico.setInformacao("POSITIVO");
-        }
-        funcaoDiagnostico.Cadastrar(ent_Diagnostico, tipo);
-
-        if (ent_Diagnostico.getRetorno().equals("Cadastrado com sucesso!") || ent_Diagnostico.getRetorno().equals("Alterado com sucesso!")) {
-            if (ent_Diagnostico.getRetorno().equals("Cadastrado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Cadastrado com sucesso!");
-            } else {
-                limpar_campos();
-                info_error.setText("Alterado com sucesso!");
-            }
-
-        } else {
-            info_error.setText(ent_Diagnostico.getRetorno());
-
-        }
-    }
-
+  
+  
     private void limpar_campos() {
         buttonGroup1.clearSelection();
         Cadastrar.setEnabled(true);
-        ent_Diagnostico = new Diagnostico();
+     
         nomeConsulta.setText(null);
         Doenca.setText(null);
         DataDiag.setDate(null);
@@ -67,7 +32,7 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
 
     public CadastroDiagnostico() {
         initComponents();
-        prive();
+   
     }
 
     @SuppressWarnings("unchecked")
@@ -89,10 +54,6 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         info_error = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        Cadastrar = new javax.swing.JButton();
-        Alterar = new javax.swing.JButton();
-        Excluir = new javax.swing.JButton();
-        Sair = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         radioPositivo = new javax.swing.JRadioButton();
         radioNegativo = new javax.swing.JRadioButton();
@@ -209,108 +170,38 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
             }
         });
 
-        Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Pequeno.png"))); // NOI18N
-        Cadastrar.setBorder(null);
-        Cadastrar.setBorderPainted(false);
-        Cadastrar.setContentAreaFilled(false);
-        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Cadastrar.setFocusable(false);
-        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
-        Cadastrar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarActionPerformed(evt);
-            }
-        });
-
-        Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Pequeno.png"))); // NOI18N
-        Alterar.setBorder(null);
-        Alterar.setBorderPainted(false);
-        Alterar.setContentAreaFilled(false);
-        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Alterar.setFocusable(false);
-        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
-        Alterar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Alterar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Alterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlterarActionPerformed(evt);
-            }
-        });
-
-        Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Pequeno.png"))); // NOI18N
-        Excluir.setBorder(null);
-        Excluir.setBorderPainted(false);
-        Excluir.setContentAreaFilled(false);
-        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Excluir.setFocusable(false);
-        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
-        Excluir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExcluirActionPerformed(evt);
-            }
-        });
-
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        Sair.setBorder(null);
-        Sair.setBorderPainted(false);
-        Sair.setContentAreaFilled(false);
-        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Sair.setFocusable(false);
-        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        Sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SairActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
         painelCadastro.setLayout(painelCadastroLayout);
         painelCadastroLayout.setHorizontalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
+                        .addComponent(jLabel11)
+                        .addGap(32, 32, 32)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(32, 32, 32)
-                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(Doenca, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(selecionaDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(nomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(selecionaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(painelCadastroLayout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(107, 107, 107))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                                    .addGap(78, 78, 78)
-                                    .addComponent(DataDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addComponent(Cadastrar)
-                        .addGap(4, 4, 4)
-                        .addComponent(Alterar)
-                        .addGap(4, 4, 4)
-                        .addComponent(Excluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Sair)))
+                                .addComponent(Doenca, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selecionaDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addComponent(nomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selecionaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelCadastroLayout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(107, 107, 107))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
+                            .addGap(78, 78, 78)
+                            .addComponent(DataDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
                 .addGap(27, 27, 27))
         );
         painelCadastroLayout.setVerticalGroup(
@@ -331,13 +222,7 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
                     .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(DataDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Cadastrar)
-                    .addComponent(Alterar)
-                    .addComponent(Excluir)
-                    .addComponent(Sair))
-                .addGap(10, 10, 10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -411,9 +296,9 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -451,7 +336,7 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
         }
         if (o == 0) {
 
-            cadastrar(tipo);
+           //
 
         } else {
             info_error.setText("Preenxa todos os campos!");
@@ -468,10 +353,6 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
 
     private void selecionaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionaConsultaActionPerformed
 
-        SelecionaConsulta seleciona_Consulta = new SelecionaConsulta(this, m);
-        MenuPrincipal.jDesktopPane1.add(seleciona_Consulta);
-        seleciona_Consulta.setVisible(true);
-        seleciona_Consulta.setPosicao();
     }//GEN-LAST:event_selecionaConsultaActionPerformed
 
     private void DoencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoencaActionPerformed
@@ -483,10 +364,7 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_DoencaKeyReleased
 
     private void selecionaDoencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecionaDoencaActionPerformed
-        SelecionaDoenca seleciona_Doenca = new SelecionaDoenca(this, m);
-        MenuPrincipal.jDesktopPane1.add(seleciona_Doenca);
-        seleciona_Doenca.setVisible(true);
-        seleciona_Doenca.setPosicao();        // TODO add your handling code here:
+             // TODO add your handling code here:
     }//GEN-LAST:event_selecionaDoencaActionPerformed
 
     private void radioPositivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPositivoActionPerformed
@@ -505,66 +383,11 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Diagnostico.getIdDiagnostico() == 0) {
-                comparaDados(1);
-            } else {
-                info_error.setText("Diagnostico já está cadastrada!");
-            }
-        }
-    }//GEN-LAST:event_CadastrarActionPerformed
-
-    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Diagnostico.getIdDiagnostico() != 0) {
-                comparaDados(2);
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou o Diagnostico não está Cadastrada!\nDeseja escolher uma Diagnostico?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    limpar_campos();
-                    SelecionaDiagnostico seleciona_Diagnostico = new SelecionaDiagnostico(this, m);
-                    MenuPrincipal.jDesktopPane1.add(seleciona_Diagnostico);
-                    seleciona_Diagnostico.setVisible(true);
-                    seleciona_Diagnostico.setPosicao();
-                }
-
-            }
-        }
-    }//GEN-LAST:event_AlterarActionPerformed
-
-    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Diagnostico.getIdDiagnostico() != 0) {
-                excluir();
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou o Diagnostico não está Cadastrada!\nDeseja escolher uma Diagnostico?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    limpar_campos();
-                    SelecionaDiagnostico seleciona_Diagnostico = new SelecionaDiagnostico(this, m);
-                    MenuPrincipal.jDesktopPane1.add(seleciona_Diagnostico);
-                    seleciona_Diagnostico.setVisible(true);
-                    seleciona_Diagnostico.setPosicao();
-                }
-
-            }
-        }
-    }//GEN-LAST:event_ExcluirActionPerformed
-
-    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        m.fecharFrames(this);
-        this.dispose();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SairActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Alterar;
     private javax.swing.JButton Cadastrar;
     private com.toedter.calendar.JDateChooser DataDiag;
     private javax.swing.JTextField Doenca;
-    private javax.swing.JButton Excluir;
-    private javax.swing.JButton Sair;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel info_error;
     private javax.swing.JButton jButton4;
@@ -584,68 +407,4 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
     private javax.swing.JButton selecionaDoenca;
     // End of variables declaration//GEN-END:variables
 
-    public void setPosicao() {
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 4);
-    }
-
-    public CadastroDiagnostico(MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        prive();
-
-    }
-
-    public void setDoenca(Doencas ea) {
-
-        ent_Diagnostico.setIdDoenca(ea.getCod_doenca());
-
-        Doenca.setText(ea.getDescricao());
-    }
-
-    public void setConsulta(Consulta ec) {
-
-        ent_Diagnostico.setIdConsulta(ec.getCod_consulta());
-
-        nomeConsulta.setText(ec.getInformacao());
-    }
-
-    public void setDiagnostico(Diagnostico ent_Diagnostico) {
-        this.ent_Diagnostico = ent_Diagnostico;
-        nomeConsulta.setText(ent_Diagnostico.getTipoDeExame());
-        Doenca.setText(ent_Diagnostico.getNomeDoenca());
-        DataDiag.setDate(ent_Diagnostico.getDataDiagnostico());
-        if (ent_Diagnostico.getInformacao() != null) {
-            if (ent_Diagnostico.getInformacao().equals("NEGATIVO")) {
-                radioNegativo.setSelected(true);
-            } else if (ent_Diagnostico.getInformacao().equals("POSITIVO")) {
-                radioPositivo.setSelected(true);
-            }
-        }
-    }
-
-    private void excluir() {
-        funcaoDiagnostico.excluirDiagnostico(ent_Diagnostico);
-        if (ent_Diagnostico.getRetorno().equals("Deletado com sucesso!")) {
-            info_error.setText("Deletado com sucesso!");
-        } else {
-            limpar_campos();
-            info_error.setText(ent_Diagnostico.getRetorno());
-        }
-    }
-
-    public void prive() {
-
-        if (m.usuarioLogado.isADM()) {
-        } else {
-            Cadastrar.setRolloverEnabled(false);
-            Alterar.setRolloverEnabled(false);
-            Excluir.setRolloverEnabled(false);
-            Cadastrar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Alterar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Excluir.setToolTipText("Você não tem privilégios para executar essa ação!");
-
-        }
-    }
-
-}
+  }

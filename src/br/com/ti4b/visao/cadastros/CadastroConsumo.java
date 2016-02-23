@@ -5,152 +5,15 @@
  */
 package br.com.ti4b.visao.cadastros;
 
-import br.com.ti4b.util.ClassificacaoAnimal;
-import br.com.ti4b.util.ConverterDatas;
-import br.com.ti4b.util.ListaMateriaPrima;
 import br.com.ti4b.modelo.Alimento;
 import br.com.ti4b.modelo.Consumo;
 import br.com.ti4b.visao.telas.MenuPrincipal;
-import br.com.ti4b.visao.pesquisas.SelecionaAlimentos;
-import br.com.ti4b.visao.pesquisas.SelecionaConsumo;
-import br.com.ti4b.dao.AlimentoDAO;
-import br.com.ti4b.dao.CategoriaDAO;
-import br.com.ti4b.dao.ConsumoDAO;
-import java.awt.Component;
-import java.awt.Dimension;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
  * @author GC
  */
 public final class CadastroConsumo extends javax.swing.JInternalFrame {
-
-    CategoriaDAO fc = new CategoriaDAO();
-    ListaMateriaPrima listaMateriaPrima = new ListaMateriaPrima();
-    ClassificacaoAnimal classificacao = new ClassificacaoAnimal();
-    Consumo ent_consumo = new Consumo();
-    ConsumoDAO f_cons = new ConsumoDAO();
-    AlimentoDAO funcoes_Alimentos = new AlimentoDAO();
-    MenuPrincipal m;
-
-    private void cadastrar(int tipo) {
-        ConverterDatas cd = new ConverterDatas();
-        ent_consumo.setData_Consumo(cd.converter(DataConsumo));
-        ent_consumo.setCod_Classificacao(fc.retornaCod_Clacificacao(String.valueOf(Classificcao.getSelectedItem())));
-        if (RadioConcentrado.isSelected()) {
-            //seta o codigo do fornecedor
-            f_cons.Cadastrar(ent_consumo, tipo, 1);
-            int quant = (ent_consumo.getQuantidade() - Integer.parseInt(QuantConce.getText()));
-            ent_consumo.setQuantidade(quant);
-            funcoes_Alimentos.updateQuantConcentrado(ent_consumo);
-
-        }
-        if (RadioVolumoso.isSelected()) {
-            f_cons.Cadastrar(ent_consumo, tipo, 2);
-            int quant = (ent_consumo.getQuantidade() - Integer.parseInt(QuantConce.getText()));
-            ent_consumo.setQuantidade(quant);
-            funcoes_Alimentos.updateQuantVolumoso(ent_consumo);
-        }
-        if (ent_consumo.getRetorno().equals("Cadastrado com sucesso!") || ent_consumo.getRetorno().equals("Alterado com sucesso!")) {
-            String rs = ent_consumo.getRetorno();
-            limpar_campos();
-            info_error.setText(rs);
-        } else {
-            info_error.setText(ent_consumo.getRetorno());
-        }
-    }
-
-    public void comparaDados(int tipo) {
-        Component components[] = painelCadastro.getComponents();
-        int o = 0;
-        for (int i = 0; i < components.length; i++) {
-            //Comparação com campoDeTexto
-            if (components[i] instanceof JTextField) {
-                if (((JTextField) components[i]).getText().isEmpty()) {
-                    o++;
-                }
-            }
-        }
-        if (DataConsumo.getDate() == null) {
-            o++;
-        }
-        if ((!RadioConcentrado.isSelected()) && (!RadioVolumoso.isSelected())) {
-            o++;
-        }
-
-        if (!(ent_consumo.getQuantidade() >= Double.parseDouble(QuantConce.getText()))) {
-            o++;
-        }
-        if (o == 0) {
-
-            cadastrar(tipo);
-
-        } else {
-            info_error.setText("Preenxa todos os campos!");
-            if (ent_consumo.getQuantidade() >= Double.parseDouble(QuantConce.getText())) {
-
-            } else if (ent_consumo.getQuantidade() < Double.parseDouble(QuantConce.getText())) {
-                info_error.setText("Quantidade Consumido inválido!");
-            }
-        }
-    }
-
-    public void setPosicao() {
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
-    }
-
-    public void upperCase(JTextField modelo) {
-        modelo.setText(modelo.getText().toUpperCase());
-    }
-
-    public CadastroConsumo(MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        classificacao.listarClacificacao(Classificcao);
-        prive();
-
-    }
-
-    public void retornaInfo() {
-        if (ent_consumo.getRetorno().equals("Cadastrado com sucesso!") || ent_consumo.getRetorno().equals("Alterado com sucesso!") || ent_consumo.getRetorno().equals("Deletado com sucesso!")) {
-            if (ent_consumo.getRetorno().equals("Cadastrado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Cadastrado com sucesso!");
-            } else if (ent_consumo.getRetorno().equals("Alterado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Alterado com sucesso!");
-            } else if (ent_consumo.getRetorno().equals("Deletado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Deletado com sucesso!");
-            } else {
-                info_error.setText(ent_consumo.getRetorno());
-            }
-        }
-    }
-
-    private void limpar_campos() {
-        Descricao.setText(null);
-        Cadastrar.setEnabled(true);
-        ent_consumo = new Consumo();
-        RadioConcentrado.setSelected(true);
-        RadioVolumoso.setSelected(true);
-        Classificcao.setEnabled(true);
-        info_error.setText(null);
-        DataConsumo.setDate(null);
-        QuantConce.setText(null);
-
-    }
-
-    br.com.ti4b.util.ClassificacaoAnimal classificacaoAnimal = new ClassificacaoAnimal();
-
-    public CadastroConsumo() {
-        initComponents();
-        classificacaoAnimal.listarClacificacao(Classificcao);
-        prive();
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -172,14 +35,14 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
         Descricao = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        Cadastrar = new javax.swing.JButton();
-        Alterar = new javax.swing.JButton();
-        Excluir = new javax.swing.JButton();
-        Sair = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         RadioConcentrado = new javax.swing.JRadioButton();
         RadioVolumoso = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
+        Cadastrar = new javax.swing.JButton();
+        Alterar = new javax.swing.JButton();
+        Excluir = new javax.swing.JButton();
+        Sair = new javax.swing.JButton();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 2));
@@ -283,66 +146,6 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
             }
         });
 
-        Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Pequeno.png"))); // NOI18N
-        Cadastrar.setBorder(null);
-        Cadastrar.setBorderPainted(false);
-        Cadastrar.setContentAreaFilled(false);
-        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Cadastrar.setFocusable(false);
-        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
-        Cadastrar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarActionPerformed(evt);
-            }
-        });
-
-        Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Pequeno.png"))); // NOI18N
-        Alterar.setBorder(null);
-        Alterar.setBorderPainted(false);
-        Alterar.setContentAreaFilled(false);
-        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Alterar.setFocusable(false);
-        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
-        Alterar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Alterar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Alterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlterarActionPerformed(evt);
-            }
-        });
-
-        Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Pequeno.png"))); // NOI18N
-        Excluir.setBorder(null);
-        Excluir.setBorderPainted(false);
-        Excluir.setContentAreaFilled(false);
-        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Excluir.setFocusable(false);
-        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
-        Excluir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExcluirActionPerformed(evt);
-            }
-        });
-
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        Sair.setBorder(null);
-        Sair.setBorderPainted(false);
-        Sair.setContentAreaFilled(false);
-        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Sair.setFocusable(false);
-        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        Sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SairActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
         painelCadastro.setLayout(painelCadastroLayout);
         painelCadastroLayout.setHorizontalGroup(
@@ -354,41 +157,27 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel12)
+                        .addGap(37, 37, 37)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(Cadastrar)
+                                .addComponent(Classificcao, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Alterar)
+                                .addComponent(jLabel4)
+                                .addGap(27, 27, 27)
+                                .addComponent(DataConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Excluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Sair))
+                                .addComponent(QuantConce, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(27, 27, 27))
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(37, 37, 37)))
-                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(Classificcao, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(QuantConce, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(DataConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(info_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(2, 2, 2)
-                                .addComponent(jButton4)))
+                                .addComponent(Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(info_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton4)
                         .addGap(10, 10, 10))))
         );
         painelCadastroLayout.setVerticalGroup(
@@ -406,18 +195,11 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(Classificcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(QuantConce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(10, 10, 10)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(DataConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Cadastrar)
-                    .addComponent(Alterar)
-                    .addComponent(Excluir)
-                    .addComponent(Sair))
-                .addContainerGap())
+                    .addComponent(jLabel12)
+                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(DataConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -475,6 +257,59 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
                 .addGap(4, 4, 4))
         );
 
+        Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(0, 153, 0));
+        Cadastrar.setText("CADASTRAR");
+        Cadastrar.setContentAreaFilled(false);
+        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Cadastrar.setFocusable(false);
+        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrarActionPerformed(evt);
+            }
+        });
+
+        Alterar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Alterar.setForeground(new java.awt.Color(0, 153, 0));
+        Alterar.setText("ALTERAR");
+        Alterar.setToolTipText("");
+        Alterar.setContentAreaFilled(false);
+        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Alterar.setFocusable(false);
+        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
+        Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlterarActionPerformed(evt);
+            }
+        });
+
+        Excluir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Excluir.setForeground(new java.awt.Color(0, 153, 0));
+        Excluir.setText("EXCLUIR");
+        Excluir.setContentAreaFilled(false);
+        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Excluir.setFocusable(false);
+        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
+
+        Sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sair.setForeground(new java.awt.Color(0, 153, 0));
+        Sair.setText("SAIR");
+        Sair.setContentAreaFilled(false);
+        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Sair.setFocusable(false);
+        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -482,11 +317,22 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(Cadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Sair)))
+                .addContainerGap())
         );
+
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Alterar, Cadastrar, Excluir, Sair});
+
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -495,6 +341,12 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(Alterar)
+                    .addComponent(Excluir)
+                    .addComponent(Sair)
+                    .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -502,7 +354,7 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,10 +376,7 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ClassificcaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SelecionaAlimentos sa = new SelecionaAlimentos(this, m);
-        MenuPrincipal.jDesktopPane1.add(sa);
-        sa.setVisible(true);
-        sa.setPosicao();        // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -535,85 +384,64 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        limpar_campos();
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_consumo.getCod_Consumo() == 0) {
-                comparaDados(1);
-            } else {
-                info_error.setText("Consumo já está cadastrada!");
-            }
-        }
-    }//GEN-LAST:event_CadastrarActionPerformed
-
-    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_consumo.getCod_Consumo() != 0) {
-                comparaDados(2);
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou o Consumo não está Cadastrado!\nDeseja escolher um Consumo?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    limpar_campos();
-                    SelecionaConsumo selecionaConsumo = new SelecionaConsumo(this, m);
-                    MenuPrincipal.jDesktopPane1.add(selecionaConsumo);
-                    selecionaConsumo.setVisible(true);
-                    selecionaConsumo.setPosicao();
-                }
-
-            }
-        }
-    }//GEN-LAST:event_AlterarActionPerformed
-
-    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_consumo.getCod_Consumo() != 0) {
-                Component components[] = painelCadastro.getComponents();
-                int o = 0;
-                for (int i = 0; i < components.length; i++) {
-                    //Comparação com campoDeTexto
-                    if (components[i] instanceof JTextField) {
-                        if (((JTextField) components[i]).getText().isEmpty()) {
-                            o++;
-                        }
-                    }
-                }
-                if (DataConsumo.getDate() == null) {
-                    o++;
-                }
-                if (o == 0) {
-                    excluir();
-                } else {
-                    info_error.setText("Preenxa todos os campos!");
-                }
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou o Consumo não está Cadastrado!\nDeseja escolher um Consumo?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    SelecionaConsumo selecionaConsumo = new SelecionaConsumo(this, m);
-                    MenuPrincipal.jDesktopPane1.add(selecionaConsumo);
-                    selecionaConsumo.setVisible(true);
-                    selecionaConsumo.setPosicao();
-                }
-            }
-        }
-    }//GEN-LAST:event_ExcluirActionPerformed
-
-    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        m.fecharFrames(this);
-        this.dispose();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SairActionPerformed
-
     private void DescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DescricaoKeyReleased
-        upperCase(Descricao);
         // TODO add your handling code here:
     }//GEN-LAST:event_DescricaoKeyReleased
 
     private void QuantConceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantConceKeyReleased
-  QuantConce.setText(QuantConce.getText().replaceAll("[^0-9 | ^/]", ""));
+        QuantConce.setText(QuantConce.getText().replaceAll("[^0-9 | ^/]", ""));
         // TODO add your handling code here:
     }//GEN-LAST:event_QuantConceKeyReleased
+
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
+
+    }//GEN-LAST:event_CadastrarActionPerformed
+
+    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
+
+        /*if (ent_Leilao.getCod_leilao() != 0) {
+         trataCampos(2);
+         } else {
+         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+         if (i == 0) {
+         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+         selecionaLeilao.setVisible(true);
+         selecionaLeilao.setPosicao();
+         }
+         }*/
+    }//GEN-LAST:event_AlterarActionPerformed
+
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
+        /*  if (m.usuarioLogado.isADM()) {
+         if (ent_Leilao.getCod_leilao() != 0) {
+         LeilaoDAO fl = new LeilaoDAO();
+         fl.excluirLeilao(ent_Leilao);
+         if (ent_Leilao.getRetormo().equals("Deletado com sucesso!")) {
+         limparcampos();
+         ent_Leilao.setRetormo("Deletado com sucesso!");
+         }
+
+         } else {
+         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+         if (i == 0) {
+         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+         selecionaLeilao.setVisible(true);
+         selecionaLeilao.setPosicao();
+         }
+         }
+         }*/
+    }//GEN-LAST:event_ExcluirActionPerformed
+
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -642,56 +470,5 @@ public final class CadastroConsumo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel painelCadastro;
     // End of variables declaration//GEN-END:variables
-
-    public void setAlimento(Alimento eal, int tipo) {
-        //  List<Ent_Consumo> listConsumo = f_cons.pesquisa_consumo(eal.getCod_alimento());
-        if (tipo == 1) {
-            RadioConcentrado.setSelected(true);
-            ent_consumo.setCod_Concentrado(eal.getIdAlimento());
-            ent_consumo.setQuantidade(eal.getQuantidade());
-        }
-        if (tipo == 2) {
-            RadioVolumoso.setSelected(true);
-            ent_consumo.setCod_Volumoso(eal.getIdAlimento());
-            ent_consumo.setQuantidade(eal.getQuantidade());
-        }
-        Descricao.setText(eal.getDescricao());
-    }
-
-    public void setConsumo(Consumo ent_Consumo, int tipo) {
-        this.ent_consumo = ent_Consumo;
-        if (tipo == 1) {
-            RadioConcentrado.setSelected(true);
-            //ent_consumo.setCod_Concentrado(ent_Consumo.getCod_Concentrado());
-
-        }
-        if (tipo == 2) {
-            RadioVolumoso.setSelected(true);
-            ent_consumo.setCod_Volumoso(ent_Consumo.getCod_Volumoso());
-        }
-        Descricao.setText(ent_Consumo.getDescricao());
-        Classificcao.setSelectedItem(ent_Consumo.getCategoria());
-        QuantConce.setText(String.valueOf(ent_Consumo.getQuantidade()));
-        DataConsumo.setDate(ent_Consumo.getData_Consumo());
-    }
-
-    private void excluir() {
-        f_cons.excluirConsumo(ent_consumo);
-        retornaInfo();
-
-    }
-
-    public void prive() {
-
-        if (m.usuarioLogado.isADM()) {
-        } else {
-            Cadastrar.setRolloverEnabled(false);
-            Alterar.setRolloverEnabled(false);
-            Excluir.setRolloverEnabled(false);
-            Cadastrar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Alterar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Excluir.setToolTipText("Você não tem privilégios para executar essa ação!");
-
-        }
-    }
+       
 }
