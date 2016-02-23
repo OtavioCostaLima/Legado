@@ -44,9 +44,9 @@ public class SelecionaTratamento extends javax.swing.JDialog {
         jPanel10 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         pesquisar = new javax.swing.JTextField();
-        Selecionar1 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         Imprimir = new javax.swing.JButton();
+        Selecionar = new javax.swing.JButton();
+        Sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -93,9 +93,9 @@ public class SelecionaTratamento extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,48 +138,42 @@ public class SelecionaTratamento extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        Selecionar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar piqueno.png"))); // NOI18N
-        Selecionar1.setBorder(null);
-        Selecionar1.setBorderPainted(false);
-        Selecionar1.setContentAreaFilled(false);
-        Selecionar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Selecionar1.setFocusable(false);
-        Selecionar1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
-        Selecionar1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Selecionar1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Selecionar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Selecionar1ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        jButton8.setBorder(null);
-        jButton8.setBorderPainted(false);
-        jButton8.setContentAreaFilled(false);
-        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton8.setFocusable(false);
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        jButton8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
-        Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Pequeno.png"))); // NOI18N
-        Imprimir.setBorder(null);
-        Imprimir.setBorderPainted(false);
+        Imprimir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Imprimir.setForeground(new java.awt.Color(255, 0, 0));
+        Imprimir.setText("IMPRIMIR");
         Imprimir.setContentAreaFilled(false);
         Imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Imprimir.setFocusable(false);
         Imprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Grande.png"))); // NOI18N
-        Imprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Imprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImprimirActionPerformed(evt);
+            }
+        });
+
+        Selecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Selecionar.setForeground(new java.awt.Color(255, 0, 0));
+        Selecionar.setText("SELECIONAR");
+        Selecionar.setContentAreaFilled(false);
+        Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Selecionar.setFocusable(false);
+        Selecionar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
+        Selecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelecionarActionPerformed(evt);
+            }
+        });
+
+        Sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sair.setForeground(new java.awt.Color(255, 0, 0));
+        Sair.setText("SAIR");
+        Sair.setContentAreaFilled(false);
+        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Sair.setFocusable(false);
+        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
             }
         });
 
@@ -192,18 +186,20 @@ public class SelecionaTratamento extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Selecionar1)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 346, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Selecionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Imprimir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(Sair))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Imprimir, Sair, Selecionar});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -213,12 +209,13 @@ public class SelecionaTratamento extends javax.swing.JDialog {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Selecionar1)
-                    .addComponent(jButton8)
-                    .addComponent(Imprimir))
-                .addGap(10, 10, 10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Sair)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Imprimir)
+                        .addComponent(Selecionar)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -234,7 +231,7 @@ public class SelecionaTratamento extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
 
@@ -270,7 +267,14 @@ public class SelecionaTratamento extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_pesquisarKeyReleased
 
-    private void Selecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Selecionar1ActionPerformed
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
+            String cod = String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0));
+
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_ImprimirActionPerformed
+
+    private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
 
             this.dispose();
@@ -278,19 +282,13 @@ public class SelecionaTratamento extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_Selecionar1ActionPerformed
+    }//GEN-LAST:event_SelecionarActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
 
         this.dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-        if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-            String cod = String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0));
-        }  // TODO add your handling code here:
-    }//GEN-LAST:event_ImprimirActionPerformed
+    }//GEN-LAST:event_SairActionPerformed
 
     public void povoaTabela() {
         tabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -307,9 +305,9 @@ public class SelecionaTratamento extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Imprimir;
+    private javax.swing.JButton Sair;
     private javax.swing.JScrollPane ScrollPane;
-    private javax.swing.JButton Selecionar1;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton Selecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

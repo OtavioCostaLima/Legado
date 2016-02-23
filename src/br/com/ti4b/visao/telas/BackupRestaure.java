@@ -80,10 +80,10 @@ public final class BackupRestaure extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        backup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Backup piqueno.png"))); // NOI18N
+        backup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        backup.setForeground(new java.awt.Color(255, 0, 0));
+        backup.setText("BACKUP");
         backup.setToolTipText("Backup");
-        backup.setBorder(null);
-        backup.setBorderPainted(false);
         backup.setContentAreaFilled(false);
         backup.setFocusPainted(false);
         backup.setFocusable(false);
@@ -102,10 +102,10 @@ public final class BackupRestaure extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Informação:");
 
-        restaurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Restaurar piqueno.png"))); // NOI18N
+        restaurar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        restaurar.setForeground(new java.awt.Color(255, 0, 0));
+        restaurar.setText("RESTAURAR");
         restaurar.setToolTipText("Restaurar");
-        restaurar.setBorder(null);
-        restaurar.setBorderPainted(false);
         restaurar.setContentAreaFilled(false);
         restaurar.setFocusPainted(false);
         restaurar.setFocusable(false);
@@ -117,16 +117,14 @@ public final class BackupRestaure extends javax.swing.JInternalFrame {
             }
         });
 
-        sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
+        sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        sair.setForeground(new java.awt.Color(255, 0, 0));
+        sair.setText("SAIR");
         sair.setToolTipText("Sair");
-        sair.setBorder(null);
-        sair.setBorderPainted(false);
         sair.setContentAreaFilled(false);
         sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sair.setFocusable(false);
         sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
@@ -176,9 +174,9 @@ public final class BackupRestaure extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 30, Short.MAX_VALUE)
+                        .addGap(0, 53, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(0, 31, Short.MAX_VALUE)))
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

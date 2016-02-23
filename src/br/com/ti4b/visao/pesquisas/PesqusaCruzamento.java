@@ -262,45 +262,39 @@ public final class PesqusaCruzamento extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Situação:");
 
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        Sair.setBorder(null);
-        Sair.setBorderPainted(false);
+        Sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sair.setForeground(new java.awt.Color(255, 0, 0));
+        Sair.setText("SAIR");
         Sair.setContentAreaFilled(false);
         Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Sair.setFocusable(false);
         Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        Sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SairActionPerformed(evt);
             }
         });
 
-        Selecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar piqueno.png"))); // NOI18N
-        Selecionar.setBorder(null);
-        Selecionar.setBorderPainted(false);
+        Selecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Selecionar.setForeground(new java.awt.Color(255, 0, 0));
+        Selecionar.setText("SELECIONAR");
         Selecionar.setContentAreaFilled(false);
         Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Selecionar.setFocusable(false);
         Selecionar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
-        Selecionar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Selecionar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Selecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelecionarActionPerformed(evt);
             }
         });
 
-        Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Pequeno.png"))); // NOI18N
-        Imprimir.setBorder(null);
-        Imprimir.setBorderPainted(false);
+        Imprimir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Imprimir.setForeground(new java.awt.Color(255, 0, 0));
+        Imprimir.setText("IMPRIMIR");
         Imprimir.setContentAreaFilled(false);
         Imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Imprimir.setFocusable(false);
         Imprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Imprimir Grande.png"))); // NOI18N
-        Imprimir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Imprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImprimirActionPerformed(evt);
@@ -340,6 +334,9 @@ public final class PesqusaCruzamento extends javax.swing.JInternalFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Imprimir, Sair, Selecionar});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -367,7 +364,7 @@ public final class PesqusaCruzamento extends javax.swing.JInternalFrame {
                     .addComponent(Selecionar)
                     .addComponent(Sair)
                     .addComponent(Imprimir))
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

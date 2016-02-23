@@ -192,7 +192,7 @@ public final class PesquisarAnimal extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabelaPesquisa);
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(0, 153, 0));
+        jButton8.setForeground(new java.awt.Color(255, 0, 0));
         jButton8.setText("Sair");
         jButton8.setToolTipText("");
         jButton8.setContentAreaFilled(false);
@@ -206,7 +206,7 @@ public final class PesquisarAnimal extends javax.swing.JInternalFrame {
         });
 
         Selecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Selecionar.setForeground(new java.awt.Color(0, 153, 0));
+        Selecionar.setForeground(new java.awt.Color(255, 0, 0));
         Selecionar.setText("Selecionar");
         Selecionar.setToolTipText("");
         Selecionar.setContentAreaFilled(false);
@@ -220,7 +220,7 @@ public final class PesquisarAnimal extends javax.swing.JInternalFrame {
         });
 
         Imprimir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Imprimir.setForeground(new java.awt.Color(0, 153, 0));
+        Imprimir.setForeground(new java.awt.Color(255, 0, 0));
         Imprimir.setText("Imprimir");
         Imprimir.setToolTipText("");
         Imprimir.setContentAreaFilled(false);

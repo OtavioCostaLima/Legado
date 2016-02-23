@@ -139,15 +139,13 @@ public class JSobre extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
         );
 
-        sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        sair.setBorder(null);
-        sair.setBorderPainted(false);
+        sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        sair.setForeground(new java.awt.Color(255, 0, 0));
+        sair.setText("SAIR");
         sair.setContentAreaFilled(false);
         sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         sair.setFocusable(false);
         sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
