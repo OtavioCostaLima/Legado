@@ -5,16 +5,10 @@
  */
 package br.com.ti4b.visao.cadastros;
 
-import br.com.ti4b.util.ConverterDatas;
 import br.com.ti4b.modelo.Vacinas;
-import br.com.ti4b.visao.telas.MenuPrincipal;
-import br.com.ti4b.visao.pesquisas.Seleciona_VacinaObrigatoria;
-import br.com.ti4b.dao.VacinaDAO;
 import java.awt.Component;
-import java.awt.Dimension;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -23,54 +17,34 @@ import javax.swing.JTextField;
  */
 public class CadastroVacinas extends javax.swing.JInternalFrame {
 
-    ConverterDatas cd = new ConverterDatas();
-    Vacinas ent_Vacinas = new Vacinas();
-    VacinaDAO funcoes_Vacinas = new VacinaDAO();
-    MenuPrincipal m;
+    private static CadastroVacinas cadastroVacinas;
+
+    public static CadastroVacinas getInstancia() {
+
+        if (cadastroVacinas == null) {
+            cadastroVacinas = new CadastroVacinas();
+        }
+        return cadastroVacinas;
+    }
 
     public CadastroVacinas() {
         initComponents();
-        prive();
     }
 
     public void upperCase(JTextField modelo) {
         modelo.setText(modelo.getText().toUpperCase());
     }
 
-    public CadastroVacinas(MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        prive();
-    }
-
-    public void retornaInfo() {
-        if (ent_Vacinas.getRetorno().equals("Cadastrado com sucesso!") || ent_Vacinas.getRetorno().equals("Alterado com sucesso!") || ent_Vacinas.getRetorno().equals("Deletado com sucesso!")) {
-            if (ent_Vacinas.getRetorno().equals("Cadastrado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Cadastrado com sucesso!");
-            } else if (ent_Vacinas.getRetorno().equals("Alterado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Alterado com sucesso!");
-            } else if (ent_Vacinas.getRetorno().equals("Deletado com sucesso!")) {
-                limpar_campos();
-                info_error.setText("Deletado com Sucesso!");
-            } else {
-                info_error.setText(ent_Vacinas.getRetorno());
-            }
-        }
-    }
-
-    private void cadastrar(int tipo) {
-        ent_Vacinas.setData_validade(cd.converter(Data_validade));
-        ent_Vacinas.setDescricao(NomeVacina.getText());
-        ent_Vacinas.setLab_fabricante(Lab_fabricante.getText());
-        ent_Vacinas.setLote(Integer.parseInt(Lote.getText()));
-        ent_Vacinas.setN_licitacao(Integer.parseInt(N_licitacao.getText()));
-        ent_Vacinas.setPeriodo_aplicacao(Periodo_aplicacao.getText());
-        ent_Vacinas.setPreco_unit(parseFloat(PrecoUnitario.getText().replaceAll("\\,", ".")));
-        ent_Vacinas.setQuant(parseInt(Quant.getText()));
-        funcoes_Vacinas.Cadastrar(ent_Vacinas, tipo);
-        retornaInfo();
+    private void encapsular(int tipo) {
+        Vacinas vacinas = new Vacinas();
+        vacinas.setDataValidade(Data_validade.getDate());
+        vacinas.setDescricao(NomeVacina.getText());
+        vacinas.setLaboratorioFabricante(Lab_fabricante.getText());
+        vacinas.setLote(Integer.parseInt(Lote.getText()));
+        vacinas.setNumeroLicitacao(Integer.parseInt(N_licitacao.getText()));
+        vacinas.setPeriodoAplicacao(Periodo_aplicacao.getText());
+        vacinas.setPrecoUnitario(parseFloat(PrecoUnitario.getText().replaceAll("\\,", ".")));
+        vacinas.setQuantidade(parseInt(Quant.getText()));
 
     }
 
@@ -84,12 +58,6 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         PrecoUnitario.setText(null);
         Quant.setText(null);
         Data_validade.setDate(null);
-        ent_Vacinas = new Vacinas();
-    }
-
-    public void setPosicao() {
-        Dimension d = this.getDesktopPane().getSize();
-        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
     }
 
     /**
@@ -105,7 +73,6 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         painelCadastro = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -114,21 +81,28 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         Lote = new javax.swing.JTextField();
-        Alterar = new javax.swing.JButton();
-        Cadastrar = new javax.swing.JButton();
         PrecoUnitario = new javax.swing.JTextField();
         info_error = new javax.swing.JLabel();
         Periodo_aplicacao = new javax.swing.JTextField();
-        Sair = new javax.swing.JButton();
         Quant = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         NomeVacina = new javax.swing.JTextField();
-        Excluir = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         Lab_fabricante = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         N_licitacao = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        pesquisar = new javax.swing.JTextField();
+        ScrollPane = new javax.swing.JScrollPane();
+        tabelaPesquisa = new javax.swing.JTable();
+        Excluir = new javax.swing.JButton();
+        Alterar = new javax.swing.JButton();
+        Cadastrar = new javax.swing.JButton();
+        Sair = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 153, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -137,23 +111,23 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         jLabel1.setBackground(new java.awt.Color(0, 153, 0));
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CADASTRO DE VACINAS OBRIGATORIAS");
+        jLabel1.setText("CADASTRO DE VACINAS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(74, 74, 74))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 0));
@@ -167,20 +141,7 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 7, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         painelCadastro.setBackground(new java.awt.Color(255, 255, 255));
@@ -199,7 +160,7 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel5.setText("PERIODO DE APLI.:");
+        jLabel5.setText("Período de Aplicação:");
 
         jLabel8.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 153, 0));
@@ -212,36 +173,6 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         Lote.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 LoteKeyReleased(evt);
-            }
-        });
-
-        Alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Pequeno.png"))); // NOI18N
-        Alterar.setBorder(null);
-        Alterar.setBorderPainted(false);
-        Alterar.setContentAreaFilled(false);
-        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Alterar.setFocusable(false);
-        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
-        Alterar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Alterar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Alterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlterarActionPerformed(evt);
-            }
-        });
-
-        Cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Pequeno.png"))); // NOI18N
-        Cadastrar.setBorder(null);
-        Cadastrar.setBorderPainted(false);
-        Cadastrar.setContentAreaFilled(false);
-        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Cadastrar.setFocusable(false);
-        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
-        Cadastrar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarActionPerformed(evt);
             }
         });
 
@@ -261,21 +192,11 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
             }
         });
 
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Pequeno.png"))); // NOI18N
-        Sair.setBorder(null);
-        Sair.setBorderPainted(false);
-        Sair.setContentAreaFilled(false);
-        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Sair.setFocusable(false);
-        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
-        Sair.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Sair.addActionListener(new java.awt.event.ActionListener() {
+        Quant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SairActionPerformed(evt);
+                QuantActionPerformed(evt);
             }
         });
-
         Quant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 QuantKeyReleased(evt);
@@ -289,21 +210,6 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         NomeVacina.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 NomeVacinaKeyReleased(evt);
-            }
-        });
-
-        Excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Pequeno.png"))); // NOI18N
-        Excluir.setBorder(null);
-        Excluir.setBorderPainted(false);
-        Excluir.setContentAreaFilled(false);
-        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Excluir.setFocusable(false);
-        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
-        Excluir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        Excluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExcluirActionPerformed(evt);
             }
         });
 
@@ -324,7 +230,7 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel2.setText("NOME:");
+        jLabel2.setText("Nome:");
 
         N_licitacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,81 +273,70 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(Cadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Alterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Excluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Sair))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
                         .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelCadastroLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel12)))
-                                    .addComponent(jLabel11))
-                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(Lote, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(PrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(N_licitacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NomeVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Lab_fabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel11)))
                             .addGroup(painelCadastroLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel2)))
-                        .addGap(14, 14, 14)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(NomeVacina, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                                .addComponent(Lab_fabricante))
                             .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Quant, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Periodo_aplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(N_licitacao, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12))
                                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Data_validade, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Data_validade, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                        .addComponent(jLabel9)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Lote, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(PrecoUnitario)))))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelCadastroLayout.createSequentialGroup()
+                                .addComponent(Quant, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelCadastroLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Periodo_aplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addGap(0, 8, Short.MAX_VALUE)
+                                .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)))
                 .addContainerGap())
         );
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGap(0, 12, Short.MAX_VALUE)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(NomeVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(NomeVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(info_error, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(10, 10, 10)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -450,77 +345,209 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
                     .addComponent(Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(N_licitacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10))
-                    .addComponent(Data_validade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel12))
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(Lote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(PrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(N_licitacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(9, 9, 9)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(Data_validade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Lote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
                             .addComponent(jLabel5)
-                            .addComponent(Periodo_aplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(20, 20, 20)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Cadastrar)
-                        .addComponent(Alterar))
-                    .addComponent(Excluir)
-                    .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Periodo_aplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PrecoUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
+
+        jLabel13.setText("Vacina:");
+
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
+        pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pesquisarKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addContainerGap())
         );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pesquisar)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        ScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        ScrollPane.setViewportBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        tabelaPesquisa.setAutoCreateRowSorter(true);
+        tabelaPesquisa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Descricao", "Numero licitacao", "Lab fabricante", "Lote", "Periodo aplicacao", "Quantidade", "Preco unitario", "Data validade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaPesquisa.setAlignmentX(0.1F);
+        tabelaPesquisa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tabelaPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabelaPesquisa.setSelectionBackground(new java.awt.Color(0, 153, 0));
+        tabelaPesquisa.getTableHeader().setReorderingAllowed(false);
+        ScrollPane.setViewportView(tabelaPesquisa);
+
+        Excluir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Excluir.setForeground(new java.awt.Color(0, 153, 0));
+        Excluir.setText("EXCUIR");
+        Excluir.setContentAreaFilled(false);
+        Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Excluir.setFocusable(false);
+        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
+        Excluir.setVerifyInputWhenFocusTarget(false);
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
+
+        Alterar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Alterar.setForeground(new java.awt.Color(0, 153, 0));
+        Alterar.setText("ALTERAR");
+        Alterar.setContentAreaFilled(false);
+        Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Alterar.setFocusable(false);
+        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
+        Alterar.setVerifyInputWhenFocusTarget(false);
+        Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlterarActionPerformed(evt);
+            }
+        });
+
+        Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Cadastrar.setForeground(new java.awt.Color(0, 153, 0));
+        Cadastrar.setText("CADASTRAR");
+        Cadastrar.setContentAreaFilled(false);
+        Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Cadastrar.setFocusable(false);
+        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
+        Cadastrar.setVerifyInputWhenFocusTarget(false);
+        Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastrarActionPerformed(evt);
+            }
+        });
+
+        Sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Sair.setForeground(new java.awt.Color(0, 153, 0));
+        Sair.setText("SAIR");
+        Sair.setContentAreaFilled(false);
+        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Sair.setFocusable(false);
+        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
+        Sair.setVerifyInputWhenFocusTarget(false);
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(Cadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Alterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Sair))
+                    .addComponent(ScrollPane)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(painelCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Alterar, Cadastrar, Excluir, Sair});
+
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Excluir)
+                            .addComponent(Alterar)
+                            .addComponent(Cadastrar)
+                            .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Alterar, Cadastrar, Excluir, Sair});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(2, 2, 2)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
 
@@ -544,66 +571,21 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Vacinas.getCod_vacina() == 0) {
-                trataCampos(1);
-            } else {
-                info_error.setText("Vacina já está cadastrada!");
-            }
-        }
+
+
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Vacinas.getCod_vacina() != 0) {
-                trataCampos(2);
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou a Vacina não está Cadastrado! Deseja selecionar uma Vacina? ", "Alerta", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    Seleciona_VacinaObrigatoria seleciona_VacinaObrigatoria = new Seleciona_VacinaObrigatoria(this, m);
-                    MenuPrincipal.jDesktopPane1.add(seleciona_VacinaObrigatoria);
-                    seleciona_VacinaObrigatoria.setVisible(true);
-                    seleciona_VacinaObrigatoria.setPosicao();
-                }
-            }
-        }
+
+
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        if (m.usuarioLogado.isADM()) {
-            if (ent_Vacinas.getCod_vacina() != 0) {
-                Component components[] = painelCadastro.getComponents();
-                int o = 0;
-                for (int i = 0; i < components.length; i++) {
-                    //Comparação com campoDeTexto
-                    if (components[i] instanceof JTextField) {
-                        if (((JTextField) components[i]).getText().isEmpty()) {
-                            o++;
-                        }
-                    }
-                }
-                if (Data_validade.getDate() == null) {
-                    o++;
-                }
-                if (o == 0) {
-                    excluir();
-                } else {
-                    info_error.setText("Preenxa todos os campos!");
-                }
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou a Vacina não está Cadastrada!\nDeseja escolher uma vacina?", "INFORMAÇÃO", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    Seleciona_VacinaObrigatoria seleciona_VacinaObrigatoria = new Seleciona_VacinaObrigatoria(this, m);
-                    MenuPrincipal.jDesktopPane1.add(seleciona_VacinaObrigatoria);
-                    seleciona_VacinaObrigatoria.setVisible(true);
-                    seleciona_VacinaObrigatoria.setPosicao();
-                }
-            }
-        }
+
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        m.fecharFrames(this);
+
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_SairActionPerformed
@@ -643,6 +625,25 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Periodo_aplicacaoKeyReleased
 
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarActionPerformed
+
+    private void pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarKeyReleased
+        pesquisar.setText(pesquisar.getText().toUpperCase());
+        if (pesquisar.getText().length() > 0) {
+            //            filtros.FiltrarNome(pesquisar.getText(), tabelaPesquisa, 1);
+        } else {
+            //          filtros.removerLinhasTabela(tabelaPesquisa);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarKeyReleased
+
+    private void QuantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QuantActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
@@ -657,41 +658,37 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField PrecoUnitario;
     private javax.swing.JTextField Quant;
     private javax.swing.JButton Sair;
+    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel info_error;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel painelCadastro;
+    private javax.swing.JTextField pesquisar;
+    private javax.swing.JTable tabelaPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    public void setVacinas(Vacinas eva) {
-        ent_Vacinas = eva;
-        NomeVacina.setText(eva.getDescricao());
-        Lab_fabricante.setText(eva.getLab_fabricante());
-        N_licitacao.setText(String.valueOf(eva.getN_licitacao()));
-        Lote.setText(String.valueOf(eva.getLote()));
-        PrecoUnitario.setText(String.valueOf(eva.getPreco_unit()));
-        Quant.setText(String.valueOf(eva.getQuant()));
-        Data_validade.setDate(eva.getData_validade());
-        Periodo_aplicacao.setText(eva.getPeriodo_aplicacao());
-    }
-
-    public void excluir() {
-
-        funcoes_Vacinas.excluirVacinas(ent_Vacinas);
-        retornaInfo();;
-
+    public void setVacinas(Vacinas vacinas) {
+        NomeVacina.setText(vacinas.getDescricao());
+        Lab_fabricante.setText(vacinas.getLaboratorioFabricante());
+        N_licitacao.setText(String.valueOf(vacinas.getNumeroLicitacao()));
+        Lote.setText(String.valueOf(vacinas.getLote()));
+        PrecoUnitario.setText(String.valueOf(vacinas.getPrecoUnitario()));
+        Quant.setText(String.valueOf(vacinas.getQuantidade()));
+        Data_validade.setDate(vacinas.getDataValidade());
+        Periodo_aplicacao.setText(vacinas.getPeriodoAplicacao());
     }
 
     private void trataCampos(int tipo) {
@@ -711,26 +708,11 @@ public class CadastroVacinas extends javax.swing.JInternalFrame {
 
         if (o == 0) {
             if (tipo == 1 || tipo == 2) {
-                cadastrar(tipo);
+
             } else if (tipo == 3) {
-                excluir();
             }
         } else {
             info_error.setText("Preenxa todos os campos!");
-        }
-    }
-
-    public void prive() {
-
-        if (m.usuarioLogado.isADM()) {
-        } else {
-            Cadastrar.setRolloverEnabled(false);
-            Alterar.setRolloverEnabled(false);
-            Excluir.setRolloverEnabled(false);
-            Cadastrar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Alterar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Excluir.setToolTipText("Você não tem privilégios para executar essa ação!");
-
         }
     }
 }

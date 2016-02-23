@@ -15,14 +15,16 @@ public class Tratamento implements Modelo, Serializable {
 
     @Id
     private long id;
-    private int cod_diagnostico;
-    private int cod_medicamento;
-    private Date data_tratamento;
+
+    private Diagnostico diagnostico;
+
+    private Medicamentos medicamentos;
+
+    private Date dataTratamento;
+
     private int periodo_tratamento;
-    private int quant;
+
     private String descricao;
-    private Date data_diagnostico;
-    private String informacao;
 
     @Override
     public long getId() {

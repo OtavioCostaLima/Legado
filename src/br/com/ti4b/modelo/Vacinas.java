@@ -3,34 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.ti4b.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
 
-/**
- *
- * @author hyllorran
- */
-public class Vacinas {
+@Entity
+public class Vacinas implements Serializable, Modelo {
 
-    private int cod_vacina;
+    @Id
+    private long id;
+
     private String descricao;
-    private int n_licitacao;
-    private String lab_fabricante;
+
+    private int numeroLicitacao;
+
+    private String laboratorioFabricante;
+
     private int lote;
-    private String periodo_aplicacao;
-    private int quant;
-    private double preco_unit;
-    private Date data_validade;
-    private String retorno;
 
-    public int getCod_vacina() {
-        return cod_vacina;
-    }
+    private String periodoAplicacao;
 
-    public void setCod_vacina(int cod_vacina) {
-        this.cod_vacina = cod_vacina;
+    private int quantidade;
+
+    private double precoUnitario;
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataValidade;
+
+    @Override
+    public long getId() {
+        return id;
     }
 
     public String getDescricao() {
@@ -41,20 +47,20 @@ public class Vacinas {
         this.descricao = descricao;
     }
 
-    public int getN_licitacao() {
-        return n_licitacao;
+    public int getNumeroLicitacao() {
+        return numeroLicitacao;
     }
 
-    public void setN_licitacao(int n_licitacao) {
-        this.n_licitacao = n_licitacao;
+    public void setNumeroLicitacao(int numeroLicitacao) {
+        this.numeroLicitacao = numeroLicitacao;
     }
 
-    public String getLab_fabricante() {
-        return lab_fabricante;
+    public String getLaboratorioFabricante() {
+        return laboratorioFabricante;
     }
 
-    public void setLab_fabricante(String lab_fabricante) {
-        this.lab_fabricante = lab_fabricante;
+    public void setLaboratorioFabricante(String laboratorioFabricante) {
+        this.laboratorioFabricante = laboratorioFabricante;
     }
 
     public int getLote() {
@@ -65,47 +71,36 @@ public class Vacinas {
         this.lote = lote;
     }
 
-    public String getPeriodo_aplicacao() {
-        return periodo_aplicacao;
+    public String getPeriodoAplicacao() {
+        return periodoAplicacao;
     }
 
-    public void setPeriodo_aplicacao(String periodo_aplicacao) {
-        this.periodo_aplicacao = periodo_aplicacao;
+    public void setPeriodoAplicacao(String periodoAplicacao) {
+        this.periodoAplicacao = periodoAplicacao;
     }
 
-    public int getQuant() {
-        return quant;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQuant(int quant) {
-        this.quant = quant;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public double getPreco_unit() {
-        return preco_unit;
+    public double getPrecoUnitario() {
+        return precoUnitario;
     }
 
-    public void setPreco_unit(double preco_unit) {
-        this.preco_unit = preco_unit;
+    public void setPrecoUnitario(double precoUnitario) {
+        this.precoUnitario = precoUnitario;
     }
 
-    public Date getData_validade() {
-        return data_validade;
+    public Date getDataValidade() {
+        return dataValidade;
     }
 
-    public void setData_validade(Date data_validade) {
-        this.data_validade = data_validade;
+    public void setDataValidade(Date dataValidade) {
+        this.dataValidade = dataValidade;
     }
 
-    public String getRetorno() {
-        return retorno;
-    }
-
-    public void setRetorno(String retorno) {
-        this.retorno = retorno;
-    }
-
-  
-
-    
 }

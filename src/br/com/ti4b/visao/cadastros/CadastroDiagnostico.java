@@ -32,7 +32,7 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
     int codDoenca, codConsulta;
 
     private void cadastrar(int tipo) {
-        ent_Diagnostico.setData_diagnostico(cd.converter(DataDiag));
+        ent_Diagnostico.setDataDiagnostico(cd.converter(DataDiag));
         if (radioNegativo.isSelected()) {
             ent_Diagnostico.setInformacao("NEGATIVO");
         } else if (radioPositivo.isSelected()) {
@@ -614,7 +614,7 @@ public class CadastroDiagnostico extends javax.swing.JInternalFrame {
         this.ent_Diagnostico = ent_Diagnostico;
         nomeConsulta.setText(ent_Diagnostico.getTipoDeExame());
         Doenca.setText(ent_Diagnostico.getNomeDoenca());
-        DataDiag.setDate(ent_Diagnostico.getData_diagnostico());
+        DataDiag.setDate(ent_Diagnostico.getDataDiagnostico());
         if (ent_Diagnostico.getInformacao() != null) {
             if (ent_Diagnostico.getInformacao().equals("NEGATIVO")) {
                 radioNegativo.setSelected(true);

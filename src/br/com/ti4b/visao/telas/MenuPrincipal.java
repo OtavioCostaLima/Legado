@@ -308,7 +308,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
         jMenu2.add(jMenuItem8);
 
         jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem11.setText("Vacinas Obrigatorias");
+        jMenuItem11.setText("Vacinas");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -849,7 +849,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(null);
+        gerenciadorDeJanelas.openInternalFrame(CadastroVacinas.getInstancia());
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -901,7 +901,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem34ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(null);        // TODO add your handling code here:
+        gerenciadorDeJanelas.openInternalFrame(CadastroTratamento.getInstancia());        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem43ActionPerformed
