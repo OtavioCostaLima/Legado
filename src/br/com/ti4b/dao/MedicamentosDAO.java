@@ -7,7 +7,6 @@ package br.com.ti4b.dao;
 
 import br.com.ti4b.util.ConectaBanco;
 import br.com.ti4b.modelo.Medicamentos;
-import br.com.ti4b.visao.telas.MenuPrincipal;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

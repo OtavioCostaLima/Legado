@@ -6,7 +6,7 @@
 package br.com.ti4b.visao.telas;
 
 import br.com.ti4b.util.ConverterDatas;
-import br.com.ti4b.dao.SegurancaDAO;
+import br.com.ti4b.dao.backupDAO;
 import java.awt.Dimension;
 import java.util.Calendar;
 
@@ -19,7 +19,7 @@ public final class BackupRestaure extends javax.swing.JInternalFrame {
     String data1;
     String hora1;
     MenuPrincipal m;
-    SegurancaDAO seguranca = new SegurancaDAO();
+    backupDAO seguranca = new backupDAO();
 
     private static BackupRestaure backupRestaure;
 

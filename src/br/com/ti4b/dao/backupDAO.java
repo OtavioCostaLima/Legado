@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author root
  */
-public class SegurancaDAO {
+public class backupDAO {
 
     public int back(String data, String hora) {
         int ret = 0;

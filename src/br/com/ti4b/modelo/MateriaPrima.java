@@ -3,25 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.ti4b.modelo;
+
+import java.io.Serializable;
 
 /**
  *
  * @author GEFERSON CAIQUE
  */
-public class MateriaPrima {
-    
-    private int cod_materia ;
+public class MateriaPrima implements Serializable, Modelo {
+
+    private long id;
     private String descricao;
-    private String retorno;
 
-    public int getCod_Materia() {
-        return cod_materia;
-    }
-
-    public void setCod_Materia(int cod_materia) {
-        this.cod_materia = cod_materia;
+    @Override
+    public long getId() {
+        return id;
     }
 
     public String getDescricao() {
@@ -32,14 +29,4 @@ public class MateriaPrima {
         this.descricao = descricao;
     }
 
-    public String getRetorno() {
-        return retorno;
-    }
-
-    public void setRetorno(String retorno) {
-        this.retorno = retorno;
-    }
-    
-    
-    
 }
