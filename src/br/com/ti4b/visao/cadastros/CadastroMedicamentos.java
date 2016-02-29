@@ -6,14 +6,9 @@
 package br.com.ti4b.visao.cadastros;
 
 import br.com.ti4b.util.ConverterDatas;
-import br.com.ti4b.modelo.Medicamentos;
+import br.com.ti4b.modelo.Medicamento;
 import br.com.ti4b.visao.telas.MenuPrincipal;
-import br.com.ti4b.dao.MedicamentosDAO;
-import java.awt.Component;
 import java.awt.Dimension;
-import static java.lang.Float.parseFloat;
-import static java.lang.Integer.parseInt;
-import javax.swing.JTextField;
 
 /**
  *
@@ -22,7 +17,7 @@ import javax.swing.JTextField;
 public class CadastroMedicamentos extends javax.swing.JInternalFrame {
 
     MenuPrincipal m;
-    Medicamentos ent_Medicamentos = new Medicamentos();
+    Medicamento ent_Medicamentos = new Medicamento();
     ConverterDatas cd = new ConverterDatas();
 
     /**
@@ -30,74 +25,7 @@ public class CadastroMedicamentos extends javax.swing.JInternalFrame {
      */
     public CadastroMedicamentos() {
         initComponents();
-        prive();
-    }
 
-    public CadastroMedicamentos(MenuPrincipal m) {
-        initComponents();
-        this.m = m;
-        prive();
-    }
-
-    private void trataCampos(int tipo) {
-        Component components[] = painelCadastro.getComponents();
-        int o = 0;
-        for (int i = 0; i < components.length; i++) {
-            //Comparação com campoDeTexto
-            if (components[i] instanceof JTextField) {
-                if (((JTextField) components[i]).getText().isEmpty()) {
-                    o++;
-                }
-            }
-        }
-        if (jDate_validade.getDate() == null) {
-            o++;
-        }
-
-        if (o == 0) {
-            if (tipo == 1 || tipo == 2) {
-                cadastrar(tipo);
-            } else if (tipo == 3) {
-                excluir();
-            }
-        } else {
-            info_error.setText("Preenxa todos os campos!");
-        }
-    }
-
-    public void upperCase(JTextField modelo) {
-        modelo.setText(modelo.getText().toUpperCase());
-    }
-
-    private void cadastrar(int tipo) {
-        ent_Medicamentos.setData_validade(cd.converter(jDate_validade));
-        ent_Medicamentos.setDesricao(jT_nome.getText());
-        ent_Medicamentos.setEficacia(jT_eficacia.getText());
-        ent_Medicamentos.setQuant(parseInt(jT_quant.getText()));
-        ent_Medicamentos.setPreco_unit(parseFloat(jT_preco.getText().replaceAll("\\,", ".")));
-        MedicamentosDAO lvd = new MedicamentosDAO();
-        lvd.Cadastrar_Medicamentos(ent_Medicamentos, tipo);
-
-       getInfo();
-    }
-    
-    public void getInfo() {
-        if (ent_Medicamentos.getRetorno().equals("Cadastrado com Sucesso!") || ent_Medicamentos.getRetorno().equals("Alterado com Sucesso!")
-                || ent_Medicamentos.getRetorno().equals("Deletado com sucesso!")) {
-            if (ent_Medicamentos.getRetorno().equals("Alterado com Sucesso!")) {
-                limpar_campos();
-                info_error.setText("Alterado com Sucesso!");
-            } else if (ent_Medicamentos.getRetorno().equals("Cadastrado com Sucesso!")) {
-                limpar_campos();
-                info_error.setText("Cadastrado com Sucesso!");
-            } else if (ent_Medicamentos.getRetorno().equals("Deletado com Sucesso!")) {
-                limpar_campos();
-                info_error.setText("Deletado com Sucesso!");
-            } else {
-                info_error.setText(ent_Medicamentos.getRetorno());
-            }
-
-        }
     }
 
     private void limpar_campos() {
@@ -107,7 +35,7 @@ public class CadastroMedicamentos extends javax.swing.JInternalFrame {
         jT_preco.setText(null);
         jT_quant.setText(null);
         jDate_validade.setDate(null);
-        ent_Medicamentos = new Medicamentos();
+        ent_Medicamentos = new Medicamento();
     }
 
     public void setPosicao() {
@@ -480,12 +408,12 @@ public class CadastroMedicamentos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jT_nomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_nomeKeyReleased
-        upperCase(jT_nome);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jT_nomeKeyReleased
 
     private void jT_eficaciaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_eficaciaKeyReleased
-        upperCase(jT_eficacia);
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jT_eficaciaKeyReleased
 
@@ -500,48 +428,48 @@ public class CadastroMedicamentos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jT_precoKeyReleased
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-       
+
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
 
         /*if (ent_Leilao.getCod_leilao() != 0) {
-            trataCampos(2);
-        } else {
-            int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
-            if (i == 0) {
-                SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
-                MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
-                selecionaLeilao.setVisible(true);
-                selecionaLeilao.setPosicao();
-            }
-        }*/
+         trataCampos(2);
+         } else {
+         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+         if (i == 0) {
+         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+         selecionaLeilao.setVisible(true);
+         selecionaLeilao.setPosicao();
+         }
+         }*/
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         /*  if (m.usuarioLogado.isADM()) {
-            if (ent_Leilao.getCod_leilao() != 0) {
-                LeilaoDAO fl = new LeilaoDAO();
-                fl.excluirLeilao(ent_Leilao);
-                if (ent_Leilao.getRetormo().equals("Deletado com sucesso!")) {
-                    limparcampos();
-                    ent_Leilao.setRetormo("Deletado com sucesso!");
-                }
+         if (ent_Leilao.getCod_leilao() != 0) {
+         LeilaoDAO fl = new LeilaoDAO();
+         fl.excluirLeilao(ent_Leilao);
+         if (ent_Leilao.getRetormo().equals("Deletado com sucesso!")) {
+         limparcampos();
+         ent_Leilao.setRetormo("Deletado com sucesso!");
+         }
 
-            } else {
-                int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
-                if (i == 0) {
-                    SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
-                    MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
-                    selecionaLeilao.setVisible(true);
-                    selecionaLeilao.setPosicao();
-                }
-            }
-        }*/
+         } else {
+         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+         if (i == 0) {
+         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+         selecionaLeilao.setVisible(true);
+         selecionaLeilao.setPosicao();
+         }
+         }
+         }*/
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-      
+
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_SairActionPerformed
@@ -572,41 +500,13 @@ public class CadastroMedicamentos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel painelCadastro;
     // End of variables declaration//GEN-END:variables
 
-    public void setMedicamentos(Medicamentos eme) {
+    public void setMedicamentos(Medicamento eme) {
         this.ent_Medicamentos = eme;
         jT_nome.setText(eme.getDesricao());
         jT_eficacia.setText(eme.getEficacia());
-        jDate_validade.setDate(eme.getData_validade());
-        jT_quant.setText(String.valueOf(eme.getQuant()));
-        jT_preco.setText(String.valueOf(eme.getPreco_unit()));
+        jDate_validade.setDate(eme.getDataValidade());
+        jT_quant.setText(String.valueOf(eme.getQuantidade()));
+        jT_preco.setText(String.valueOf(eme.getPrecoUnitario()));
     }
 
-    private void excluir() {
-        MedicamentosDAO fm = new MedicamentosDAO();
-        fm.excluirMedicamentos(ent_Medicamentos);
-        if (ent_Medicamentos.getRetorno().equals("Deletado com sucesso!")) {
-            String rs = ent_Medicamentos.getRetorno();
-            limpar_campos();
-            info_error.setText(rs);
-        } else {
-            limpar_campos();
-            info_error.setText(ent_Medicamentos.getRetorno());
-
-        }
-
-    }
-
-    public void prive() {
-
-        if (m.usuarioLogado.isADM()) {
-        } else {
-            Cadastrar.setRolloverEnabled(false);
-            Alterar.setRolloverEnabled(false);
-            Excluir.setRolloverEnabled(false);
-            Cadastrar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Alterar.setToolTipText("Você não tem privilégios para executar essa ação!");
-            Excluir.setToolTipText("Você não tem privilégios para executar essa ação!");
-
-        }
-    }
 }

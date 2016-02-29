@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,14 +21,20 @@ import javax.persistence.TemporalType;
  * @author OtavioC
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Animal implements Serializable, Modelo {
+public class Animal implements Serializable, Modelo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String idInstituicao;
+
+    @OneToOne
+    @JoinColumn(name = "idMae", nullable = true)
+    private Animal mae;
+    @OneToOne
+    @JoinColumn(name = "idPai", nullable = true)
+    private Animal pai;
 
     @ManyToOne
     @JoinColumn(name = "idFornecedor")
@@ -49,8 +55,6 @@ public abstract class Animal implements Serializable, Modelo {
 
     private String pelagem;
 
-    private String idade;
-
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
@@ -60,10 +64,8 @@ public abstract class Animal implements Serializable, Modelo {
 
     private String informacao;
 
-    @Override
-    public long getId() {
-        return id;
-    }
+    @Column(name = "circunferencia")
+    private String circunferenciaTesticular;
 
     public String getIdInstituicao() {
         return idInstituicao;
@@ -71,6 +73,14 @@ public abstract class Animal implements Serializable, Modelo {
 
     public void setIdInstituicao(String idInstituicao) {
         this.idInstituicao = idInstituicao;
+    }
+
+    public Animal getMae() {
+        return mae;
+    }
+
+    public void setMae(Animal mae) {
+        this.mae = mae;
     }
 
     public Fornecedor getFornecedor() {
@@ -129,14 +139,6 @@ public abstract class Animal implements Serializable, Modelo {
         this.pelagem = pelagem;
     }
 
-    public String getIdade() {
-        return idade;
-    }
-
-    public void setIdade(String idade) {
-        this.idade = idade;
-    }
-
     public Date getDataNascimento() {
         return dataNascimento;
     }
@@ -167,6 +169,27 @@ public abstract class Animal implements Serializable, Modelo {
 
     public void setInformacao(String informacao) {
         this.informacao = informacao;
+    }
+
+    public String getCircunferenciaTesticular() {
+        return circunferenciaTesticular;
+    }
+
+    public void setCircunferenciaTesticular(String circunferenciaTesticular) {
+        this.circunferenciaTesticular = circunferenciaTesticular;
+    }
+
+    public Animal getPai() {
+        return pai;
+    }
+
+    public void setPai(Animal pai) {
+        this.pai = pai;
+    }
+
+    @Override
+    public long getId() {
+        return id;
     }
 
 }

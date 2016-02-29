@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.ti4b.modelo;
+package br.com.ti4b.dao;
 
-import javax.persistence.Entity;
+import br.com.ti4b.modelo.Medicamento;
 
 /**
  *
- * @author Otavio Costa
+ * @author HELBECY
  */
-@Entity
-public class Matriz extends Animal{
-    
-}
+public class MedicamentoDAO extends DAOGenerico<Medicamento>{
+
+    }

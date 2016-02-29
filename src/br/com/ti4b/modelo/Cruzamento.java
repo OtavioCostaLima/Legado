@@ -24,11 +24,11 @@ public class Cruzamento implements Serializable, Modelo {
 
     @ManyToOne
     @JoinColumn(name = "id_matriz")
-    private Matriz matriz;
+    private Animal matriz;
 
     @ManyToOne
     @JoinColumn(name = "id_reprodutor")
-    private Reprodutor reprodutor;
+    private Animal reprodutor;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCruza;
@@ -47,19 +47,19 @@ public class Cruzamento implements Serializable, Modelo {
         this.veterinario = veterinario;
     }
 
-    public Matriz getMatriz() {
+    public Animal getMatriz() {
         return matriz;
     }
 
-    public void setMatriz(Matriz matriz) {
+    public void setMatriz(Animal matriz) {
         this.matriz = matriz;
     }
 
-    public Reprodutor getReprodutor() {
+    public Animal getReprodutor() {
         return reprodutor;
     }
 
-    public void setReprodutor(Reprodutor reprodutor) {
+    public void setReprodutor(Animal reprodutor) {
         this.reprodutor = reprodutor;
     }
 

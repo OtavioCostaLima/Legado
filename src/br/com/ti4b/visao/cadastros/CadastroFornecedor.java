@@ -356,12 +356,11 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         campoId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         Excluir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Excluir.setForeground(new java.awt.Color(0, 153, 0));
+        Excluir.setForeground(new java.awt.Color(225, 0, 0));
         Excluir.setText("EXCLUIR");
         Excluir.setContentAreaFilled(false);
         Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Excluir.setFocusable(false);
-        Excluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Excluir Grande.png"))); // NOI18N
         Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExcluirActionPerformed(evt);
@@ -369,12 +368,11 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         });
 
         Alterar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Alterar.setForeground(new java.awt.Color(0, 153, 0));
+        Alterar.setForeground(new java.awt.Color(225, 0, 0));
         Alterar.setText("ALTERAR");
         Alterar.setContentAreaFilled(false);
         Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Alterar.setFocusable(false);
-        Alterar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Alterar Grande.png"))); // NOI18N
         Alterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AlterarActionPerformed(evt);
@@ -382,12 +380,11 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         });
 
         Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Cadastrar.setForeground(new java.awt.Color(0, 153, 0));
+        Cadastrar.setForeground(new java.awt.Color(225, 0, 0));
         Cadastrar.setText("CADASTRAR");
         Cadastrar.setContentAreaFilled(false);
         Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Cadastrar.setFocusable(false);
-        Cadastrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Cadastrar Grande.png"))); // NOI18N
         Cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CadastrarActionPerformed(evt);
@@ -395,12 +392,11 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         });
 
         Sair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Sair.setForeground(new java.awt.Color(0, 153, 0));
+        Sair.setForeground(new java.awt.Color(225, 0, 0));
         Sair.setText("SAIR");
         Sair.setContentAreaFilled(false);
         Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Sair.setFocusable(false);
-        Sair.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
         Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SairActionPerformed(evt);
@@ -469,7 +465,7 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -18,7 +18,7 @@ public class Tratamento implements Modelo, Serializable {
 
     private Diagnostico diagnostico;
 
-    private Medicamentos medicamentos;
+    private Medicamento medicamentos;
 
     private Date dataTratamento;
 

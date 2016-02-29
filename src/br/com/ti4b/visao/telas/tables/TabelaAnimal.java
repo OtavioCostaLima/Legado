@@ -68,14 +68,12 @@ public class TabelaAnimal extends AbstractTableModel {
             case 5:
                 return animal.getPelagem();
             case 6:
-                return animal.getIdade();
-            case 7:
                 return animal.getDataNascimento();
-            case 8:
+            case 7:
                 return animal.getPeso();
-            case 9:
+            case 8:
                 return animal.getGrauSanguineo();
-            case 10:
+            case 9:
                 return animal.getInformacao();
             default:
                 return null;

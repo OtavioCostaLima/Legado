@@ -1,11 +1,11 @@
 package br.com.ti4b.visao.pesquisas;
 
 import br.com.ti4b.util.FiltrosDeTabelas;
-import br.com.ti4b.modelo.Medicamentos;
+import br.com.ti4b.modelo.Medicamento;
 import br.com.ti4b.visao.telas.MenuPrincipal;
 import br.com.ti4b.visao.cadastros.CadastroMedicamentos;
 import br.com.ti4b.visao.cadastros.CadastroTratamento;
-import br.com.ti4b.dao.MedicamentosDAO;
+import br.com.ti4b.dao.MedicamentoDAO;
 import br.com.ti4b.dao.RelatoriosDAO;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -21,11 +21,11 @@ public final class PesquisarMedicamentos extends javax.swing.JInternalFrame {
 
     RelatoriosDAO funcao_Relatorios = new RelatoriosDAO();
     int todos = 1;
-    List<Medicamentos> ListMedicamentos = new ArrayList<>();
+    List<Medicamento> ListMedicamentos = new ArrayList<>();
     FiltrosDeTabelas filtros = new FiltrosDeTabelas();
     CadastroMedicamentos cadastroMedicamentos;
     CadastroTratamento cadastroTratamento;
-    Medicamentos eme = null;
+    Medicamento eme = null;
     private static PesquisarMedicamentos pesquisarMedicamentos;
 
     public static PesquisarMedicamentos getInstancia() {
@@ -68,10 +68,10 @@ public final class PesquisarMedicamentos extends javax.swing.JInternalFrame {
         tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(80);
         tabelaPesquisa.getColumnModel().getColumn(5).setPreferredWidth(80);
 
-        MedicamentosDAO fm = new MedicamentosDAO();
+        MedicamentoDAO fm = new MedicamentoDAO();
         DefaultTableModel dtm = (DefaultTableModel) tabelaPesquisa.getModel();
         dtm.setNumRows(0);
-        ListMedicamentos = fm.pesquisarMedicamentos(dtm);
+        //    ListMedicamentos = fm.pesquisarMedicamentos(dtm);
 
     }
 
@@ -312,18 +312,18 @@ public final class PesquisarMedicamentos extends javax.swing.JInternalFrame {
     private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
 
-            for (Medicamentos ListMedicamento : ListMedicamentos) {
-                if (String.valueOf(ListMedicamento.getCod_medicamento()).equals(String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0)))) {
-                    eme = ListMedicamento;
-                    /*   if (cadastroMedicamentos != null) {
-                     cadastroMedicamentos.setMedicamentos(eme);
-                     } else if (cadastroMedicamentos == null && cadastroTratamento == null) {
+            for (Medicamento ListMedicamento : ListMedicamentos) {
+//                if (String.valueOf(ListMedicamento.getCod_medicamento()).equals(String.valueOf(tabelaPesquisa.getValueAt(tabelaPesquisa.getSelectedRow(), 0)))) {
+                eme = ListMedicamento;
+                /*   if (cadastroMedicamentos != null) {
+                 cadastroMedicamentos.setMedicamentos(eme);
+                 } else if (cadastroMedicamentos == null && cadastroTratamento == null) {
                     
-                     } else if (cadastroMedicamentos == null && cadastroTratamento != null) {
-                     cadastroTratamento.setMedicamentos(eme);
+                 } else if (cadastroMedicamentos == null && cadastroTratamento != null) {
+                 cadastroTratamento.setMedicamentos(eme);
                     
-                     }*/
-                }
+                 }*/
+                // }
             }
             pesquisarMedicamentos = null;
             this.dispose();
@@ -364,7 +364,7 @@ public final class PesquisarMedicamentos extends javax.swing.JInternalFrame {
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
     }
 
-    public Medicamentos getMedicamento() {
+    public Medicamento getMedicamento() {
 
         return eme;
     }
