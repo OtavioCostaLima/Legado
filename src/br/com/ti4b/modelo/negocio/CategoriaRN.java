@@ -36,6 +36,11 @@ public class CategoriaRN {
         return categoriaDAO.buscarPorId(id);
     }
 
+    public Categoria buscarPorDescricao(String descricao) {
+        categoriaDAO = new CategoriaDAO();
+        return categoriaDAO.buscarPorDescricao(descricao);
+    }
+
     public java.util.List<Categoria> buscarTodos() {
         categoriaDAO = new CategoriaDAO();
         return categoriaDAO.buscarTodos();

@@ -44,8 +44,8 @@ public class Animal implements Serializable, Modelo {
     private List<Movimentacao> movimentacao;
 
     @ManyToOne
-    @JoinColumn(name = "idSubCategoria")
-    private SubCategoria subCategoria;
+    @JoinColumn(name = "idCategoria")
+    private Categoria categoria;
 
     private String nome;
 
@@ -99,12 +99,12 @@ public class Animal implements Serializable, Modelo {
         this.movimentacao = movimentacao;
     }
 
-    public SubCategoria getSubCategoria() {
-        return subCategoria;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setSubCategoria(SubCategoria subCategoria) {
-        this.subCategoria = subCategoria;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getNome() {

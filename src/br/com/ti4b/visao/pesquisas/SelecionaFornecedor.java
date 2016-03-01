@@ -320,17 +320,20 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-            CadastroFornecedor cadastroFornecedor = CadastroFornecedor.getInstancia();
-            GerenciadorDeJanelas.getInstancia().openInternalFrame(cadastroFornecedor);
             fornecedor = tabelaFornecedor.getFornecedor(tabelaPesquisa.getSelectedRow());
-            cadastroFornecedor.setFornecedor(fornecedor);
+            if (CadastroFornecedor.getInstancia().isVisible()) {
+                CadastroFornecedor cadastroFornecedor = CadastroFornecedor.getInstancia();
+                GerenciadorDeJanelas.getInstancia().openInternalFrame(cadastroFornecedor);
+                cadastroFornecedor.setFornecedor(fornecedor);
+            }
+
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Imprimir;
     private javax.swing.JButton Selecionar;

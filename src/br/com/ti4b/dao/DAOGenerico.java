@@ -22,6 +22,7 @@ public class DAOGenerico<T extends Modelo> {
             return true;
         } catch (Exception e) {
             System.out.println("erro " + e.getMessage());
+            e.printStackTrace();
             return false;
         } finally {
             em.close();

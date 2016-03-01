@@ -6,15 +6,12 @@
 package br.com.ti4b.modelo;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -30,11 +27,10 @@ public class SubCategoria implements Modelo, Serializable {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "subCategoria", cascade = CascadeType.ALL)
-    private List<Animal> animais;
-
     private String descricao;
-    private int periodo;
+
+    private int idadeInicio;
+    private int idadedoFim;
 
     @Override
     public long getId() {
@@ -57,20 +53,20 @@ public class SubCategoria implements Modelo, Serializable {
         this.descricao = descricao;
     }
 
-    public int getPeriodo() {
-        return periodo;
+    public int getIdadeInicio() {
+        return idadeInicio;
     }
 
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
+    public void setIdadeInicio(int idadeInicio) {
+        this.idadeInicio = idadeInicio;
     }
 
-    public List<Animal> getAnimais() {
-        return animais;
+    public int getIdadedoFim() {
+        return idadedoFim;
     }
 
-    public void setAnimais(List<Animal> animais) {
-        this.animais = animais;
+    public void setIdadedoFim(int idadedoFim) {
+        this.idadedoFim = idadedoFim;
     }
 
 }

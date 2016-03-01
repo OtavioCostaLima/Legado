@@ -84,8 +84,6 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         PainelCadastro = new javax.swing.JPanel();
         NomeReprodutor = new javax.swing.JTextField();
         NomeVeterinario = new javax.swing.JTextField();
@@ -138,33 +136,6 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addContainerGap())
-        );
-
-        jPanel4.setBackground(new java.awt.Color(0, 153, 0));
-        jPanel4.setPreferredSize(new java.awt.Dimension(5, 420));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
-        );
-
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 7, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         PainelCadastro.setBackground(new java.awt.Color(255, 255, 255));
@@ -277,7 +248,7 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel2.setText("Nome Veterinário:");
+        jLabel2.setText("Veterinário:");
 
         jLabel7.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabel7.setText("Tentativa:");
@@ -458,10 +429,7 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
                                 .addComponent(Excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Sair)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)))
                 .addGap(0, 0, 0))
         );
 
@@ -471,19 +439,15 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PainelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(Alterar)
-                            .addComponent(Excluir)
-                            .addComponent(Sair)
-                            .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PainelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(Alterar)
+                    .addComponent(Excluir)
+                    .addComponent(Sair)
+                    .addComponent(Cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -492,92 +456,21 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(0, 89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        limparCampos();
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
 
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-       // TODO add your handling code here:
-
-        ///criar tabela de veterinários
-
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-
-    private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
-        if (String.valueOf(status.getSelectedItem()).trim().equals("Sucesso")) {
-            DataFecundacao.setEnabled(true);
-
-        } else {
-            DataFecundacao.setEnabled(false);
-            DataFecundacao.setDate(null);
-        }
-
-
-    }//GEN-LAST:event_statusActionPerformed
-
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        this.dispose();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
-
-    private void statusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void TipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void NomeVeterinarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeVeterinarioKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomeVeterinarioKeyReleased
-
-    private void NomeReprodutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeReprodutorKeyReleased
-        upperCase(NomeReprodutor);        // TODO add your handling code here:
-    }//GEN-LAST:event_NomeReprodutorKeyReleased
-
-    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-
-    }//GEN-LAST:event_CadastrarActionPerformed
-
-    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-
-        /*if (ent_Leilao.getCod_leilao() != 0) {
-            trataCampos(2);
-        } else {
-            int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
-            if (i == 0) {
-                SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
-                MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
-                selecionaLeilao.setVisible(true);
-                selecionaLeilao.setPosicao();
-            }
-        }*/
-    }//GEN-LAST:event_AlterarActionPerformed
+    }//GEN-LAST:event_SairActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         /*  if (m.usuarioLogado.isADM()) {
@@ -601,11 +494,77 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
         }*/
     }//GEN-LAST:event_ExcluirActionPerformed
 
-    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+    private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
 
-        this.dispose();
+        /*if (ent_Leilao.getCod_leilao() != 0) {
+            trataCampos(2);
+        } else {
+            int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
+            if (i == 0) {
+                SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
+                MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
+                selecionaLeilao.setVisible(true);
+                selecionaLeilao.setPosicao();
+            }
+        }*/
+    }//GEN-LAST:event_AlterarActionPerformed
+
+    private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
+
+    }//GEN-LAST:event_CadastrarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_SairActionPerformed
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        // TODO add your handling code here:
+
+        ///criar tabela de veterinários
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusActionPerformed
+        if (String.valueOf(status.getSelectedItem()).trim().equals("Sucesso")) {
+            DataFecundacao.setEnabled(true);
+
+        } else {
+            DataFecundacao.setEnabled(false);
+            DataFecundacao.setDate(null);
+        }
+
+    }//GEN-LAST:event_statusActionPerformed
+
+    private void statusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusMouseClicked
+
+    private void NomeVeterinarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeVeterinarioKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomeVeterinarioKeyReleased
+
+    private void NomeReprodutorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NomeReprodutorKeyReleased
+        upperCase(NomeReprodutor);        // TODO add your handling code here:
+    }//GEN-LAST:event_NomeReprodutorKeyReleased
+
+  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -635,10 +594,8 @@ public final class CadastroCruzamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox status;
     // End of variables declaration//GEN-END:variables
