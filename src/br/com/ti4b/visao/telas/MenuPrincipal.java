@@ -25,7 +25,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     public MenuPrincipal() {
         initComponents();
         //  funcoes_Atualisar.atualisar();
-        setExtendedState(MAXIMIZED_BOTH);
+       // setExtendedState(MAXIMIZED_BOTH);
         addWindowListener();
         gerenciadorDeJanelas = GerenciadorDeJanelas.getInstancia();
         gerenciadorDeJanelas.setDESKTOP_PANE(jDesktopPane1);
@@ -70,14 +70,6 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        user = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        prive = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -157,92 +149,21 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/LEGADO.jpg"))); // NOI18N
-
-        jPanel2.setBackground(new java.awt.Color(0, 153, 0));
-
-        jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Usuário:");
-
-        user.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
-        user.setForeground(new java.awt.Color(255, 255, 255));
-        user.setText("user");
-
-        jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Privilégios:");
-
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        prive.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
-        prive.setForeground(new java.awt.Color(255, 255, 255));
-        prive.setText("prive");
-
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(prive, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1005, 1005, 1005))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jSeparator6, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(user, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(prive, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jLabel2.setInheritsPopupMenu(false);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 934, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jDesktopPane1, "card2");
 
@@ -816,12 +737,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
 
     }
 
-    public void retornaUsuario(Usuario login) {
-        user.setText(login.getNome());
-        prive.setText(login.getPrevilegio());
-        this.usuarioLogado = login;
-    }
-
+ 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
@@ -844,7 +760,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(null);
+        gerenciadorDeJanelas.openInternalFrame(CadastroMedicamentos.getInstancia());
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
@@ -1539,8 +1455,6 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1605,15 +1519,9 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator9;
-    private javax.swing.JLabel prive;
-    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 
     /*  public void blink() {

@@ -29,6 +29,7 @@ public class GerenciadorDeJanelas<T extends JInternalFrame> {
     }
 
     private GerenciadorDeJanelas() {
+
     }
 
     private GerenciadorDeJanelas(JDesktopPane desktopPane) {
