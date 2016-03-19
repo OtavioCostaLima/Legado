@@ -2,8 +2,6 @@ package br.com.ti4b.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,8 +37,9 @@ public class Animal implements Serializable, Modelo {
     @JoinColumn(name = "idFornecedor")
     private Fornecedor fornecedor;
 
-    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
-    private List<Movimentacao> movimentacao;
+    @ManyToOne
+    @JoinColumn(name = "idEntrada")
+    private Entrada entrada;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
@@ -83,6 +81,14 @@ public class Animal implements Serializable, Modelo {
         this.mae = mae;
     }
 
+    public Animal getPai() {
+        return pai;
+    }
+
+    public void setPai(Animal pai) {
+        this.pai = pai;
+    }
+
     public Fornecedor getFornecedor() {
         return fornecedor;
     }
@@ -91,12 +97,12 @@ public class Animal implements Serializable, Modelo {
         this.fornecedor = fornecedor;
     }
 
-    public List<Movimentacao> getMovimentacao() {
-        return movimentacao;
+    public Entrada getEntrada() {
+        return entrada;
     }
 
-    public void setMovimentacao(List<Movimentacao> movimentacao) {
-        this.movimentacao = movimentacao;
+    public void setEntrada(Entrada entrada) {
+        this.entrada = entrada;
     }
 
     public Categoria getCategoria() {
@@ -177,14 +183,6 @@ public class Animal implements Serializable, Modelo {
 
     public void setCircunferenciaTesticular(String circunferenciaTesticular) {
         this.circunferenciaTesticular = circunferenciaTesticular;
-    }
-
-    public Animal getPai() {
-        return pai;
-    }
-
-    public void setPai(Animal pai) {
-        this.pai = pai;
     }
 
     @Override

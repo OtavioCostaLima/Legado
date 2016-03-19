@@ -5,10 +5,7 @@
  */
 package br.com.ti4b.visao.cadastros;
 
-import br.com.ti4b.util.ConverterDatas;
 import br.com.ti4b.modelo.Producao;
-import java.awt.Component;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -16,32 +13,6 @@ import javax.swing.JTextField;
  * @author GC
  */
 public class CadastroProducao extends javax.swing.JInternalFrame {
-
-    private void trataCampos(int tipo) {
-        Component components[] = painelCadastro.getComponents();
-        int o = 0;
-        for (Component component : components) {
-            //Comparação com campoDeTexto
-            if (component instanceof JTextField) {
-                if (((JTextField) component).getText().isEmpty()) {
-                    o++;
-                }
-            }
-        }
-        if (DataProducao.getDate() == null) {
-            o++;
-        }
-
-        if (o == 0) {
-            if (tipo == 1 || tipo == 2) {
-
-            } else if (tipo == 3) {
-
-            }
-        } else {
-            info_error.setText("Preenxa todos os campos!");
-        }
-    }
 
     public void upperCase(JTextField modelo) {
         modelo.setText(modelo.getText().toUpperCase());
@@ -58,12 +29,12 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         Quant = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        DataProducao = new com.toedter.calendar.JDateChooser();
+        dataProducao = new com.toedter.calendar.JDateChooser();
         jLabel11 = new javax.swing.JLabel();
         info_error = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        Classificacao = new javax.swing.JComboBox();
-        materiaPrima = new javax.swing.JComboBox();
+        comboCategoria = new javax.swing.JComboBox();
+        comboMateria = new javax.swing.JComboBox();
         jButton4 = new javax.swing.JButton();
         Cadastrar = new javax.swing.JButton();
         Alterar = new javax.swing.JButton();
@@ -107,6 +78,11 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         painelCadastro.setBackground(new java.awt.Color(255, 255, 255));
         painelCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        Quant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuantActionPerformed(evt);
+            }
+        });
         Quant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 QuantKeyReleased(evt);
@@ -121,9 +97,9 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(0, 153, 0));
         jLabel4.setText("Data Produção:");
 
-        DataProducao.setBackground(new java.awt.Color(255, 255, 255));
-        DataProducao.setToolTipText("Selecione a data de realização do leilão");
-        DataProducao.setDateFormatString("yyyy-MM-dd");
+        dataProducao.setBackground(new java.awt.Color(255, 255, 255));
+        dataProducao.setToolTipText("Selecione a data de realização do leilão");
+        dataProducao.setDateFormatString("yyyy-MM-dd");
 
         jLabel11.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 153, 0));
@@ -137,9 +113,9 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         jLabel12.setForeground(new java.awt.Color(0, 153, 0));
         jLabel12.setText("Categoria:");
 
-        Classificacao.addActionListener(new java.awt.event.ActionListener() {
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClassificacaoActionPerformed(evt);
+                comboCategoriaActionPerformed(evt);
             }
         });
 
@@ -177,24 +153,24 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(materiaPrima, 0, 194, Short.MAX_VALUE)
-                    .addComponent(Classificacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboMateria, 0, 194, Short.MAX_VALUE)
+                    .addComponent(comboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Quant, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dataProducao, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE))
                     .addGroup(painelCadastroLayout.createSequentialGroup()
                         .addComponent(info_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
-                        .addContainerGap())
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Quant, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DataProducao, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 14, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,16 +179,16 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(Classificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
                 .addGap(8, 8, 8)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(materiaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel11)
                     .addComponent(Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DataProducao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataProducao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -307,14 +283,14 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         jLabel9.setForeground(new java.awt.Color(0, 153, 0));
         jLabel9.setText("Nome:");
 
-        pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                pesquisarKeyReleased(evt);
-            }
-        });
         pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pesquisarActionPerformed(evt);
+            }
+        });
+        pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pesquisarKeyReleased(evt);
             }
         });
 
@@ -416,11 +392,10 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClassificacaoActionPerformed
-        
-        
-        
-    }//GEN-LAST:event_ClassificacaoActionPerformed
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+
+
+    }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         limpar_campos();
@@ -471,21 +446,24 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Classificacao1ActionPerformed
 
+    private void QuantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QuantActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
     private javax.swing.JButton Cadastrar;
-    private javax.swing.JComboBox Classificacao;
     private javax.swing.JComboBox Classificacao1;
-    private com.toedter.calendar.JDateChooser DataProducao;
     private javax.swing.JButton Excluir;
     private javax.swing.JTextField Quant;
     private javax.swing.JButton Sair;
-    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JScrollPane ScrollPane1;
+    private javax.swing.JComboBox comboCategoria;
+    private javax.swing.JComboBox comboMateria;
+    private com.toedter.calendar.JDateChooser dataProducao;
     private javax.swing.JLabel info_error;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -494,30 +472,26 @@ public class CadastroProducao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JComboBox materiaPrima;
     private javax.swing.JPanel painelCadastro;
     private javax.swing.JTextField pesquisar;
-    private javax.swing.JTable tabelaPesquisa;
     private javax.swing.JTable tabelaPesquisa1;
     // End of variables declaration//GEN-END:variables
 
     private void limpar_campos() {
         info_error.setText(null);
         Quant.setText(null);
-        DataProducao.setDate(null);
-        Classificacao.setSelectedIndex(0);
-        materiaPrima.setSelectedIndex(0);
+        dataProducao.setDate(null);
+        comboCategoria.setSelectedIndex(0);
+        comboMateria.setSelectedIndex(0);
     }
 
     public void setProducao(Producao ent_Producao) {
-        Classificacao.setSelectedItem(ent_Producao.getCategoria());
-        materiaPrima.setSelectedItem(ent_Producao.getDescricao_materia());
+        comboCategoria.setSelectedItem(ent_Producao.getCategoria());
+        comboMateria.setSelectedItem(ent_Producao.getDescricao_materia());
         Quant.setText(String.valueOf(ent_Producao.getQuant()));
-        DataProducao.setDate(ent_Producao.getData_producao());
+        dataProducao.setDate(ent_Producao.getData_producao());
 
     }
 

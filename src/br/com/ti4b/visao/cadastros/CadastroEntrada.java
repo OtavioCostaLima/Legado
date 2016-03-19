@@ -1,57 +1,59 @@
 package br.com.ti4b.visao.cadastros;
 
-import br.com.ti4b.modelo.Movimentacao;
-import br.com.ti4b.modelo.negocio.MovimentacaoRN;
-import br.com.ti4b.util.ConverterDatas;
-import java.awt.Component;
+import br.com.ti4b.modelo.Entrada;
+import br.com.ti4b.modelo.Leilao;
+import br.com.ti4b.modelo.negocio.EntradaRN;
+import br.com.ti4b.visao.telas.tables.TabelaEntrada;
 import java.awt.Dimension;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 
-public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
-
-    ConverterDatas cd = new ConverterDatas();
+public final class CadastroEntrada extends javax.swing.JInternalFrame {
+    
+    TabelaEntrada tabelaEnrada = new TabelaEntrada();
     DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>(new String[]{"LEILÃO", "DOAÇÃO"});
-    private static CadastroMovimentacao cadastroLeilao;
-
-    public static CadastroMovimentacao getInstancia() {
+    private static CadastroEntrada cadastroLeilao;
+    
+    public static CadastroEntrada getInstancia() {
         if (cadastroLeilao == null) {
-            cadastroLeilao = new CadastroMovimentacao();
+            cadastroLeilao = new CadastroEntrada();
         }
         return cadastroLeilao;
     }
-
-    private CadastroMovimentacao() {
+    
+    private Entrada encapsular() {
+        Entrada entrada = new Entrada();
+        Leilao leilao = new Leilao();
+        leilao.setDdataLeilao(jDataLeilao.getDate());
+        leilao.setLote(campoLote.getText());
+        leilao.setValor(Double.valueOf(campoValor.getText()));
+        leilao.setDescricao(campoDescricao.getText());
+        leilao.setLocalArrebatamento(campoLocal.getText());
+        entrada.setDataEntrada(jDataEntrada.getDate());
+       // leilao.setEntrada(entrada);
+        entrada.setLeilao(leilao);
+        return entrada;
+    }
+    
+    private CadastroEntrada() {
         initComponents();
         comboTipo.setModel(comboBoxModel);
     }
-
+    
     public void upperCase(JTextField modelo) {
         modelo.setText(modelo.getText().toUpperCase());
     }
-
+    
     public void limparcampos() {
         info_error.setText(null);
-        informacao.setText(null);
-        DataLeilao.setDate(null);
-        Local.setText(null);
-        Valor.setText(null);
+        campoDescricao.setText(null);
+        jDataLeilao.setDate(null);
+        campoLocal.setText(null);
+        campoValor.setText(null);
         GrupoLeilao.clearSelection();
-
+        
     }
-
-    public Movimentacao encapsular() {
-        Movimentacao movimentacao = new Movimentacao();
-        movimentacao.setAnimal(null);
-        movimentacao.setDataMovimentacao(DataLeilao.getDate());
-        movimentacao.setDestino(jT_destino.getText());
-        movimentacao.setTipoLD(comboTipo.getSelectedItem().toString());
-        if (!Valor.getText().trim().isEmpty()) {
-            movimentacao.setValorArrebatado(Double.valueOf(Valor.getText()));
-        }
-        return movimentacao;
-    }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,28 +63,28 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         painelCadastro = new javax.swing.JPanel();
-        Valor = new javax.swing.JTextField();
+        campoValor = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        DataLeilao = new com.toedter.calendar.JDateChooser();
-        informacao = new javax.swing.JTextField();
+        jDataLeilao = new com.toedter.calendar.JDateChooser();
+        campoDescricao = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        Local = new javax.swing.JTextField();
+        campoLocal = new javax.swing.JTextField();
         comboTipo = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        campoLote = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jT_destino = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jDataEntrada = new com.toedter.calendar.JDateChooser();
         info_error = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         Cadastrar = new javax.swing.JButton();
         Alterar = new javax.swing.JButton();
         Excluir = new javax.swing.JButton();
         Sair = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaPesquisaEntradas = new javax.swing.JTable();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 0), 2));
@@ -92,7 +94,7 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("SAÍDA DE ANIMAIS");
+        jLabel1.setText("ENTRADA DE ANIMAIS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -114,9 +116,9 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
         painelCadastro.setBackground(new java.awt.Color(255, 255, 255));
         painelCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        Valor.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoValor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                ValorKeyReleased(evt);
+                campoValorKeyReleased(evt);
             }
         });
 
@@ -128,34 +130,34 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(0, 153, 0));
         jLabel4.setText("Data Realização:");
 
-        DataLeilao.setBackground(new java.awt.Color(255, 255, 255));
-        DataLeilao.setToolTipText("Selecione a data de realização do leilão");
-        DataLeilao.setDateFormatString("dd-MM-yyyy");
+        jDataLeilao.setBackground(new java.awt.Color(255, 255, 255));
+        jDataLeilao.setToolTipText("Selecione a data de realização do leilão");
+        jDataLeilao.setDateFormatString("dd-MM-yyyy");
 
-        informacao.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                informacaoKeyReleased(evt);
+                campoDescricaoKeyReleased(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 153, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Informações:");
+        jLabel9.setText("Descrição:");
 
         jLabel11.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 153, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Local:");
 
-        Local.addActionListener(new java.awt.event.ActionListener() {
+        campoLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LocalActionPerformed(evt);
+                campoLocalActionPerformed(evt);
             }
         });
-        Local.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoLocal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                LocalKeyReleased(evt);
+                campoLocalKeyReleased(evt);
             }
         });
 
@@ -194,116 +196,94 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel3.setText("Lote:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Destino:");
-
-        jT_destino.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jT_destinoKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jT_destinoKeyReleased(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 153, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Animal:");
-
-        jButton1.setText("...");
+        jLabel5.setText("Data Entrada:");
 
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
         painelCadastro.setLayout(painelCadastroLayout);
         painelCadastroLayout.setHorizontalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCadastroLayout.createSequentialGroup()
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoLote, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Local)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DataLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDataLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jT_destino)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel9)
-                        .addGap(10, 10, 10)
-                        .addComponent(informacao, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(painelCadastroLayout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(33, 33, 33)
+                                    .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(painelCadastroLayout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jDataEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
-
-        painelCadastroLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel11, jLabel2, jLabel5, jLabel6, jLabel9});
-
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6))
-                            .addComponent(jButton4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(DataLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(campoLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jDataLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton4))
+                .addGap(15, 15, 15)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jT_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(campoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(informacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                    .addComponent(jDataEntrada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(campoValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        painelCadastroLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {DataLeilao, Local, Valor, informacao, jLabel11, jLabel4, jLabel8, jLabel9});
+        painelCadastroLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {campoDescricao, campoLocal, campoValor, jDataLeilao, jLabel11, jLabel4, jLabel8, jLabel9});
 
         info_error.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         info_error.setForeground(new java.awt.Color(255, 0, 0));
         info_error.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Registro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 0, 0))); // NOI18N
 
         Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Cadastrar.setForeground(new java.awt.Color(255, 0, 0));
@@ -354,19 +334,28 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
             }
         });
 
+        tabelaPesquisaEntradas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaPesquisaEntradas);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(info_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(Cadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -374,7 +363,12 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Excluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Sair)))
+                        .addComponent(Sair))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -385,11 +379,11 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2))
+                .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(Alterar)
@@ -405,7 +399,7 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,19 +411,15 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LocalActionPerformed
-
 
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         if (comboTipo.getSelectedIndex() == 0) {
-            Valor.setEnabled(true);
-            Valor.setText(null);
+            campoValor.setEnabled(true);
+            campoValor.setText(null);
         }
         if (comboTipo.getSelectedIndex() == 1) {
-            Valor.setEnabled(false);
-            Valor.setText("0");
+            campoValor.setEnabled(false);
+            campoValor.setText("0");
         }
     }//GEN-LAST:event_comboTipoActionPerformed
 
@@ -442,49 +432,29 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        MovimentacaoRN movimentacaoRN = new MovimentacaoRN();
-        if (movimentacaoRN.cadastrar(encapsular())) {
+        EntradaRN entradaRN = new EntradaRN();
+        if (entradaRN.salvar(encapsular())) {
         }
 
     }//GEN-LAST:event_CadastrarActionPerformed
-
+    
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-
-        /*if (ent_Leilao.getCod_leilao() != 0) {
-         trataCampos(2);
-         } else {
-         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
-         if (i == 0) {
-         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
-         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
-         selecionaLeilao.setVisible(true);
-         selecionaLeilao.setPosicao();
-         }
-         }*/
+        if (tabelaPesquisaEntradas.isRowSelected(tabelaPesquisaEntradas.getSelectedRow())) {
+            if (new EntradaRN().salvar(tabelaEnrada.getEntrada(tabelaPesquisaEntradas.getSelectedRow()))) {
+                limparcampos();
+            }
+        }
+        
 
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        /*  if (m.usuarioLogado.isADM()) {
-         if (ent_Leilao.getCod_leilao() != 0) {
-         LeilaoDAO fl = new LeilaoDAO();
-         fl.excluirLeilao(ent_Leilao);
-         if (ent_Leilao.getRetormo().equals("Deletado com sucesso!")) {
-         limparcampos();
-         ent_Leilao.setRetormo("Deletado com sucesso!");
-         }
-        
-         } else {
-         int i = JOptionPane.showConfirmDialog(null, "Os Campos estão vazios ou Leilão não está Cadastrado! ", "Alerta", JOptionPane.YES_NO_OPTION);
-         if (i == 0) {
-         SelecionaMovimentacao selecionaLeilao = new SelecionaMovimentacao(this, m);
-         MenuPrincipal.jDesktopPane1.add(selecionaLeilao);
-         selecionaLeilao.setVisible(true);
-         selecionaLeilao.setPosicao();
-         }
-         }
-         }*/
+        if (tabelaPesquisaEntradas.isRowSelected(tabelaPesquisaEntradas.getSelectedRow())) {
+            if (new EntradaRN().remover(tabelaEnrada.getEntrada(tabelaPesquisaEntradas.getSelectedRow()).getId())) {
+                limparcampos();
+            }
+        }
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
@@ -493,30 +463,25 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SairActionPerformed
 
-    private void LocalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LocalKeyReleased
-        upperCase(Local);
+    private void campoValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoValorKeyReleased
+        campoValor.setText(campoValor.getText().replaceAll("[^0-9]", ""));
         // TODO add your handling code here:
-    }//GEN-LAST:event_LocalKeyReleased
+    }//GEN-LAST:event_campoValorKeyReleased
 
-    private void ValorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValorKeyReleased
-        Valor.setText(Valor.getText().replaceAll("[^0-9]", ""));
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ValorKeyReleased
-
-    private void informacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_informacaoKeyReleased
-        upperCase(informacao);
+    private void campoDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDescricaoKeyReleased
+        upperCase(campoDescricao);
 
 // TODO add your handling code here:
-    }//GEN-LAST:event_informacaoKeyReleased
+    }//GEN-LAST:event_campoDescricaoKeyReleased
 
-    private void jT_destinoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_destinoKeyPressed
-        upperCase(jT_destino);        // TODO add your handling code here:
-    }//GEN-LAST:event_jT_destinoKeyPressed
-
-    private void jT_destinoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jT_destinoKeyReleased
-        upperCase(jT_destino);
+    private void campoLocalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoLocalKeyReleased
+        upperCase(campoLocal);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jT_destinoKeyReleased
+    }//GEN-LAST:event_campoLocalKeyReleased
+
+    private void campoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoLocalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoLocalActionPerformed
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
@@ -525,31 +490,31 @@ public final class CadastroMovimentacao extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
     private javax.swing.JButton Cadastrar;
-    private com.toedter.calendar.JDateChooser DataLeilao;
     private javax.swing.JButton Excluir;
     private javax.swing.ButtonGroup GrupoLeilao;
-    private javax.swing.JTextField Local;
     private javax.swing.JButton Sair;
-    private javax.swing.JTextField Valor;
+    private javax.swing.JTextField campoDescricao;
+    private javax.swing.JTextField campoLocal;
+    private javax.swing.JTextField campoLote;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JComboBox comboTipo;
     private javax.swing.JLabel info_error;
-    private javax.swing.JTextField informacao;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDataEntrada;
+    private com.toedter.calendar.JDateChooser jDataLeilao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jT_destino;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelCadastro;
+    private javax.swing.JTable tabelaPesquisaEntradas;
     // End of variables declaration//GEN-END:variables
 
 }

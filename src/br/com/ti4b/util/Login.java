@@ -23,7 +23,7 @@ public class Login {
                 usuario.setPrevilegio(banco.rs.getString("previlegio"));
                 MenuPrincipal m = new MenuPrincipal();
                 m.setVisible(true);
-                m.retornaUsuario(usuario);
+              //  m.retornaUsuario(usuario);
                 usuario.setRetorno("Login Efetuado com Sucesso!");
             } else {
                 usuario.setRetorno("Usuário não Encontrado!");

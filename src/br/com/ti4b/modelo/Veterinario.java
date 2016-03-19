@@ -21,13 +21,13 @@ public class Veterinario implements Serializable, Modelo {
     private String cpf;
     private String sexo;
     private String rg;
+    private String orgaoEspedidor;
     private String endereco;
     private String cidade;
     private String uf;
     private String nacionalidade;
     private String email;
     private String fone1;
-    private String fone2;
     private String celular;
     private String especialidade;
     private String tipoDeContrato;
@@ -45,6 +45,14 @@ public class Veterinario implements Serializable, Modelo {
 
     public void setCrmv(String crmv) {
         this.crmv = crmv;
+    }
+
+    public List<Cruzamento> getCruzamento() {
+        return cruzamento;
+    }
+
+    public void setCruzamento(List<Cruzamento> cruzamento) {
+        this.cruzamento = cruzamento;
     }
 
     public String getNome() {
@@ -77,6 +85,14 @@ public class Veterinario implements Serializable, Modelo {
 
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    public String getOrgaoEspedidor() {
+        return orgaoEspedidor;
+    }
+
+    public void setOrgaoEspedidor(String orgaoEspedidor) {
+        this.orgaoEspedidor = orgaoEspedidor;
     }
 
     public String getEndereco() {
@@ -127,14 +143,6 @@ public class Veterinario implements Serializable, Modelo {
         this.fone1 = fone1;
     }
 
-    public String getFone2() {
-        return fone2;
-    }
-
-    public void setFone2(String fone2) {
-        this.fone2 = fone2;
-    }
-
     public String getCelular() {
         return celular;
     }
@@ -173,14 +181,6 @@ public class Veterinario implements Serializable, Modelo {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
-    }
-
-    public List<Cruzamento> getCruzamento() {
-        return cruzamento;
-    }
-
-    public void setCruzamento(List<Cruzamento> cruzamento) {
-        this.cruzamento = cruzamento;
     }
 
 }

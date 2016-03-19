@@ -52,7 +52,7 @@ public final class TelaUsuario extends javax.swing.JInternalFrame {
     public void povoartabela() {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setNumRows(0);
-        acesso.listarUsuario(dtm);
+       
     }
 
     public boolean encapsulaUsuario() {

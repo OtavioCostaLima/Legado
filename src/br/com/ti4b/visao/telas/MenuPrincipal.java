@@ -723,7 +723,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
             Usuario login = new Usuario();
             login.setCod_acesso(usuarioLogado.getCod_acesso());
             AcessoDAO acesso = new AcessoDAO();
-            acesso.sair(login);
+//            acesso.sair(login);
         }
         if (i == 0) {
             if (tipo == 1) {
@@ -773,7 +773,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        gerenciadorDeJanelas.openInternalFrame(CadastroMovimentacao.getInstancia());
+        gerenciadorDeJanelas.openInternalFrame(CadastroEntrada.getInstancia());
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -1356,7 +1356,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         AcessoDAO acesso = new AcessoDAO();
-        acesso.logKill();
+//        acesso.logKill();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -1418,7 +1418,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
-        SelecionaMovimentacao movimentacao2 = new SelecionaMovimentacao(this, true);
+        SelecionaEntrada movimentacao2 = new SelecionaEntrada(this, true);
         movimentacao2.setVisible(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem18ActionPerformed

@@ -5,26 +5,26 @@
  */
 package br.com.ti4b.visao.pesquisas;
 
-import br.com.ti4b.modelo.Movimentacao;
-import br.com.ti4b.modelo.negocio.MovimentacaoRN;
+import br.com.ti4b.modelo.Entrada;
+import br.com.ti4b.modelo.negocio.EntradaRN;
 import br.com.ti4b.util.FiltrosDeTabelas;
-import br.com.ti4b.visao.telas.tables.TabelaMovimentacao;
+import br.com.ti4b.visao.telas.tables.TabelaEntrada;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Otavio Costa
  */
-public final class SelecionaMovimentacao extends javax.swing.JDialog {
+public final class SelecionaEntrada extends javax.swing.JDialog {
 
-    TabelaMovimentacao tabelaMovimentacao = new TabelaMovimentacao();
+    TabelaEntrada tabelaEntrada = new TabelaEntrada();
     private final FiltrosDeTabelas filtros = new FiltrosDeTabelas();
-    Movimentacao movimentacao;
+    Entrada entrada;
 
     public void PovoaTabela() {
-        tabelaPesquisa.setModel(tabelaMovimentacao);
-        MovimentacaoRN movimentacaoRN = new MovimentacaoRN();
-        tabelaMovimentacao.inserirMovimentacaos(movimentacaoRN.buscarTodos());
+        tabelaPesquisa.setModel(tabelaEntrada);
+        EntradaRN entradaRN = new EntradaRN();
+        tabelaEntrada.inserirMovimentacaos(entradaRN.buscarTodos());
 
         //  filtros.Ordenartabela(tabelaPesquisa);
         tabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -32,14 +32,14 @@ public final class SelecionaMovimentacao extends javax.swing.JDialog {
         tabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(70);
         tabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(70);
         tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(80);
-        tabelaPesquisa.getColumnModel().getColumn(5).setPreferredWidth(250);
+       
 
     }
 
     /**
      * Creates new form SelecionaMovimentacao2
      */
-    public SelecionaMovimentacao(java.awt.Frame parent, boolean modal) {
+    public SelecionaEntrada(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         PovoaTabela();
@@ -125,7 +125,7 @@ public final class SelecionaMovimentacao extends javax.swing.JDialog {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
 
-        jLabel8.setText("Leilão:");
+        jLabel8.setText("Lote:");
 
         pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,6 @@ public final class SelecionaMovimentacao extends javax.swing.JDialog {
         Selecionar.setContentAreaFilled(false);
         Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Selecionar.setFocusable(false);
-        Selecionar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Selecionar Grande3.png"))); // NOI18N
         Selecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelecionarActionPerformed(evt);
@@ -175,7 +174,6 @@ public final class SelecionaMovimentacao extends javax.swing.JDialog {
         jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton8.setFocusable(false);
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ti4b/icons/botoes/botao Sair Grande.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -263,7 +261,7 @@ public final class SelecionaMovimentacao extends javax.swing.JDialog {
 
     private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-            movimentacao = tabelaMovimentacao.getMovimentacao(tabelaPesquisa.getSelectedRow());
+            entrada = tabelaEntrada.getEntrada(tabelaPesquisa.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -289,7 +287,7 @@ public final class SelecionaMovimentacao extends javax.swing.JDialog {
     private javax.swing.JTable tabelaPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    public Movimentacao getMovimentacao() {
-        return movimentacao;
+    public Entrada getEntrada() {
+        return entrada;
     }
 }

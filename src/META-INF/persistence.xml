@@ -4,14 +4,16 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.com.ti4b.modelo.Alimento</class>
     <class>br.com.ti4b.modelo.Animal</class>
-    <class>br.com.ti4b.modelo.Categoria</class>
     <class>br.com.ti4b.modelo.SubCategoria</class>
     <class>br.com.ti4b.modelo.Matriz</class>
     <class>br.com.ti4b.modelo.Reprodutor</class>
-    <class>br.com.ti4b.modelo.Movimentacao</class>
     <class>br.com.ti4b.modelo.Leilao</class>
     <class>br.com.ti4b.modelo.Doacao</class>
     <class>br.com.ti4b.modelo.Fornecedor</class>
+    <class>br.com.ti4b.modelo.Entrada</class>
+    <class>br.com.ti4b.modelo.Saida</class>
+    <class>br.com.ti4b.modelo.Categoria</class>
+    <class>br.com.ti4b.modelo.Veterinario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/legado?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

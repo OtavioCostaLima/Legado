@@ -3,16 +3,14 @@ package br.com.ti4b.visao.cadastros;
 import br.com.ti4b.util.ValidaCNPJ;
 import br.com.ti4b.modelo.Fornecedor;
 import br.com.ti4b.modelo.negocio.FornecedorRN;
-import br.com.ti4b.visao.pesquisas.SelecionaFornecedor;
-import br.com.ti4b.visao.pesquisas.SelecionaFornecedor;
-import br.com.ti4b.visao.telas.GerenciadorDeJanelas;
+import br.com.ti4b.visao.telas.tables.TabelaFornecedor;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class CadastroFornecedor extends javax.swing.JInternalFrame {
 
+    TabelaFornecedor tabelaFornecedor = new TabelaFornecedor();
     private static CadastroFornecedor cadastroFornecedorAnimais;
 
     public static CadastroFornecedor getInstancia() {
@@ -22,15 +20,22 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         return cadastroFornecedorAnimais;
     }
 
-    public CadastroFornecedor() {
+    private CadastroFornecedor() {
         initComponents();
+        jTable1.setModel(tabelaFornecedor);
+        povoarTabela();
+
+    }
+
+    private void povoarTabela() {
+        tabelaFornecedor.inserirFornecedors(new FornecedorRN().buscarTodos());
     }
 
     public void upperCase(JTextField modelo) {
         modelo.setText(modelo.getText().toUpperCase());
     }
 
-    private void limpar_campos() {
+    private void limparCampos() {
         info_error.setText("");
         nomeProprietario.setText("");
         Bairro.setText("");
@@ -101,6 +106,15 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         Cadastrar = new javax.swing.JButton();
         Sair = new javax.swing.JButton();
         info_error = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        buscarFornecedor = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 0));
         setTitle("Fornecedor de Animais");
@@ -296,7 +310,7 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCadastroLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel12)
                     .addComponent(nomeProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -407,13 +421,44 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         info_error.setForeground(new java.awt.Color(255, 0, 0));
         info_error.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel15.setText("BUSCAR:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todos", "Nome", "Crmv" }));
+
+        jButton1.setText("PRIMEIRO");
+
+        jButton2.setText("ANTERIOR");
+
+        jButton5.setText("PROXIMO");
+
+        jButton3.setText("ULTIMO");
+
         javax.swing.GroupLayout painelMainLayout = new javax.swing.GroupLayout(painelMain);
         painelMain.setLayout(painelMainLayout);
         painelMainLayout.setHorizontalGroup(
             painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMainLayout.createSequentialGroup()
-                .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelMainLayout.createSequentialGroup()
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(painelMainLayout.createSequentialGroup()
+                .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMainLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -422,7 +467,7 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
                         .addComponent(info_error, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelMainLayout.createSequentialGroup()
+                    .addGroup(painelMainLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMainLayout.createSequentialGroup()
@@ -433,9 +478,26 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
                                 .addComponent(Excluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Sair))
-                            .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(painelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(painelMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(painelMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)))
                 .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         painelMainLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Alterar, Cadastrar, Excluir, Sair});
@@ -452,13 +514,26 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(painelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1)
+                        .addComponent(jButton5)
+                        .addComponent(jButton3))
+                    .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buscarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(Cadastrar)
                     .addComponent(Alterar)
                     .addComponent(Excluir)
                     .addComponent(Sair))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -469,25 +544,23 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(painelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2))
+            .addComponent(painelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        limpar_campos();
+        limparCampos();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         if (campoId.getText().trim().isEmpty()) {
-            // if (trataCampos()) {
             FornecedorRN fornecedorRN = new FornecedorRN();
             fornecedorRN.cadastrar(encapsular());
-            //  }
+            povoarTabela();
         }
+
     }//GEN-LAST:event_CadastrarActionPerformed
 
     public boolean trataCampos() {
@@ -512,30 +585,22 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
     }
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        if (campoId.getText().trim().isEmpty()) {
-            SelecionaFornecedor fornecedorAnimais = new SelecionaFornecedor(null, true);
-            fornecedorAnimais.setVisible(true);
-            setFornecedor(fornecedorAnimais.getFornecedor());
-        } else {
-            if (trataCampos()) {
-                FornecedorRN fornecedorRN = new FornecedorRN();
-                if (fornecedorRN.atualizar(encapsular())) {
-                }
+        if (jTable1.isRowSelected(jTable1.getSelectedRow()) && !campoId.getText().trim().isEmpty()) {
+            if (new FornecedorRN().atualizar(encapsular())) {
+                povoarTabela();
+                limparCampos();
             }
         }
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        if (campoId.getText().trim().isEmpty()) {
-            SelecionaFornecedor fornecedorAnimais = new SelecionaFornecedor(null, true);
-            fornecedorAnimais.setVisible(true);
-            setFornecedor(fornecedorAnimais.getFornecedor());
-        } else {
-            if (trataCampos()) {
-                FornecedorRN fornecedorRN = new FornecedorRN();
-                fornecedorRN.deletar(encapsular().getId());
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
+            if (new FornecedorRN().deletar(encapsular().getId())) {
+                povoarTabela();
+                limparCampos();
             }
         }
+
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
@@ -587,6 +652,24 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TelefoneActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
+            Fornecedor fornecedor = tabelaFornecedor.getFornecedor(jTable1.getSelectedRow());
+            setFornecedor(fornecedor);
+            /* nomeProprietario.setText(fornecedor.getNomeProprietario());
+            nomeFornecedor.setText(fornecedor.getNome());
+            Endereco.setText(fornecedor.getEndereco());
+            Bairro.setText(fornecedor.getBairro());
+            Cidade.setText(fornecedor.getCidade());
+            CNPJ.setText(fornecedor.getCnpj());
+            Numero.setText(String.valueOf(fornecedor.getNumero()));
+            UF.setSelectedItem(fornecedor.getUf());
+            email.setText(fornecedor.getEmail());
+            Celular.setText(fornecedor.getFone1());
+            Telefone.setText(fornecedor.getFone2());*/
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
+
     public boolean validaCNPJ() {
         boolean ret;
         ValidaCNPJ validaCNPJ = new ValidaCNPJ();
@@ -620,15 +703,22 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton Sair;
     private javax.swing.JFormattedTextField Telefone;
     private javax.swing.JComboBox UF;
+    private javax.swing.JTextField buscarFornecedor;
     private javax.swing.JLabel campoId;
     private javax.swing.JTextField email;
     private javax.swing.JLabel info_error;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -638,6 +728,8 @@ public class CadastroFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nomeFornecedor;
     private javax.swing.JTextField nomeProprietario;
     private javax.swing.JPanel painelCadastro;
