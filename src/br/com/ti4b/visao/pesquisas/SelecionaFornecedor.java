@@ -21,7 +21,7 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
 
     br.com.ti4b.util.FiltrosDeTabelas filtros = new FiltrosDeTabelas();
     TabelaFornecedor tabelaFornecedor = new TabelaFornecedor();
-    private Fornecedor fornecedor;
+    private int index = -1;
 
     /**
      * Creates new form SelecionaFornecedor2
@@ -65,10 +65,10 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
         tabelaPesquisa = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Selecionar = new javax.swing.JButton();
+        jBSelecionar = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         Imprimir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -165,15 +165,15 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        Selecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        Selecionar.setForeground(new java.awt.Color(0, 153, 0));
-        Selecionar.setText("SELECIONAR");
-        Selecionar.setContentAreaFilled(false);
-        Selecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Selecionar.setFocusable(false);
-        Selecionar.addActionListener(new java.awt.event.ActionListener() {
+        jBSelecionar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jBSelecionar.setForeground(new java.awt.Color(0, 153, 0));
+        jBSelecionar.setText("SELECIONAR");
+        jBSelecionar.setContentAreaFilled(false);
+        jBSelecionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBSelecionar.setFocusable(false);
+        jBSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelecionarActionPerformed(evt);
+                jBSelecionarActionPerformed(evt);
             }
         });
 
@@ -201,14 +201,14 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 0));
-        jButton1.setText("ALTERAR");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBAlterar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jBAlterar.setForeground(new java.awt.Color(0, 153, 0));
+        jBAlterar.setText("ALTERAR");
+        jBAlterar.setContentAreaFilled(false);
+        jBAlterar.setFocusable(false);
+        jBAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBAlterarActionPerformed(evt);
             }
         });
 
@@ -222,9 +222,9 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Selecionar)
+                        .addComponent(jBSelecionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,7 +235,7 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
                 .addGap(10, 10, 10))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Imprimir, Selecionar, jButton1, jButton8});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Imprimir, jBAlterar, jBSelecionar, jButton8});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,8 +255,8 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Imprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Selecionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jBAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBSelecionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -302,15 +302,15 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tabelaPesquisaMouseClicked
 
-    private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
+    private void jBSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-            fornecedor = tabelaFornecedor.getFornecedor(tabelaPesquisa.getSelectedRow());
+            index = tabelaPesquisa.getSelectedRow();
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!");
         }
 
-    }//GEN-LAST:event_SelecionarActionPerformed
+    }//GEN-LAST:event_jBSelecionarActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         dispose();
@@ -323,26 +323,26 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
         } // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-            fornecedor = tabelaFornecedor.getFornecedor(tabelaPesquisa.getSelectedRow());
+            index = tabelaPesquisa.getSelectedRow();
             if (CadastroFornecedor.getInstancia().isVisible()) {
                 CadastroFornecedor cadastroFornecedor = CadastroFornecedor.getInstancia();
                 GerenciadorDeJanelas.getInstancia().openInternalFrame(cadastroFornecedor);
-                cadastroFornecedor.setFornecedor(fornecedor);
+                cadastroFornecedor.setFornecedor(getFornecedor());
             }
 
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!");
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Imprimir;
-    private javax.swing.JButton Selecionar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBAlterar;
+    private javax.swing.JButton jBSelecionar;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -356,6 +356,6 @@ public final class SelecionaFornecedor extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public Fornecedor getFornecedor() {
-        return fornecedor;
+        return index >= 0 ? tabelaFornecedor.getFornecedor(tabelaPesquisa.getSelectedRow()) : null;
     }
 }

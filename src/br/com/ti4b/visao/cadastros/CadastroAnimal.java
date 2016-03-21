@@ -11,34 +11,47 @@ import br.com.ti4b.visao.pesquisas.SelecionaAnimal;
 import br.com.ti4b.visao.pesquisas.SelecionaEntrada;
 import br.com.ti4b.visao.pesquisas.SelecionaFornecedor;
 import br.com.ti4b.visao.telas.GerenciadorDeJanelas;
+import br.com.ti4b.visao.telas.tables.TabelaAnimal;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Otavio Costa
  */
 public class CadastroAnimal extends javax.swing.JInternalFrame {
-    
+
     private static CadastroAnimal cadastroAnimal1;
-    private Animal animal;
-    
-    public CadastroAnimal() {
+    private final Animal animal = new Animal();
+    TabelaAnimal tabelaAnimal = new TabelaAnimal();
+
+    private CadastroAnimal() {
         initComponents();
+        povoarTabela();
     }
-    
+
+    private void povoarTabela() {
+        tabelaAnimal.inserirAnimals(new AnimalRN().buscarTodos());
+        jTable1.setModel(tabelaAnimal);
+    }
+
     public static CadastroAnimal getInstancia() {
         if (cadastroAnimal1 == null) {
             cadastroAnimal1 = new CadastroAnimal();
         }
         return cadastroAnimal1;
     }
-    
+
     public Animal encapsuar() {
         Animal animal1 = new Animal();
         if (animal.getFornecedor() != null) {
             animal1.setFornecedor(animal.getFornecedor());
         }
+        if (animal.getEntrada() != null) {
+            animal1.setEntrada(animal.getEntrada());
+        }
+
         Categoria categoria = new CategoriaRN().buscarPorDescricao(jCCategria.getSelectedItem().toString());
-        
+
         if (categoria != null) {
             animal1.setCategoria(categoria);
         }
@@ -46,19 +59,18 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         animal1.setNome(jTNome.getText());
         animal1.setDataNascimento(jDNascimento.getDate());
         animal1.setPelagem(jTpelagem.getText());
+        animal1.setInformacao(jTInformacao.getText());
         animal1.setGrauSanguineo(jTGrau.getText());
         if (!jTPeso.getText().trim().isEmpty()) {
             animal1.setPeso(Float.valueOf(jTPeso.getText()));
         }
         animal1.setRaca(jTRaca.getText());
         if (jRF.isSelected()) {
-            animal1.setSexo("Femea");
+            animal1.setSexo("F");
         } else if (jRM.isSelected()) {
-            animal1.setSexo("Macho");
+            animal1.setSexo("M");
         }
-        animal1.setRaca(title);
-        animal1.setInformacao(jTInfo.getText());
-        
+
         return animal1;
     }
 
@@ -90,7 +102,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jRF = new javax.swing.JRadioButton();
         jTPeso = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTInfo = new javax.swing.JTextField();
+        jTInformacao = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jTFornecedor = new javax.swing.JTextField();
@@ -98,7 +110,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jCModo = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTLote = new javax.swing.JTextField();
         jBLote = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -129,7 +141,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jCBuscar = new javax.swing.JComboBox();
 
         setResizable(true);
 
@@ -231,7 +243,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                                 .addComponent(jTPeso))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jTInfo))))
+                                .addComponent(jTInformacao))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,11 +289,11 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTpelagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTInformacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel7, jLabel8, jLabel9, jRF, jRM, jTGrau, jTInfo, jTNome, jTPeso, jTRaca, jTRegistro, jTpelagem});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel7, jLabel8, jLabel9, jRF, jRM, jTGrau, jTInformacao, jTNome, jTPeso, jTRaca, jTRegistro, jTpelagem});
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -315,6 +327,8 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jLabel17.setForeground(new java.awt.Color(0, 153, 0));
         jLabel17.setText("Lote:");
 
+        jTLote.setEditable(false);
+
         jBLote.setText("...");
         jBLote.setEnabled(false);
         jBLote.addActionListener(new java.awt.event.ActionListener() {
@@ -341,7 +355,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTLote, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBLote, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -357,7 +371,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                     .addComponent(jCModo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBLote))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -379,12 +393,14 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jLabel14.setForeground(new java.awt.Color(0, 153, 0));
         jLabel14.setText("Categoria:");
 
+        jTPai.setEditable(false);
         jTPai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPaiActionPerformed(evt);
             }
         });
 
+        jTMae.setEditable(false);
         jTMae.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTMaeActionPerformed(evt);
@@ -394,7 +410,6 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jCCategria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BOVÍNO", "CAPRÍNO", "SUÍNO", "OVÍNO" }));
 
         jBMae.setText("...");
-        jBMae.setEnabled(false);
         jBMae.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBMaeActionPerformed(evt);
@@ -420,7 +435,11 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jTIdPai.setEditable(false);
 
         jBPai.setText("...");
-        jBPai.setEnabled(false);
+        jBPai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPaiActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Circ. Testitular:");
 
@@ -509,6 +528,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         Cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Cadastrar.setForeground(new java.awt.Color(0, 153, 0));
         Cadastrar.setText("CADASTRAR");
+        Cadastrar.setContentAreaFilled(false);
         Cadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Cadastrar.setFocusable(false);
         Cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -520,6 +540,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         Alterar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Alterar.setForeground(new java.awt.Color(0, 153, 0));
         Alterar.setText("ALTERAR");
+        Alterar.setContentAreaFilled(false);
         Alterar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Alterar.setFocusable(false);
         Alterar.addActionListener(new java.awt.event.ActionListener() {
@@ -531,6 +552,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         Excluir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Excluir.setForeground(new java.awt.Color(0, 153, 0));
         Excluir.setText("EXCLUIR");
+        Excluir.setContentAreaFilled(false);
         Excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Excluir.setFocusable(false);
         Excluir.addActionListener(new java.awt.event.ActionListener() {
@@ -542,6 +564,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         botaoSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botaoSair.setForeground(new java.awt.Color(0, 153, 0));
         botaoSair.setText("SAIR");
+        botaoSair.setContentAreaFilled(false);
         botaoSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoSair.setFocusable(false);
         botaoSair.addActionListener(new java.awt.event.ActionListener() {
@@ -553,6 +576,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jBBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jBBuscar.setForeground(new java.awt.Color(0, 153, 0));
         jBBuscar.setText("BUSCA AVANÇADA");
+        jBBuscar.setContentAreaFilled(false);
         jBBuscar.setFocusable(false);
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -618,7 +642,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
 
         jLabel21.setText("Buscar:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BOVÍNO", "CAPRÍNO", "SUÍNO", "OVÍNO" }));
+        jCBuscar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BOVÍNO", "CAPRÍNO", "SUÍNO", "OVÍNO" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -630,7 +654,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -640,7 +664,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -703,8 +727,15 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTMaeActionPerformed
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        AnimalRN animalRN = new AnimalRN();
-        animalRN.cadastrar(encapsuar());
+        if (verificarCampos()) {
+            AnimalRN animalRN = new AnimalRN();
+            if (animalRN.cadastrar(encapsuar())) {
+                povoarTabela();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha os campos necessários!");
+        }
+
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
@@ -712,25 +743,33 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        // TODO add your handling code here:
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
+            if (new AnimalRN().deletar(tabelaAnimal.getAnimal(jTable1.getSelectedRow()).getId())) {
+                povoarTabela();
+            }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        cadastroAnimal1 = null;
         this.dispose();                   // TODO add your handling code here:
     }//GEN-LAST:event_botaoSairActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         SelecionaFornecedor selecionaFornecedor = new SelecionaFornecedor(null, true);
         selecionaFornecedor.setVisible(true);
-        if (selecionaFornecedor.getFornecedor() != null) {
-            setFornecedor(selecionaFornecedor.getFornecedor());
-            jTFornecedor.setText(animal.getFornecedor().getNome());
+        Fornecedor fornecedor = selecionaFornecedor.getFornecedor();
+        if (fornecedor != null) {
+            animal.setFornecedor(fornecedor);
+            jTFornecedor.setText(fornecedor.getNome());
         }
-        
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jBMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMaeActionPerformed
+        SelecionaAnimal selecionaAnimal = new SelecionaAnimal(null, true, "Animal.buscarMae");
+        selecionaAnimal.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jBMaeActionPerformed
 
@@ -739,9 +778,14 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTRacaActionPerformed
 
     private void jBLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoteActionPerformed
-        SelecionaEntrada entrada = new SelecionaEntrada(null, true);
-        entrada.setVisible(true);
-        Entrada entrada1 = entrada.getEntrada();
+        SelecionaEntrada selecionaEntrada = new SelecionaEntrada(null, true);
+        selecionaEntrada.setVisible(true);
+        Entrada entrada = selecionaEntrada.getEntrada();
+        if (entrada != null) {
+            animal.setEntrada(selecionaEntrada.getEntrada());
+            jTLote.setText(entrada.getLeilao().getLote());
+        }
+
     }//GEN-LAST:event_jBLoteActionPerformed
 
     private void jCModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCModoActionPerformed
@@ -749,8 +793,10 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
             jBMae.setEnabled(true);
             jBPai.setEnabled(true);
             jBLote.setEnabled(false);
+            jTLote.setEditable(false);
         } else if (jCModo.getSelectedItem().equals("LEILÃO") || jCModo.getSelectedItem().equals("DOAÇÃO")) {
             jBLote.setEnabled(true);
+            jTLote.setEditable(true);
             jBMae.setEnabled(false);
             jBPai.setEnabled(false);
         }
@@ -768,6 +814,12 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         GerenciadorDeJanelas.getInstancia().openInternalFrame(PesquisarAnimal.getInstancia());
     }//GEN-LAST:event_jBBuscarActionPerformed
 
+    private void jBPaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPaiActionPerformed
+        SelecionaAnimal selecionaAnimal = new SelecionaAnimal(null, true, "Animal.buscarPai");
+        selecionaAnimal.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBPaiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
@@ -780,9 +832,9 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBMae;
     private javax.swing.JButton jBPai;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jCBuscar;
     private javax.swing.JComboBox jCCategria;
     private javax.swing.JComboBox jCModo;
-    private javax.swing.JComboBox jComboBox1;
     private com.toedter.calendar.JDateChooser jDNascimento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -818,7 +870,8 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTGrau;
     private javax.swing.JTextField jTIdMae;
     private javax.swing.JTextField jTIdPai;
-    private javax.swing.JTextField jTInfo;
+    private javax.swing.JTextField jTInformacao;
+    private javax.swing.JTextField jTLote;
     private javax.swing.JTextField jTMae;
     private javax.swing.JTextField jTNome;
     private javax.swing.JTextField jTPai;
@@ -826,12 +879,40 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTRaca;
     private javax.swing.JTextField jTRegistro;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTpelagem;
     // End of variables declaration//GEN-END:variables
 
-    private void setFornecedor(Fornecedor fornecedor) {
-        animal.setFornecedor(fornecedor);
+    public boolean verificarCampos() {
+        if (jTRegistro.getText().isEmpty()
+                || jTNome.getText().isEmpty()
+                || jTRaca.getText().isEmpty()
+                || jTpelagem.getText().isEmpty()
+                || jTPeso.getText().isEmpty()
+                || jTGrau.getText().isEmpty()
+                || jTFornecedor.getText().isEmpty()
+                || (jDNascimento.getDate() == null)
+                || (!jRF.isSelected() && !jRM.isSelected())) {
+            System.out.println("1");
+            return false;
+        }
+
+        if (jCModo.getSelectedItem().toString().equals("NASCIMENTO") && jBMae.isEnabled() && jBPai.isEnabled()) {
+            System.out.println("2");
+            if (jTMae.getText().isEmpty() || !jTMae.getText().isEmpty()) {
+                System.out.println("2.1");
+                return false;
+            }
+        }
+
+        if ((jCModo.getSelectedItem().equals("LEILÃO") || jCModo.getSelectedItem().equals("DOAÇÃO")) && jTLote.isEditable()) {
+            if (jTLote.getText().isEmpty()) {
+                System.out.println("3");
+                return false;
+            }
+        }
+        System.out.println("4");
+        return true;
     }
+
 }

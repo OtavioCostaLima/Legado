@@ -24,9 +24,10 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
 
     public MenuPrincipal() {
         initComponents();
+      
         //  funcoes_Atualisar.atualisar();
-       // setExtendedState(MAXIMIZED_BOTH);
-        addWindowListener();
+        // setExtendedState(MAXIMIZED_BOTH);
+      //  addWindowListener();
         gerenciadorDeJanelas = GerenciadorDeJanelas.getInstancia();
         gerenciadorDeJanelas.setDESKTOP_PANE(jDesktopPane1);
     }
@@ -91,6 +92,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
         jMenuItem33 = new javax.swing.JMenuItem();
         jMenuItem34 = new javax.swing.JMenuItem();
         jMenuItem43 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem42 = new javax.swing.JMenuItem();
@@ -138,7 +140,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LEGADO");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -328,6 +330,14 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
             }
         });
         jMenu2.add(jMenuItem43);
+
+        jMenuItem2.setText("Saída");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
 
@@ -737,7 +747,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
 
     }
 
- 
+
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
@@ -1361,7 +1371,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        sair(0);
+//        sair(0);
     }//GEN-LAST:event_formWindowClosing
 
     private void jMenuItem41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem41ActionPerformed
@@ -1433,6 +1443,10 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
         //  gerenciadorDeJanelas.openInternalFrame(SelecionaFornecedor.getInstancia());
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        gerenciadorDeJanelas.openInternalFrame(CadastroSaidaAnimal.getInstancia());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -1471,6 +1485,7 @@ public final class MenuPrincipal<T extends javax.swing.JInternalFrame> extends j
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem23;

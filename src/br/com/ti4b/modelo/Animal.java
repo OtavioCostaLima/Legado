@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +19,12 @@ import javax.persistence.TemporalType;
  *
  * @author OtavioC
  */
+@NamedQueries({
+    @NamedQuery(name = "Animal.buscarMae", query = "SELECT a FROM Animal a WHERE a.sexo = 'F' and a not in (SELECT an FROM Saida s join s.animal an)"),
+    @NamedQuery(name = "Animal.buscarPai", query = "SELECT a FROM Animal a WHERE a.sexo = 'M' and a not in (SELECT an FROM Saida s join s.animal an)"),
+    @NamedQuery(name = "Animal.buscarTodos", query = "SELECT a FROM Animal a WHERE a not in (SELECT an FROM Saida s join s.animal an)"),
+    @NamedQuery(name = "Animal.removerPoridInstituicao", query = "DELETE FROM Animal a WHERE a.idInstituicao=:id")
+})
 @Entity
 public class Animal implements Serializable, Modelo {
 
@@ -47,10 +55,13 @@ public class Animal implements Serializable, Modelo {
 
     private String nome;
 
+    @Column(length = 1, nullable = false)
     private String sexo;
 
+    @Column(nullable = false)
     private String raca;
 
+    @Column(nullable = false)
     private String pelagem;
 
     @Temporal(TemporalType.DATE)

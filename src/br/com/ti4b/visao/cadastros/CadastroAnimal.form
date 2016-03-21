@@ -132,7 +132,7 @@
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jTInfo" max="32767" attributes="0"/>
+                                      <Component id="jTInformacao" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -187,7 +187,7 @@
                           <Component id="jLabel4" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTpelagem" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel9" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTInfo" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTInformacao" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -338,7 +338,7 @@
                 <Property name="text" type="java.lang.String" value="Info:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTInfo">
+            <Component class="javax.swing.JTextField" name="jTInformacao">
             </Component>
           </SubComponents>
         </Container>
@@ -371,7 +371,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="jTLote" min="-2" pref="130" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jBLote" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -389,7 +389,7 @@
                           <Component id="jCModo" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTLote" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jBLote" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -461,7 +461,10 @@
                 <Property name="text" type="java.lang.String" value="Lote:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="jTLote">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBLote">
               <Properties>
@@ -612,11 +615,17 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTPai">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTPaiActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTMae">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTMaeActionPerformed"/>
               </Events>
@@ -636,7 +645,6 @@
             <Component class="javax.swing.JButton" name="jBMae">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBMaeActionPerformed"/>
@@ -693,8 +701,10 @@
             <Component class="javax.swing.JButton" name="jBPai">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPaiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
@@ -761,6 +771,7 @@
                   <Color blue="0" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CADASTRAR"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
@@ -779,6 +790,7 @@
                   <Color blue="0" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ALTERAR"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
@@ -797,6 +809,7 @@
                   <Color blue="0" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="EXCLUIR"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
@@ -815,6 +828,7 @@
                   <Color blue="0" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SAIR"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Padr&#xe3;o"/>
                 </Property>
@@ -833,6 +847,7 @@
                   <Color blue="0" green="99" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="BUSCA AVAN&#xc7;ADA"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -892,7 +907,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTextField2" min="-2" pref="179" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="149" max="-2" attributes="0"/>
+                      <Component id="jCBuscar" min="-2" pref="149" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -904,7 +919,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -919,7 +934,7 @@
                 <Property name="text" type="java.lang.String" value="Buscar:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="jCBuscar">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">

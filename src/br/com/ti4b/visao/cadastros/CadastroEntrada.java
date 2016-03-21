@@ -3,6 +3,7 @@ package br.com.ti4b.visao.cadastros;
 import br.com.ti4b.modelo.Entrada;
 import br.com.ti4b.modelo.Leilao;
 import br.com.ti4b.modelo.negocio.EntradaRN;
+import br.com.ti4b.modelo.negocio.LeilaoRN;
 import br.com.ti4b.visao.telas.tables.TabelaEntrada;
 import java.awt.Dimension;
 import javax.swing.DefaultComboBoxModel;
@@ -30,7 +31,7 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
         leilao.setDescricao(campoDescricao.getText());
         leilao.setLocalArrebatamento(campoLocal.getText());
         entrada.setDataEntrada(jDataEntrada.getDate());
-       // leilao.setEntrada(entrada);
+        // leilao.setEntrada(entrada);
         entrada.setLeilao(leilao);
         return entrada;
     }
@@ -433,7 +434,14 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
         EntradaRN entradaRN = new EntradaRN();
-        if (entradaRN.salvar(encapsular())) {
+        Entrada entrada = encapsular();
+        if (jDataEntrada.getDate() != null) {
+            if (entradaRN.salvar(encapsular())) {
+            }
+        } else {
+            LeilaoRN leilaoRN = new LeilaoRN();
+            if (leilaoRN.salvar(entrada.getLeilao())) {
+            }
         }
 
     }//GEN-LAST:event_CadastrarActionPerformed

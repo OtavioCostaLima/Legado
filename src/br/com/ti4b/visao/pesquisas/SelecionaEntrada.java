@@ -19,9 +19,9 @@ public final class SelecionaEntrada extends javax.swing.JDialog {
 
     TabelaEntrada tabelaEntrada = new TabelaEntrada();
     private final FiltrosDeTabelas filtros = new FiltrosDeTabelas();
-    Entrada entrada;
+    private int index = -1;
 
-    public void PovoaTabela() {
+    private void PovoaTabela() {
         tabelaPesquisa.setModel(tabelaEntrada);
         EntradaRN entradaRN = new EntradaRN();
         tabelaEntrada.inserirMovimentacaos(entradaRN.buscarTodos());
@@ -32,7 +32,6 @@ public final class SelecionaEntrada extends javax.swing.JDialog {
         tabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(70);
         tabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(70);
         tabelaPesquisa.getColumnModel().getColumn(4).setPreferredWidth(80);
-       
 
     }
 
@@ -261,10 +260,11 @@ public final class SelecionaEntrada extends javax.swing.JDialog {
 
     private void SelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecionarActionPerformed
         if (tabelaPesquisa.isRowSelected(tabelaPesquisa.getSelectedRow())) {
-            entrada = tabelaEntrada.getEntrada(tabelaPesquisa.getSelectedRow());
+            index = tabelaPesquisa.getSelectedRow();
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um Item da tabela!", "INFORMAÇÃO", JOptionPane.INFORMATION_MESSAGE);
         }
+        this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_SelecionarActionPerformed
 
@@ -288,6 +288,6 @@ public final class SelecionaEntrada extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public Entrada getEntrada() {
-        return entrada;
+        return index >= 0 ? tabelaEntrada.getEntrada(tabelaPesquisa.getSelectedRow()) : null;
     }
 }

@@ -4,6 +4,7 @@ import br.com.ti4b.util.ConectaBanco;
 import br.com.ti4b.modelo.Animal;
 import br.com.ti4b.util.ConexaoUtil;
 import java.util.List;
+import javax.management.Query;
 import javax.persistence.EntityManager;
 
 /**
@@ -16,8 +17,14 @@ public class AnimalDAO extends DAOGenerico<Animal> {
 
     public List<Animal> retornaAnimalLeftSaida() {
         EntityManager em = ConexaoUtil.getEntityManager();
-        String sql = "SELECT a FROM Animal a WHERE a not in (SELECT an FROM Saida s join s.animais an)";
-        return em.createQuery(sql).getResultList();
+        String sql = "Animal.buscarTodos";
+        // String sql = "SELECT a FROM Animal a WHERE a not in (SELECT an FROM Saida s join s.animais an)";
+        return em.createNamedQuery(sql).getResultList();
+    }
+
+    public List<Animal> retornaAnimalPorQuery(String sql) {
+        EntityManager em = ConexaoUtil.getEntityManager();
+        return em.createNamedQuery(sql).getResultList();
     }
 
     /* public Ent_HistoricoReproducao retornaTudoAnimal(int codOrigem) {
@@ -53,4 +60,14 @@ public class AnimalDAO extends DAOGenerico<Animal> {
      }
      return ent_HistoricoReproducao;
      }*/
+    public boolean deletarRegistro(String idInstituicao) {
+        EntityManager em = ConexaoUtil.getEntityManager();
+        try {
+            em.createNamedQuery("Animal.removerPoridInstituicao").setParameter("id", idInstituicao).executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

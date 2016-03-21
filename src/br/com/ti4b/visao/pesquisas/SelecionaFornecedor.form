@@ -85,9 +85,9 @@
                           <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="Selecionar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBSelecionar" linkSize="1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" linkSize="1" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="jBAlterar" linkSize="1" min="-2" pref="95" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="Imprimir" linkSize="1" min="-2" pref="93" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -121,8 +121,8 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="Imprimir" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="jButton1" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="Selecionar" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="jBAlterar" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="jBSelecionar" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -279,7 +279,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="Selecionar">
+            <Component class="javax.swing.JButton" name="jBSelecionar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
@@ -295,7 +295,7 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SelecionarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSelecionarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton8">
@@ -336,7 +336,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ImprimirActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jBAlterar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
@@ -349,7 +349,7 @@
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAlterarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

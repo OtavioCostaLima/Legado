@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 public class TabelaAnimal extends AbstractTableModel {
 
     List<Animal> animais = new ArrayList<>();
-    String colunas[] = {"idInstituicao", "nome", "Categoria", "sexo", "raca", "pelagem", "idade", "dataNascimento", "peso", "grauSanguineo", "informacao"};
+    String colunas[] = {"idInstituicao", "nome", "Categoria", "sexo", "raca", "pelagem", "dataNascimento", "peso", "grauSanguineo", "informacao"};
 
     public void addListaAnimal(List<Animal> animais) {
         this.animais = animais;
