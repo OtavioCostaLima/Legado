@@ -10,18 +10,18 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 
 public final class CadastroEntrada extends javax.swing.JInternalFrame {
-    
+
     TabelaEntrada tabelaEnrada = new TabelaEntrada();
     DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>(new String[]{"LEILÃO", "DOAÇÃO"});
     private static CadastroEntrada cadastroLeilao;
-    
+
     public static CadastroEntrada getInstancia() {
         if (cadastroLeilao == null) {
             cadastroLeilao = new CadastroEntrada();
         }
         return cadastroLeilao;
     }
-    
+
     private Entrada encapsular() {
         Entrada entrada = new Entrada();
         Leilao leilao = new Leilao();
@@ -31,20 +31,27 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
         leilao.setDescricao(campoDescricao.getText());
         leilao.setLocalArrebatamento(campoLocal.getText());
         entrada.setDataEntrada(jDataEntrada.getDate());
+        entrada.setTipoEntrada(comboTipo.getSelectedItem().toString());
         // leilao.setEntrada(entrada);
         entrada.setLeilao(leilao);
         return entrada;
     }
-    
+
+    public void povoarTabela() {
+        tabelaEnrada.inserirMovimentacaos(new EntradaRN().buscarTodos());
+        tabelaPesquisaEntradas.setModel(tabelaEnrada);
+    }
+
     private CadastroEntrada() {
         initComponents();
         comboTipo.setModel(comboBoxModel);
+        povoarTabela();
     }
-    
+
     public void upperCase(JTextField modelo) {
         modelo.setText(modelo.getText().toUpperCase());
     }
-    
+
     public void limparcampos() {
         info_error.setText(null);
         campoDescricao.setText(null);
@@ -52,9 +59,9 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
         campoLocal.setText(null);
         campoValor.setText(null);
         GrupoLeilao.clearSelection();
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -346,6 +353,11 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelaPesquisaEntradas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaPesquisaEntradasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaPesquisaEntradas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -437,6 +449,7 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
         Entrada entrada = encapsular();
         if (jDataEntrada.getDate() != null) {
             if (entradaRN.salvar(encapsular())) {
+                povoarTabela();
             }
         } else {
             LeilaoRN leilaoRN = new LeilaoRN();
@@ -445,21 +458,23 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_CadastrarActionPerformed
-    
+
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
         if (tabelaPesquisaEntradas.isRowSelected(tabelaPesquisaEntradas.getSelectedRow())) {
             if (new EntradaRN().salvar(tabelaEnrada.getEntrada(tabelaPesquisaEntradas.getSelectedRow()))) {
+                povoarTabela();
                 limparcampos();
             }
         }
-        
+
 
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         if (tabelaPesquisaEntradas.isRowSelected(tabelaPesquisaEntradas.getSelectedRow())) {
             if (new EntradaRN().remover(tabelaEnrada.getEntrada(tabelaPesquisaEntradas.getSelectedRow()).getId())) {
+                povoarTabela();
                 limparcampos();
             }
         }
@@ -490,6 +505,19 @@ public final class CadastroEntrada extends javax.swing.JInternalFrame {
     private void campoLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoLocalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoLocalActionPerformed
+
+    private void tabelaPesquisaEntradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPesquisaEntradasMouseClicked
+        if (tabelaPesquisaEntradas.isRowSelected(tabelaPesquisaEntradas.getSelectedRow())) {
+            Entrada entrada = tabelaEnrada.getEntrada(tabelaPesquisaEntradas.getSelectedRow());
+            comboTipo.setSelectedItem(entrada.getTipoEntrada());
+            campoLote.setText(entrada.getLeilao().getLote());
+            jDataLeilao.setDate(entrada.getLeilao().getDdataLeilao());
+            jDataEntrada.setDate(entrada.getDataEntrada());
+            campoLocal.setText(entrada.getLeilao().getLocalArrebatamento());
+            campoDescricao.setText(entrada.getLeilao().getDescricao());
+            campoValor.setText(String.valueOf(entrada.getLeilao().getValor()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaPesquisaEntradasMouseClicked
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);

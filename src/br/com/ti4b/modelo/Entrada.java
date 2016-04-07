@@ -34,6 +34,8 @@ public class Entrada implements Serializable, Modelo {
     @JoinColumn(name = "lote")
     private Leilao leilao;
 
+    private String tipoEntrada;
+
     public Date getDataEntrada() {
         return dataEntrada;
     }
@@ -58,8 +60,16 @@ public class Entrada implements Serializable, Modelo {
         this.animais = animais;
     }
 
+    public String getTipoEntrada() {
+        return tipoEntrada;
+    }
+
+    public void setTipoEntrada(String tipoEntrada) {
+        this.tipoEntrada = tipoEntrada;
+    }
+
     @Override
     public long getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 }

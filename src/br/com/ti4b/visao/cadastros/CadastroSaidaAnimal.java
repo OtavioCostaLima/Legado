@@ -3,32 +3,43 @@ package br.com.ti4b.visao.cadastros;
 import br.com.ti4b.modelo.Animal;
 import br.com.ti4b.modelo.Leilao;
 import br.com.ti4b.modelo.Saida;
+import br.com.ti4b.modelo.negocio.SaidaRN;
 import br.com.ti4b.visao.pesquisas.SelecionaAnimal;
 import br.com.ti4b.visao.pesquisas.SelecionaEntrada;
+import br.com.ti4b.visao.telas.tables.TabelaSaida;
 
 /**
  *
  * @author Otavio Costa
  */
 public class CadastroSaidaAnimal extends javax.swing.JInternalFrame {
-
+    
+    private final TabelaSaida tabelaSaida = new TabelaSaida();
     private Saida saida = new Saida();
     /**
      * Creates new form CadastroSaidaAnimal
      */
+    
     private static CadastroSaidaAnimal cadastroSaidaAnimal;
-
+    
     public static CadastroSaidaAnimal getInstancia() {
         if (cadastroSaidaAnimal == null) {
             cadastroSaidaAnimal = new CadastroSaidaAnimal();
         }
         return cadastroSaidaAnimal;
     }
-
+    
     private CadastroSaidaAnimal() {
         initComponents();
+        povoarTabela();
     }
-
+    
+    private void povoarTabela() {
+        SaidaRN saidaRN = new SaidaRN();
+        tabelaSaida.inserirMovimentacaos(saidaRN.buscarTodos());
+        jTable1.setModel(tabelaSaida);
+    }
+    
     private Saida encapsular() {
         if (saida == null) {
             saida = new Saida();

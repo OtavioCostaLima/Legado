@@ -26,12 +26,14 @@ public class EntradaRN implements RNgenerico<Entrada> {
 
     @Override
     public boolean remover(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       entradaDAO = new EntradaDAO();
+        return entradaDAO.deletar(id);
     }
 
     @Override
     public Entrada buscarPorId(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        entradaDAO = new EntradaDAO();
+        return entradaDAO.buscarPorId(id);
     }
 
     @Override

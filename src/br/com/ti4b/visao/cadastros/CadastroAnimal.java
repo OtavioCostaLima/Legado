@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class CadastroAnimal extends javax.swing.JInternalFrame {
 
     private static CadastroAnimal cadastroAnimal1;
-    private final Animal animal = new Animal();
+    private Animal animal = new Animal();
     TabelaAnimal tabelaAnimal = new TabelaAnimal();
 
     private CadastroAnimal() {
@@ -635,6 +635,11 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -739,7 +744,18 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_CadastrarActionPerformed
 
     private void AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarActionPerformed
-        // TODO add your handling code here:
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
+            if (verificarCampos()) {
+                AnimalRN animalRN = new AnimalRN();
+                if (animalRN.atualizar(encapsuar())) {
+                    povoarTabela();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha os campos necessários!");
+            }
+        }
+
+// TODO add your handling code here:
     }//GEN-LAST:event_AlterarActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
@@ -763,7 +779,6 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
             animal.setFornecedor(fornecedor);
             jTFornecedor.setText(fornecedor.getNome());
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -819,6 +834,12 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         selecionaAnimal.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jBPaiActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (jTable1.isRowSelected(jTable1.getSelectedRow())) {
+            setAnimal(tabelaAnimal.getAnimal(jTable1.getSelectedRow()));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -893,26 +914,32 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                 || jTFornecedor.getText().isEmpty()
                 || (jDNascimento.getDate() == null)
                 || (!jRF.isSelected() && !jRM.isSelected())) {
-            System.out.println("1");
             return false;
         }
 
         if (jCModo.getSelectedItem().toString().equals("NASCIMENTO") && jBMae.isEnabled() && jBPai.isEnabled()) {
-            System.out.println("2");
             if (jTMae.getText().isEmpty() || !jTMae.getText().isEmpty()) {
-                System.out.println("2.1");
                 return false;
             }
         }
 
         if ((jCModo.getSelectedItem().equals("LEILÃO") || jCModo.getSelectedItem().equals("DOAÇÃO")) && jTLote.isEditable()) {
             if (jTLote.getText().isEmpty()) {
-                System.out.println("3");
                 return false;
             }
         }
-        System.out.println("4");
         return true;
     }
 
+    private void setAnimal(Animal animal1) {
+        this.animal = animal1;
+        jTRegistro.setText(animal1.getIdInstituicao());
+        jTNome.setText(animal1.getNome());
+        jTpelagem.setText(animal1.getPelagem());
+        jTRaca.setText(animal1.getRaca());
+        jTInformacao.setText(animal1.getInformacao());
+        jTFornecedor.setText(animal1.getFornecedor().getNome());
+        //    jCModo.setSelectedItem(animal1.getEntrada().getLeilao().getDescricao());
+
+    }
 }
