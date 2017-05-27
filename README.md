@@ -1,9 +1,9 @@
 ![legado](https://github.com/OtavioCostaLima/Legado/blob/master/src/br/com/ti4b/icons/LEGADO1.jpg)
-# Legado é um sistema para o gerenciamente da produção e reprodução em fazendas pecuárias.
+# Legado é um sistema para o gerenciamento da produção e reprodução em fazendas pecuárias.
 
 ---
 
-> Tecnologias: Java SE2, Hibernate
+> Tecnologias: Java SE, Hibernate
 
  No momento o gerenciamento reprodutivo das categorias são para:
  * Bovínos
