@@ -1,6 +1,6 @@
 ![legado](https://github.com/OtavioCostaLima/Legado/blob/master/src/br/com/ti4b/icons/LEGADO1.jpg)
-
 # Legado é um sistema para o gerenciamente da produção e reprodução em fazendas pecuárias.
+
 ---
 
 > Tecnologias: Java SE2, Hibernate
@@ -31,7 +31,7 @@
 
 
 
- __OBS:__ `` O atual projeto compartilhado no gitHub está sendo migrado para o FrameWork JPA Hibernate e sendo refatorando para padrões de projetos da atualizade etão existe a ocorrencia de bugs em alguns trechos de códigos. Também aceitamos contribuição para a melhoria do mesmo``
+ __OBS:__ `` O atual projeto compartilhado no gitHub está sendo migrado para o FrameWork JPA Hibernate e sendo refatorando para padrões de projetos da atualizade então existe a ocorrência de bugs em alguns trechos de códigos. Também aceitamos contribuição para a melhoria do mesmo``
  
 [Meu Facebook](http://facebook.com/otavio.costa.lima "Otávio Costa")
 email: <otavio_slz15@hotmail.com>
