@@ -13,7 +13,7 @@
 
 > Onde as subcategorias são atualizadas automaticamente de acordo com a idade ou fase de cada animal.
 
- ` Ex: Bezerro passa-se a ser Garrote após uma determinada idade. `
+ ` Ex: Bezerro passa a ser Garrote após uma determinada idade. `
 
 ## Algumas funcionalidades!
 
